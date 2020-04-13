@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.tfjybj.ftdp.provider.dao.TemplateGroupDao">
+    <insert id="addTemplateGroup">
+       INSERT INTO tin_templategroup ( tin_templategroup.id, tin_templategroup.templateGroupName, tin_templategroup.groupSequence, tin_templategroup.isUsable )
+VALUES
+	(#{Id},#{groupName},#{groupSequence},0)
+    </insert>
+    <update id="updateTemplateGroupPlace">
+        UPDATE tin_templategroup SET tin_templategroup.groupSequence = #{groupSequence} where tin_templategroup.id = #{id}
+    </update>
+    <update id="updateTemplateGroup">
+UPDATE tin_templategroup,
+tin_template
+SET tin_templategroup.isUsable = 1,
+tin_template.isUsable = 1
+WHERE
+	tin_template.templateGroupID = #{id}
+	AND tin_templategroup.id= #{id};
+    </update>
+    <select id="queryTemplateGroup" resultType="com.tfjybj.ftdp.model.TemplateGroupModel">
+SELECT * FROM tin_templategroup WHERE isUsable = 0 GROUP BY   groupSequence
+    </select>
+</mapper>

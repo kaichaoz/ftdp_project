@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.tfjybj.ftdp.provider.dao.TemplateRuleRecordDao">
+    <update id="addComponentIdRuleRecord">
+  INSERT INTO tin_templaterulerecord (tin_templaterulerecord.templateId,
+	tin_templaterulerecord.componentId,
+	tin_templaterulerecord.grade,
+	tin_templaterulerecord.sex,
+	tin_templaterulerecord.startRange,
+	tin_templaterulerecord.endRange,
+	tin_templaterulerecord.originalScore,
+	tin_templaterulerecord.weight,
+	tin_templaterulerecord.level,
+    tin_templaterulerecord.creater,
+    tin_templaterulerecord.id)
+	 VALUES (#{templateRuleRecordModel.templateId},#{templateRuleRecordModel.componentId},#{templateRuleRecordModel.grade},#{templateRuleRecordModel.sex},#{templateRuleRecordModel.startRange},#{templateRuleRecordModel.endRange},#{templateRuleRecordModel.originalScore},#{templateRuleRecordModel.weight},#{templateRuleRecordModel.level},#{templateRuleRecordModel.creater},#{Id})
+    </update>
+
+    <insert id="addTemplateRuleRecord">
+   INSERT INTO tin_templaterulerecord (tin_templaterulerecord.templateId,
+	tin_templaterulerecord.componentId,
+	tin_templaterulerecord.grade,
+	tin_templaterulerecord.sex,
+	tin_templaterulerecord.startRange,
+	tin_templaterulerecord.endRange,
+	tin_templaterulerecord.originalScore,
+	tin_templaterulerecord.weight,
+	tin_templaterulerecord.level,
+    tin_templaterulerecord.creater,
+     tin_templaterulerecord.id)
+	 VALUES(#{templateRuleRecordModel.templateId},#{templateRuleRecordModel.componentId},#{templateRuleRecordModel.grade},#{templateRuleRecordModel.sex},#{templateRuleRecordModel.startRange},#{templateRuleRecordModel.endRange},#{templateRuleRecordModel.originalScore},#{templateRuleRecordModel.weight},#{templateRuleRecordModel.level},#{templateRuleRecordModel.creater},#{Id})
+    </insert>
+
+    <select id="queryTemplateRuleRecord" resultType="com.tfjybj.ftdp.entity.TemplaterulerecordEntity">
+SELECT * FROM tin_templateRuleRecord WHERE templateId=#{templateId}
+    </select>
+</mapper>

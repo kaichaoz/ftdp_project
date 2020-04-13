@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.tfjybj.ftdp.provider.dao.TemplateContentDao">
+
+    <!--    添加模板-->
+    <insert id="addTemplateContent" >
+      INSERT INTO tin_templatecontent(id,
+                                      templateId,
+                                      componentId,
+                                      title,
+                                      promptField,
+                                      groupSequence
+                                     )
+      VALUES (#{id},#{templateId},#{componentId},#{title},#{promptField},#{groupSequence})
+      ON DUPLICATE KEY UPDATE id= #{id},templateId= #{templateId},componentId= #{componentId},title= #{title},promptField= #{promptField},groupSequence= #{groupSequence}
+    </insert>
+
+    <!--    添加模板（插入template表）-->
+    <insert id="templateInsert">
+        INSERT INTO tin_template (id,
+                                  templateName,
+                                  templateGroupId,
+                                  staffID,
+                                  postscript,
+                                  isUsable,
+                                  groupSequence,
+                                  isFinish)
+        VALUES (#{id},#{templateName},#{templateGroupId},#{staffID},#{postscript},#{isUsable},#{groupSequence},#{isFinish})
+        ON DUPLICATE KEY UPDATE id = #{id},templateName = #{templateName},templateGroupId = #{templateGroupId},staffID = #{staffID},postscript = #{postscript},isUsable = #{isUsable},groupSequence = #{groupSequence},isFinish = #{isFinish}
+    </insert>
+
+<!--    &lt;!&ndash;    根据template id编辑模板内容&ndash;&gt;-->
+<!--    <update id="updateTemplateContent" >-->
+<!--        UPDATE tin_templatecontent-->
+<!--        SET templateId = #{templateContentModel.templateId},-->
+<!--            componentId = #{templateContentModel.componentId},-->
+<!--            title = #{templateContentModel.promptFleld},-->
+<!--            titleLength = #{templateContentModel.groupSequence},-->
+<!--            inputField = #{templateContentModel.title}-->
+<!--        where tin_templatecontent.id = #{id}-->
+<!--    </update>-->
+
+    <!--    修改tin_templateContent表isUsable字段完成删除-->
+    <update id="templateDelete">
+        UPDATE tin_templatecontent
+        SET  isUsable = "1"
+        WHERE id = #{id}
+    </update>
+
+    <!--   根据isUsable字段查询tin_templateGroup表可用的模板-->
+    <select id="queryTempByIsUsable" resultType="com.tfjybj.ftdp.entity.TemplateGroupEntity">
+        select tin_templategroup.id,
+               tin_templategroup.templateGroupName,
+               tin_templategroup.isUsable,
+               tin_template.id,
+               tin_template.templateName
+        from tin_templategroup,
+             tin_template
+        where tin_template.isUsable = #{isUsable}
+        and   tin_template.templategroupID = tin_templategroup.id
+    </select>
+
+    <!--    查询tin_templateContent表-->
+    <select id="queryTemplateContent" resultType="com.tfjybj.ftdp.entity.TemplatecontentEntity">
+        select  id,
+                templateId,
+                componentId,
+                title,
+                promptField,
+                isUsable,
+                groupSequence
+        from tin_templatecontent
+        order by
+        id asc
+    </select>
+
+
+
+</mapper>

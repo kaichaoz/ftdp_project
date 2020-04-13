@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.tfjybj.ftdp.provider.dao.ComponentlibraryDao">
+<!--    <resultMap id="ComponentList" type="com.tfjybj.ftdp.model.ComponentModel">-->
+<!--        <id column="id" property="id" jdbcType="CHAR"></id>-->
+<!--        <result column="groupName" jdbcType="VARCHAR" property="groupName"></result>-->
+<!--        <result column="groupSequence" jdbcType="VARCHAR" property="groupSequence"></result>-->
+<!--        <result column="groupId"  jdbcType="CHAR"  property="groupld"></result>-->
+<!--        <collection property="data" ofType="com.tfjybj.ftdp.model.ComponentIdModel">-->
+<!--            <id column="id" property="id" jdbcType="CHAR"></id>-->
+<!--        </collection>-->
+<!--    </resultMap>-->
+
+<!--    <resultMap id="ComponentList" type="com.tfjybj.ftdp.entity.ComponentlibraryEntity">-->
+<!--        <result column="groupName" jdbcType="VARCHAR" property="groupName"></result>-->
+<!--        <result column="groupId"  jdbcType="CHAR"  property="groupld"></result>-->
+<!--        <result column="componentId"  jdbcType="CHAR"  property="componentId"></result>-->
+<!--        <result column="groupSequence" jdbcType="VARCHAR" property="groupSequence"></result>-->
+<!--        <result column="isUsable"  jdbcType="CHAR"  property="isUsable"></result>-->
+<!--    </resultMap>-->
+
+    <!--初始化组件库页面-->
+    <select id="queryComponent" resultType="com.tfjybj.ftdp.model.ComponentModel">
+        SELECT groupName,groupId,componentId,groupSequence,isUsable
+        FROM tin_componentlibrary
+        ORDER BY groupSequence ASC
+    </select>
+
+    <!--更新组件-->
+     <update id="updateComponentGroupPlace" >
+        UPDATE tin_componentlibrary SET groupSequence=#{groupSequence} WHERE groupId=#{groupId}
+    </update>
+
+    <!--启用组件-->
+    <update id="updateComponentIsUsableOpen">
+        UPDATE tin_templategroup SET isUsable=0 WHERE id =#{id};
+    </update>
+
+    <!--停用组件-->
+    <update id="updateComponentIsUsableOff">
+        UPDATE tin_templategroup SET isUsable=1 WHERE id=#{id};
+    </update>
+</mapper>
+
