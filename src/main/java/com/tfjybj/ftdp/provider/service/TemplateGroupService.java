@@ -65,4 +65,17 @@ public interface TemplateGroupService {
     * @Modification Time:
     **/
     boolean updateTemplateGroup(String id);
+
+    /**
+     * @Description: 修改模板分组 无则插入  有则修改
+    * @Param:  
+    * @Return:  
+    * @Author: 张凯超
+    * @Data: 2020/4/13 
+    * @Time: 11:51
+    * @Version: V1.0.0
+    * @Modified by :
+    * @Modification Time:
+    **/
+    boolean modifyTemplateGroup(List<TemplateGroupModel> templateGroupModelList) ;
 }

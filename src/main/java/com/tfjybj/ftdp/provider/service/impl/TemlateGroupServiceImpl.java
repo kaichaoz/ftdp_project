@@ -1,17 +1,14 @@
 package com.tfjybj.ftdp.provider.service.impl;
 
-import com.tfjybj.ftdp.entity.TemplateEntity;
 import com.tfjybj.ftdp.model.TemplateGroupModel;
 import com.tfjybj.ftdp.provider.dao.TemplateGroupDao;
 import com.tfjybj.ftdp.provider.service.TemplateGroupService;
 import com.tfjybj.ftdp.utils.PatterUtils;
-import com.tfjybj.ftdp.utils.ResultUtils;
 import org.springframework.stereotype.Service;
-import org.thymeleaf.util.PatternUtils;
 
 import javax.annotation.Resource;
 import java.util.List;
-import java.util.regex.Pattern;
+import java.util.Map;
 
 /**
  * @Classname TemlateGroupServiceImpl
@@ -21,7 +18,7 @@ import java.util.regex.Pattern;
  * @Version 1.0
  */
 @Service("temlateGroupService")
-public class TemlateGroupServiceImpl implements TemplateGroupService {
+public class TemlateGroupServiceImpl implements TemplateGroupService  {
 
     @Resource
     private TemplateGroupDao templateGroupDao;
@@ -90,4 +87,32 @@ public class TemlateGroupServiceImpl implements TemplateGroupService {
         return templateGroupDao.updateTemplateGroup(id);
     }
 
+    /**
+     * @Description: 修改模板分组 无则插入  有则修改
+    * @Param:  
+    * @Return:  
+    * @Author: 张凯超
+    * @Data: 2020/4/13 
+    * @Time: 11:20
+    * @Version: V1.0.0
+    * @Modified by :
+    * @Modification Time:
+    **/
+    @Override
+    public boolean modifyTemplateGroup(List<TemplateGroupModel> templateGroupModelList) {
+        for (TemplateGroupModel templateGroupModel:templateGroupModelList
+             ) {
+            // 遍历Id是否为空
+            if (templateGroupModel.getId().isEmpty() || "".equals(templateGroupModel.getId())) {
+                TemplateGroupModel template = new TemplateGroupModel();
+                // Id为空，新插入数据
+                template.setTemplateGroupName(templateGroupModel.getTemplateGroupName());
+                template.setGroupSequence(templateGroupModel.getGroupSequence());
+                templateGroupDao.addTemplateGroup(PatterUtils.getNumberPattern(),template.getTemplateGroupName(),template.getGroupSequence());
+            }else {
+                templateGroupDao.updateTemplateGroupModel(templateGroupModel);
+            }
+        }
+        return true;
+    }
 }

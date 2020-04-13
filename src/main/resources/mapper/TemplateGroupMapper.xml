@@ -18,6 +18,15 @@ WHERE
 	tin_template.templateGroupID = #{id}
 	AND tin_templategroup.id= #{id};
     </update>
+    <update id="updateTemplateGroupModel">
+UPDATE tin_templategroup  as t
+SET
+t.groupSequence = #{templateGroupModel.groupSequence}  ,
+t.isUsable = #{templateGroupModel.isUsable},
+t.templateGroupName = #{templateGroupModel.templateGroupName}
+WHERE
+t.id = #{templateGroupModel.id}
+    </update>
     <select id="queryTemplateGroup" resultType="com.tfjybj.ftdp.model.TemplateGroupModel">
 SELECT * FROM tin_templategroup WHERE isUsable = 0 GROUP BY   groupSequence
     </select>
