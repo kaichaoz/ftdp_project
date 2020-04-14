@@ -16,7 +16,7 @@ import java.util.List;
  * @Version 1.0
  */
 @Repository("templateGroupDao")
-public interface TemplateGroupDao extends BaseMapper<TemplateEntity> {
+public interface TemplateGroupDao extends BaseMapper<TemplateGroupModel> {
 
     /**
     * @Description:  初始化模板页面
@@ -68,4 +68,17 @@ public interface TemplateGroupDao extends BaseMapper<TemplateEntity> {
     * @Modification Time:
     **/
     boolean updateTemplateGroup(@Param("id") String id);
+
+    /**
+     * @Description: 修改模板分组 无则插入  有则修改
+    * @Param:  
+    * @Return:  
+    * @Author: 张凯超
+    * @Data: 2020/4/13 
+    * @Time: 14:05
+    * @Version: V1.0.0
+    * @Modified by :
+    * @Modification Time:
+    **/
+    boolean updateTemplateGroupModel(@Param("templateGroupModel") TemplateGroupModel templateGroupModel);
 }

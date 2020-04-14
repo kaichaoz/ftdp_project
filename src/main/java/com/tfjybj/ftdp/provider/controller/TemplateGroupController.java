@@ -119,4 +119,22 @@ public class TemplateGroupController {
     }
 
 
+
+    /**
+    * @Description: 修改模板分组 无则插入  有则修改
+    * @Param: templateGroupModelList  模板数据集合
+    * @Return:
+    * @Author: 张凯超
+    * @Data: 2020/4/13
+    * @Time: 10:25
+    * @Version: V1.0.0
+    * @Modified by :
+    * @Modification Time:
+    **/
+    @ApiOperation(value = "修改模板分组")
+    @PostMapping(value = "/modifyTemplateGroup")
+    public ResultUtils modifyTemplateGroup(@RequestBody List<TemplateGroupModel> templateGroupModelList) throws Exception {
+        boolean flag = templateGroupService.modifyTemplateGroup(templateGroupModelList);
+        return ResultUtils.build(CodeEnumUtils.MODIFY_SUCCESS.getCode(),CodeEnumUtils.MODIFY_SUCCESS.getMessage(),flag);
+    }
 }

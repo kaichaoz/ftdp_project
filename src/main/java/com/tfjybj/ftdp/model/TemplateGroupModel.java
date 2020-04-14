@@ -15,12 +15,8 @@ import java.io.Serializable;
  */
 @Data
 public class TemplateGroupModel implements Serializable{
-    @Column(name = "id")
     private String id;
-    @Column(name = "tempalteName")
-    private String tempalteName;
-    @Column(name = "isUsable")
+    private String templateGroupName;
     private Integer isUsable;
-    @Column(name = "groupSequence")
     private String groupSequence;
 }
