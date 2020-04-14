@@ -7,12 +7,15 @@ import lombok.ToString;
 import lombok.experimental.Accessors;
 
 import javax.persistence.Column;
+import javax.persistence.Id;
+
 @Data
 @ApiModel(value = "UserModel:user")
 @NoArgsConstructor
 @Accessors(chain = true)
 @ToString(callSuper = true)
 public class TemplateContentModel {
+    @Id
     @Column(name = "id")
     private String id;
     @Column(name = "templateId")
