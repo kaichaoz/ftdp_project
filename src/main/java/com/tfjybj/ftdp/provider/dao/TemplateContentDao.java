@@ -3,6 +3,7 @@ package com.tfjybj.ftdp.provider.dao;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.tfjybj.ftdp.entity.TemplateGroupEntity;
 import com.tfjybj.ftdp.entity.TemplatecontentEntity;
+import com.tfjybj.ftdp.model.QueryTemplateModel;
 import com.tfjybj.ftdp.model.TemplateContentModel;
 import com.tfjybj.ftdp.model.TemplateModel;
 import org.apache.ibatis.annotations.Param;
@@ -72,4 +73,11 @@ public interface TemplateContentDao extends BaseMapper<TemplateModel> {
      * @return
      */
     boolean templateInsert(String id, String templateName, String templateGroupId, String staffID, String postscript, String isUsable, String groupSequence, String isFinish);
+
+    /**
+     * 模板编辑界面加载
+     * @param id
+     * @return
+     */
+    QueryTemplateModel queryTemplate (String id);
 }

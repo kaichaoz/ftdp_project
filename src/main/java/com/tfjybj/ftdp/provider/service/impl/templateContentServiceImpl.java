@@ -2,7 +2,10 @@ package com.tfjybj.ftdp.provider.service.impl;
 
 import com.tfjybj.ftdp.entity.TemplateGroupEntity;
 import com.tfjybj.ftdp.entity.TemplatecontentEntity;
+import com.tfjybj.ftdp.model.QueryTemplateModel;
 import com.tfjybj.ftdp.model.TemplateContentModel;
+import com.tfjybj.ftdp.model.TemplateGroupModel;
+import com.tfjybj.ftdp.provider.dao.TemplateGroupDao;
 import com.tfjybj.ftdp.utils.PatterUtils;
 import org.springframework.stereotype.Service;
 import com.tfjybj.ftdp.provider.service.TemplateContentService;
@@ -22,6 +25,8 @@ public class templateContentServiceImpl implements TemplateContentService {
 
     @Resource
     private TemplateContentDao templateContentDao;
+    @Resource
+    private TemplateGroupDao templateGroupDao;
 
     /**
      * 添加模板内容
@@ -108,5 +113,17 @@ public class templateContentServiceImpl implements TemplateContentService {
         return templateContentDao.templateDelete(id);
     }
 
+    /**
+     * 模板编辑界面加载
+     * @param id
+     * @return
+     */
+    @Override
+    public QueryTemplateModel queryTemplate(String id) {
 
+        QueryTemplateModel queryTemplateModels = templateContentDao.queryTemplate(id);
+        List<TemplateGroupModel> templateEntityList = templateGroupDao.queryTemplateGroup();
+        queryTemplateModels.setTemplateData(templateEntityList);
+        return queryTemplateModels;
+    }
 }

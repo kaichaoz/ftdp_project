@@ -2,6 +2,7 @@ package com.tfjybj.ftdp.provider.service;
 
 import com.tfjybj.ftdp.entity.TemplateGroupEntity;
 import com.tfjybj.ftdp.entity.TemplatecontentEntity;
+import com.tfjybj.ftdp.model.QueryTemplateModel;
 import com.tfjybj.ftdp.model.TemplateContentModel;
 import org.springframework.stereotype.Service;
 
@@ -76,4 +77,11 @@ public interface TemplateContentService {
      * @return
      */
     boolean templateDelete(String id);
+
+    /**
+     * 初始化模板编辑页面（查询tin_complate表和tin_complateGroup）
+     * @param id
+     * @return
+     */
+    QueryTemplateModel queryTemplate (String id);
 }
