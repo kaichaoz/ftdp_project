@@ -21,11 +21,11 @@ public interface ComponentlibraryService {
     List<ComponentModel> queryComponent();
 
     //传参，无返回值
-    void updateComponentGroupPlace(String groupId,String groupSequence);
+    int updateComponentGroupPlace(ComponentModel componentModels);
 
-    //传参
-    void updateComponentIsUsableOpen(String id);
-
-    void updateComponentIsUsableOff(String id);
+//    //传参
+//    void updateComponentIsUsableOpen(String id);
+//
+//    void updateComponentIsUsableOff(String id);
 }
 
