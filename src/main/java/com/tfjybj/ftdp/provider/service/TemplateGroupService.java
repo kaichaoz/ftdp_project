@@ -51,31 +51,6 @@ public interface TemplateGroupService {
     * @Modified by :
     * @Modification Time:
     **/
-    boolean updateTemplateGroupPlace(String id, String groupSequence);
+    boolean updateTemplateGroup(TemplateGroupModel templateGroupModel);
 
-    /**
-    * @Description: 修改isUsable状态做到删除模板分组
-    * @Param:  
-    * @Return:  
-    * @Author: 张凯超
-    * @Data: 2020/4/2 
-    * @Time: 10:12
-    * @Version: V1.0.0
-    * @Modified by :
-    * @Modification Time:
-    **/
-    boolean updateTemplateGroup(String id);
-
-    /**
-     * @Description: 修改模板分组 无则插入  有则修改
-    * @Param:  
-    * @Return:  
-    * @Author: 张凯超
-    * @Data: 2020/4/13 
-    * @Time: 11:51
-    * @Version: V1.0.0
-    * @Modified by :
-    * @Modification Time:
-    **/
-    boolean modifyTemplateGroup(List<TemplateGroupModel> templateGroupModelList) ;
 }

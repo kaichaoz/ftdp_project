@@ -6,26 +6,17 @@
 VALUES
 	(#{Id},#{groupName},#{groupSequence},0)
     </insert>
-    <update id="updateTemplateGroupPlace">
-        UPDATE tin_templategroup SET tin_templategroup.groupSequence = #{groupSequence} where tin_templategroup.id = #{id}
-    </update>
     <update id="updateTemplateGroup">
 UPDATE tin_templategroup,
 tin_template
-SET tin_templategroup.isUsable = 1,
-tin_template.isUsable = 1
+SET tin_templategroup.isUsable = #{templateGroupModel.isUsable},
+tin_template.isUsable = #{templateGroupModel.isUsable},
+tin_templategroup.groupSequence =#{templateGroupModel.groupSequence},
+tin_templategroup.templateGroupName =  #{templateGroupModel.templateGroupName}
 WHERE
-	tin_template.templateGroupID = #{id}
-	AND tin_templategroup.id= #{id};
-    </update>
-    <update id="updateTemplateGroupModel">
-UPDATE tin_templategroup  as t
-SET
-t.groupSequence = #{templateGroupModel.groupSequence}  ,
-t.isUsable = #{templateGroupModel.isUsable},
-t.templateGroupName = #{templateGroupModel.templateGroupName}
-WHERE
-t.id = #{templateGroupModel.id}
+	tin_templategroup.id=  #{templateGroupModel.id}
+	AND
+	tin_template.templateGroupID = #{templateGroupModel.id}
     </update>
     <select id="queryTemplateGroup" resultType="com.tfjybj.ftdp.model.TemplateGroupModel">
 SELECT * FROM tin_templategroup WHERE isUsable = 0 GROUP BY   groupSequence
