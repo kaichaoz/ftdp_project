@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import java.util.List;
-import java.util.UUID;
 
 /**
  * @Classname TemplateGroupController
@@ -64,36 +63,13 @@ public class TemplateGroupController {
     **/
     @ApiOperation(value = "添加模板分组")
     @PostMapping(value = "/addTemplateGroup/{groupName}/{groupSequence}")
-    public ResultUtils addTemplateGroup(@ApiParam(value = "模板分组名称") @PathVariable String groupName ,
+    public ResultUtils addTemplateGroup(@ApiParam(value = "模板分组名称") @PathVariable String groupName,
                                         @ApiParam(value = "模板分组顺序") @PathVariable String groupSequence){
         boolean flag = templateGroupService.addTemplateGroup(PatterUtils.getNumberPattern(),groupName,groupSequence);
         if (flag){
             return  ResultUtils.build(CodeEnumUtils.INSERT_SUCCESS.getCode(),CodeEnumUtils.INSERT_SUCCESS.getMessage(), flag);
         }
         return ResultUtils.build(CodeEnumUtils.INSERT_FALL.getCode(),CodeEnumUtils.INSERT_FALL.getMessage());
-    }
-
-    /**
-    * @Description: 修改isUsable状态做到删除模板分组
-    * @Param:  
-    * @Return:  
-    * @Author: 张凯超
-    * @Data: 2020/4/2 
-    * @Time: 10:12
-    * @Version: V1.0.0
-    * @Modified by :
-    * @Modification Time:
-    **/
-
-    @ApiOperation(value = "修改isUsable状态做到删除模板分组")
-    @PostMapping(value = "/updateTemplateGroup/{id}")
-    public ResultUtils updateTemplateGroup(@ApiParam(value = "id") @PathVariable String id ){
-        boolean flag= templateGroupService.updateTemplateGroup(id);
-        if (flag){
-            return ResultUtils.build(CodeEnumUtils.DELETE_SUCCESS.getCode(),CodeEnumUtils.DELETE_SUCCESS.getMessage());
-        }
-        return ResultUtils.build(CodeEnumUtils.DELETE_FALL.getCode(),CodeEnumUtils.DELETE_FALL.getMessage());
-
     }
     /**
     * @Description:  更新模板分组位置
@@ -108,10 +84,9 @@ public class TemplateGroupController {
     * @Modification Time:
     **/
     @ApiOperation(value = "更新模板分组位置")
-    @PostMapping(value = "/updateTemplateGroupPlace/{id}/{groupSequence}")
-    public ResultUtils updateTemplateGroupPlace(@ApiParam(value = "id") @PathVariable String id ,
-                                                @ApiParam(value = "模板分组顺序") @PathVariable String groupSequence){
-        boolean flag = templateGroupService.updateTemplateGroupPlace(id,groupSequence);
+    @PostMapping(value = "/updateTemplateGroup")
+    public ResultUtils updateTemplateGroup(@RequestBody TemplateGroupModel templateGroupModel){
+        boolean flag = templateGroupService.updateTemplateGroup(templateGroupModel);
         if (flag){
             return ResultUtils.build(CodeEnumUtils.MODIFY_SUCCESS.getCode(),CodeEnumUtils.MODIFY_SUCCESS.getMessage());
         }
@@ -133,8 +108,17 @@ public class TemplateGroupController {
     **/
     @ApiOperation(value = "修改模板分组")
     @PostMapping(value = "/modifyTemplateGroup")
-    public ResultUtils modifyTemplateGroup(@RequestBody List<TemplateGroupModel> templateGroupModelList) throws Exception {
-        boolean flag = templateGroupService.modifyTemplateGroup(templateGroupModelList);
-        return ResultUtils.build(CodeEnumUtils.MODIFY_SUCCESS.getCode(),CodeEnumUtils.MODIFY_SUCCESS.getMessage(),flag);
+    public ResultUtils modifyTemplateGroup(@RequestBody List<TemplateGroupModel> templateGroupModelList) {
+        for (TemplateGroupModel templateGroupModel : templateGroupModelList){
+            if (templateGroupModel.getId().isEmpty()){
+                TemplateGroupModel template = new TemplateGroupModel();
+                template.setTemplateGroupName(templateGroupModel.getTemplateGroupName());
+                template.setGroupSequence(templateGroupModel.getGroupSequence());
+                this.addTemplateGroup(template.getTemplateGroupName(),template.getGroupSequence());
+            }else {
+                this.updateTemplateGroup(templateGroupModel);
+            }
+        }
+        return ResultUtils.build(CodeEnumUtils.MODIFY_SUCCESS.getCode(),CodeEnumUtils.MODIFY_SUCCESS.getMessage());
     }
 }
