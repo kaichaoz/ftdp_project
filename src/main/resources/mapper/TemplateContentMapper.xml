@@ -73,6 +73,21 @@
         order by
         id asc
     </select>
+    <!--    查询tin_template表-->
+    <select id="queryTemplate" resultType="com.tfjybj.ftdp.model.QueryTemplateModel">
+        select
+                tin_template.id,
+                tin_template.templateName,
+                tin_template.templateGroupID,
+                tin_template.staffID,
+                tin_template.postscript,
+                tin_template.isUsable,
+                tin_template.groupSequence,
+                tin_template.isFinish
+        from tin_template
+        WHERE id = #{id}
+
+    </select>
 
 
 

@@ -2,6 +2,7 @@ package com.tfjybj.ftdp.provider.controller;
 
 import com.tfjybj.ftdp.entity.TemplateGroupEntity;
 import com.tfjybj.ftdp.entity.TemplatecontentEntity;
+import com.tfjybj.ftdp.model.QueryTemplateModel;
 import com.tfjybj.ftdp.provider.service.TemplateContentService;
 import com.tfjybj.ftdp.utils.CodeEnumUtils;
 import com.tfjybj.ftdp.utils.ResultUtils;
@@ -117,6 +118,21 @@ public class TemplateDesignController {
             return ResultUtils.build(CodeEnumUtils.DELETE_SUCCESS.getCode(),CodeEnumUtils.DELETE_SUCCESS.getMessage());
         }
         return ResultUtils.build(CodeEnumUtils.DELETE_FALL.getCode(),CodeEnumUtils.DELETE_FALL.getMessage());
+    }
+    /**
+     * 模板编辑界面加载
+     * @param id
+     * @return
+     */
+    @ApiOperation("模板编辑界面加载")
+    @RequestMapping(value = "/QueryTemplate/{id}",method = RequestMethod.GET)
+    public ResultUtils queryTemplate (@ApiParam (value="id",required = true)@PathVariable String id){
+        QueryTemplateModel queryTemplateModels=templateContentService.queryTemplate(id);
+        if (queryTemplateModels == null){
+            return ResultUtils.build(CodeEnumUtils.SELECT_FINISH.getCode(),CodeEnumUtils.SELECT_FINISH.getMessage());
+        }
+        return  ResultUtils.build(CodeEnumUtils.SELECT_SUCCESS.getCode(),CodeEnumUtils.SELECT_SUCCESS.getMessage(),queryTemplateModels);
+
     }
     
 }
