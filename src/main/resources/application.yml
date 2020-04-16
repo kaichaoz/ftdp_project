@@ -91,7 +91,7 @@ pagehelper:
     url: jdbc:p6spy:mysql://192.168.60.54:3306/ftdp_prod?autoReconnect=true&useSSL=false&characterEncoding=utf-8&serverTimezone=Asia/Shanghai&allowMultiQueries=true
     username: ftdp
     password: ftdp
-      druid:
+    druid:
         initial-size: 2
         min-idle: 2
         max-active: 50
