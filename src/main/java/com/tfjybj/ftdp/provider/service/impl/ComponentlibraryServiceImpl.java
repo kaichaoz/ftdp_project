@@ -34,17 +34,21 @@ public class ComponentlibraryServiceImpl implements ComponentlibraryService {
 
     @Override
     public int updateComponentGroupPlace(ComponentModel componentModels) {
-        System.out.println("==========" + componentModels.getIsUsable());
         try {
+            //如果接收到的IsUsable是0
             if (componentModels.getIsUsable().equals("0")) {
+                //将启用变成停用
                 componentlibraryDao.updateComponentIsUsableOff(componentModels.getComponentId());
+                //如果IsUsable是1
             } else if (componentModels.getIsUsable().equals("1")) {
+                //将停用变成启用
                 componentlibraryDao.updateComponentIsUsableOpen(componentModels.getComponentId());
             }
         }catch (Exception e){
             e.printStackTrace();
         }
         finally {
+            //更新分组位置
             return componentlibraryDao.updateComponentGroupPlace(componentModels);
         }
 
