@@ -1,13 +1,11 @@
 package com.tfjybj.ftdp.provider.controller;
 
-import com.tfjybj.ftdp.entity.ComponentlibraryEntity;
 import com.tfjybj.ftdp.model.ComponentModel;
 import com.tfjybj.ftdp.provider.service.ComponentlibraryService;
 import com.tfjybj.ftdp.utils.CodeEnumUtils;
 import com.tfjybj.ftdp.utils.ResultUtils;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiParam;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -37,27 +35,33 @@ public class ComponentlibraryController {
     }
 
 
-    @ApiOperation(value="更新组件可分组移动位置")
-    @PostMapping(value = "updateComponentGroupPlace")
-    public ResultUtils updateComponentGroupPlace(@ApiParam(value = "分组id",required = true)@RequestParam String groupId,
-                                                 @ApiParam(value = "分组位置",required = true)@RequestParam String groupSequence){
-        componentlibraryService.updateComponentGroupPlace(groupId,groupSequence);
+    @ApiOperation(value="更新组件页面")
+    @PostMapping(value = "updateComponent")
+    public ResultUtils updateComponent(@RequestBody List<ComponentModel> componentModels){
+        int count;
+        for (int i = 0; i <componentModels.size() ; i++) {
+            count= componentlibraryService.updateComponentGroupPlace(componentModels.get(i));
+            if(count==0){
+                return ResultUtils.build(CodeEnumUtils.MODIFY_FALL.getCode(),CodeEnumUtils.MODIFY_FALL.getMessage());
+            }
+
+        }
         return ResultUtils.build(CodeEnumUtils.MODIFY_FINISH.getCode(),CodeEnumUtils.MODIFY_FINISH.getMessage());
     }
 
-    @ApiOperation(value = "启用组件")
-    @PostMapping(value = "updateComponentIsUsable")
-    public ResultUtils updateComponentIsUsableOpen(@ApiParam(value = "组件id",required=true)@RequestParam String id){
-        componentlibraryService.updateComponentIsUsableOpen(id);
-        return ResultUtils.build(CodeEnumUtils.MODIFY_SUCCESS.getCode(),CodeEnumUtils.MODIFY_SUCCESS.getMessage());
-    }
-
-    @ApiOperation(value="停用组件")
-    @PostMapping(value = "updateComponentIsUsableOff")
-    public ResultUtils updateComponentIsUsableOff(@ApiParam(value = "组件id",required=true)@RequestParam String id){
-        componentlibraryService.updateComponentIsUsableOff(id);
-        return ResultUtils.build(CodeEnumUtils.MODIFY_SUCCESS.getCode(),CodeEnumUtils.MODIFY_SUCCESS.getMessage());
-    }
+//    @ApiOperation(value = "启用组件")
+//    @PostMapping(value = "updateComponentIsUsable")
+//    public ResultUtils updateComponentIsUsableOpen(@ApiParam(value = "组件id",required=true)@RequestParam String id){
+//        componentlibraryService.updateComponentIsUsableOpen(id);
+//        return ResultUtils.build(CodeEnumUtils.MODIFY_SUCCESS.getCode(),CodeEnumUtils.MODIFY_SUCCESS.getMessage());
+//    }
+//
+//    @ApiOperation(value="停用组件")
+//    @PostMapping(value = "updateComponentIsUsableOff")
+//    public ResultUtils updateComponentIsUsableOff(@ApiParam(value = "组件id",required=true)@RequestParam String id){
+//        componentlibraryService.updateComponentIsUsableOff(id);
+//        return ResultUtils.build(CodeEnumUtils.MODIFY_SUCCESS.getCode(),CodeEnumUtils.MODIFY_SUCCESS.getMessage());
+//    }
 }
 
 

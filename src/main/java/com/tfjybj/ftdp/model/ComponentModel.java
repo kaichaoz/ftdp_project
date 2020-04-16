@@ -22,7 +22,7 @@ public class ComponentModel implements Serializable {
     private String groupName;
 
     @Column(name="groupId")
-    private String groupld;
+    private String groupId;
 
     @Column(name="componentId")
     private String componentId;

@@ -6,6 +6,7 @@ import com.tfjybj.ftdp.model.ComponentModel;
 import com.tfjybj.ftdp.provider.dao.ComponentlibraryDao;
 import com.tfjybj.ftdp.provider.service.ComponentlibraryService;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -26,24 +27,52 @@ public class ComponentlibraryServiceImpl implements ComponentlibraryService {
 
     @Override
     public List<ComponentModel> queryComponent(){
+        //接收初始化返回的值
         List<ComponentModel>componentModels= componentlibraryDao.queryComponent();
         return componentModels;
     }
 
     @Override
-    public void updateComponentGroupPlace(String groupId,String groupSequence){
-        componentlibraryDao.updateComponentGroupPlace(groupId,groupSequence);
+    public int updateComponentGroupPlace(ComponentModel componentModels) {
+        System.out.println("==========" + componentModels.getIsUsable());
+        try {
+            if (componentModels.getIsUsable().equals("0")) {
+                componentlibraryDao.updateComponentIsUsableOff(componentModels.getComponentId());
+            } else if (componentModels.getIsUsable().equals("1")) {
+                componentlibraryDao.updateComponentIsUsableOpen(componentModels.getComponentId());
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        finally {
+            return componentlibraryDao.updateComponentGroupPlace(componentModels);
+        }
+
     }
 
-    @Override
-    //重写启用按钮方法
-    public void updateComponentIsUsableOpen(String id){
-            componentlibraryDao.updateComponentIsUsableOpen(id);
-    }
 
-    @Override
-    //重写停用按钮方法
-    public void updateComponentIsUsableOff(String id){
-        componentlibraryDao.updateComponentIsUsableOff(id);
-    }
+
+//    @Override
+//    public List<ComponentModel> updateComponentGroupPlace(String groupId,String groupSequence){
+//
+//        //更新分组位置
+//        List<ComponentModel> componentModels1= componentlibraryDao.updateComponentGroupPlace(groupId,groupSequence);
+//        return componentModels1;
+//
+////        if(componentModels.getComponentId()==0){
+////
+////        }
+//    }
+
+//    @Override
+//    //重写启用按钮方法
+//    public void updateComponentIsUsableOpen(String id){
+//            componentlibraryDao.updateComponentIsUsableOpen(id);
+//    }
+//
+//    @Override
+//    //重写停用按钮方法
+//    public void updateComponentIsUsableOff(String id){
+//        componentlibraryDao.updateComponentIsUsableOff(id);
+//    }
 }

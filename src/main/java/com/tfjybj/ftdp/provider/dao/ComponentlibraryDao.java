@@ -22,11 +22,12 @@ public interface ComponentlibraryDao extends BaseMapper<ComponentModel>{
     List<ComponentModel> queryComponent ();
 
     //更新组件
-    void updateComponentGroupPlace(String groupId,String groupSequence);
+    int updateComponentGroupPlace(@Param("componentModels")ComponentModel componentModels);
 
     //启用组件
-    void updateComponentIsUsableOpen(String id);
+    int updateComponentIsUsableOpen(String componentId);
 
     //停用组件
-    void updateComponentIsUsableOff(String id);
+    int updateComponentIsUsableOff(String componentId);
+
 }
