@@ -3,10 +3,12 @@ package com.tfjybj.ftdp.provider.service;
 import com.tfjybj.ftdp.entity.TemplateGroupEntity;
 import com.tfjybj.ftdp.entity.TemplatecontentEntity;
 import com.tfjybj.ftdp.model.QueryTemplateModel;
+import com.tfjybj.ftdp.model.TemplateContent;
 import com.tfjybj.ftdp.model.TemplateContentModel;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @Classname TemplateContentService
@@ -54,7 +56,7 @@ public interface TemplateContentService {
      * 初始化全部模板列表
      * @return
      */
-    List<TemplatecontentEntity> queryTemplateContent();
+    List<TemplateContent> queryTemplateContent();
 
     /**
      * 根据isUsable查询模板

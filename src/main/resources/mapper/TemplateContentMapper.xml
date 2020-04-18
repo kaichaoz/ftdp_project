@@ -70,6 +70,7 @@
                 isUsable,
                 groupSequence
         from tin_templatecontent
+
         order by
         id asc
     </select>

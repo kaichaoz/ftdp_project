@@ -9,6 +9,7 @@ import lombok.experimental.Accessors;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Id;
 
 /**
  * @Classname UserIEntity
@@ -21,7 +22,7 @@ import javax.persistence.Entity;
 @Entity
 @TableName(value = "tin_user")
 public class UserEntity {
-
+    @Id
     @ApiModelProperty(value = "用户Id" ,required = true)
     @Column(name = "uid")
     private String userId;
