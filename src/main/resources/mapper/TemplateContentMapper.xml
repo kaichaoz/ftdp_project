@@ -48,12 +48,12 @@
     </update>
 
     <!--   根据isUsable字段查询tin_templateGroup表可用的模板-->
-    <select id="queryTempByIsUsable" resultType="com.tfjybj.ftdp.entity.TemplateGroupEntity">
-        select tin_templategroup.id,
-               tin_templategroup.templateGroupName,
+    <select id="queryTempByIsUsable" resultType="com.tfjybj.ftdp.model.qTempByIsUsableModel">
+        select tin_templategroup.id AS templateGroupId,
+               tin_templategroup.templateGroupName AS templateGroupName,
                tin_templategroup.isUsable,
-               tin_template.id,
-               tin_template.templateName
+               tin_template.id AS templateId,
+               tin_template.templateName AS tempalteName
         from tin_templategroup,
              tin_template
         where tin_template.isUsable = #{isUsable}

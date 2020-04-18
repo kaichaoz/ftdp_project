@@ -42,7 +42,7 @@ public interface TemplateContentDao extends BaseMapper<TemplateModel> {
      * @param isUsable 是否可用
      * @return
      */
-    List<TemplateGroupEntity> queryTempByIsUsable(int isUsable);
+    List<qTempByIsUsableModel> queryTempByIsUsable(int isUsable);
 
 //    /**
 //     *编辑模板

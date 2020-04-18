@@ -116,7 +116,7 @@ public class templateContentServiceImpl implements TemplateContentService {
      * @return
      */
     @Override
-    public List<TemplateGroupEntity> queryTempByIsUsable(int isUsable) {
+    public List<qTempByIsUsableModel> queryTempByIsUsable(int isUsable) {
         return templateContentDao.queryTempByIsUsable(isUsable);
     }
 
