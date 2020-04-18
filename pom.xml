@@ -168,7 +168,12 @@
             <artifactId>fastjson</artifactId>
             <version>1.2.58</version>
         </dependency>
-
+<!--YML文件解析依赖-->
+        <dependency>
+            <groupId>org.yaml</groupId>
+            <artifactId>snakeyaml</artifactId>
+            <version>1.25</version>
+        </dependency>
 <!--   GooGleGson依赖     -->
         <dependency>
             <groupId>com.google.code.gson</groupId>

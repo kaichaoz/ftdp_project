@@ -22,10 +22,10 @@
 
     <!--初始化组件库页面-->
     <select id="queryComponent" resultMap="ComponentList">
-        SELECT groupName,groupId,componentId,groupSequence,isUsable
-        FROM tin_componentlibrary
-        ORDER BY groupSequence ASC
-    </select>
+    SELECT groupName,groupId,componentId,groupSequence,isUsable
+    FROM tin_componentlibrary
+    ORDER BY groupSequence ASC
+</select>
 
     <!--更新组件-->
     <update id="updateComponentGroupPlace" >

@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.websocket.OnClose;
 
 /**
@@ -23,6 +24,7 @@ import javax.websocket.OnClose;
 @TableName(value = "tin_componentlibrary")
 public class ComponentlibraryEntity {
 
+    @Id
     @ApiModelProperty(value = "id",required = true)
     @Column(name="id")
     private char id;

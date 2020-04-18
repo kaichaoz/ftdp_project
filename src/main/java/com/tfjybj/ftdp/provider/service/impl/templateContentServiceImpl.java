@@ -2,18 +2,21 @@ package com.tfjybj.ftdp.provider.service.impl;
 
 import com.tfjybj.ftdp.entity.TemplateGroupEntity;
 import com.tfjybj.ftdp.entity.TemplatecontentEntity;
-import com.tfjybj.ftdp.model.QueryTemplateModel;
-import com.tfjybj.ftdp.model.TemplateContentModel;
-import com.tfjybj.ftdp.model.TemplateGroupModel;
+import com.tfjybj.ftdp.model.*;
 import com.tfjybj.ftdp.provider.dao.TemplateGroupDao;
 import com.tfjybj.ftdp.utils.PatterUtils;
+import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 import com.tfjybj.ftdp.provider.service.TemplateContentService;
 import com.tfjybj.ftdp.provider.dao.TemplateContentDao;
+import org.springframework.util.CollectionUtils;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
-import java.util.UUID;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 /**
  * @Classname templateService
@@ -78,8 +81,33 @@ public class templateContentServiceImpl implements TemplateContentService {
      * @return
      */
     @Override
-    public List<TemplatecontentEntity> queryTemplateContent() {
-        return templateContentDao.queryTemplateContent();
+    public List<TemplateContent> queryTemplateContent() {
+        List<TemplatecontentEntity> templatecontentEntities = templateContentDao.queryTemplateContent();
+        List<TemplateContent> templateContents = new ArrayList<>();
+        templatecontentEntities.forEach(item->{
+            TemplateContent templateContent =new TemplateContent();
+            templateContent.setTemplateId(item.getTemplateId().toString());
+
+            TemplateContentModel templateContentModel = new TemplateContentModel();
+            templateContentModel.setComponentId(item.getComponentId().toString());
+
+            TemplateContentModel2 templateContentModel2 =new TemplateContentModel2();
+            BeanUtils.copyProperties(item,templateContentModel2);
+
+            templateContentModel.setTemplateContentData2(templateContentModel2);
+
+            templateContent.setTemplateContentData(templateContentModel);
+
+            templateContents.add(templateContent);
+        });
+
+
+        templateContents.removeAll(Collections.singleton(null));
+        if (CollectionUtils.isEmpty(templateContents)){
+            return null;
+        }else{
+            return templateContents;
+        }
     }
 
     /**
@@ -88,20 +116,9 @@ public class templateContentServiceImpl implements TemplateContentService {
      * @return
      */
     @Override
-    public List<TemplateGroupEntity> queryTempByIsUsable(int isUsable) {
+    public List<qTempByIsUsableModel> queryTempByIsUsable(int isUsable) {
         return templateContentDao.queryTempByIsUsable(isUsable);
     }
-
-//    /**
-//     * 根据template id修改模板内容
-//     * @param id id
-//     * @param templateContentModel
-//     * @return
-//     */
-//    @Override
-//    public boolean updateTemplateContent(String id, TemplateContentModel templateContentModel) {
-//        return templateContentDao.updateTemplateContent(id,templateContentModel);
-//    }
 
     /**
      * 删除模板（修改tin_complateContent表isUsable字段为1）
