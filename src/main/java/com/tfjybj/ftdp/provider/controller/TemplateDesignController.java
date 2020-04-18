@@ -1,8 +1,11 @@
 package com.tfjybj.ftdp.provider.controller;
 
+import com.alibaba.fastjson.JSON;
 import com.tfjybj.ftdp.entity.TemplateGroupEntity;
 import com.tfjybj.ftdp.entity.TemplatecontentEntity;
 import com.tfjybj.ftdp.model.QueryTemplateModel;
+import com.tfjybj.ftdp.model.TemplateContent;
+import com.tfjybj.ftdp.model.qTempByIsUsableModel;
 import com.tfjybj.ftdp.provider.service.TemplateContentService;
 import com.tfjybj.ftdp.utils.CodeEnumUtils;
 import com.tfjybj.ftdp.utils.ResultUtils;
@@ -12,7 +15,9 @@ import io.swagger.annotations.ApiParam;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 
 @Api(tags = {"模板接口"})
@@ -36,11 +41,14 @@ public class TemplateDesignController {
     @RequestMapping(value = "/queryGroup",method = RequestMethod.GET)
     public ResultUtils queryTemplateContent(){
         // TODO 对应接口文档修改接收参数model
-        List<TemplatecontentEntity> templateModels = templateContentService.queryTemplateContent();
-        if (templateModels.size()==0){
+        //List<TemplateContent> templateContentList
+        List<TemplateContent> templateContentMap = templateContentService.queryTemplateContent();
+        if (templateContentMap ==null){
             return ResultUtils.build(CodeEnumUtils.SELECT_FINISH.getCode(),CodeEnumUtils.SELECT_FINISH.getMessage());
+        }else {
+            //String json = JSON.toJSONString(templateContentMap);
+            return ResultUtils.build(CodeEnumUtils.SELECT_SUCCESS.getCode(), CodeEnumUtils.SELECT_SUCCESS.getMessage(), templateContentMap);
         }
-        return ResultUtils.build(CodeEnumUtils.SELECT_SUCCESS.getCode(),CodeEnumUtils.SELECT_SUCCESS.getMessage(),templateModels);
     }
 
     /**
@@ -52,7 +60,7 @@ public class TemplateDesignController {
     @RequestMapping(value = "/queryGroup/{isUsable}",method = RequestMethod.GET)
     public ResultUtils queryTempByIsUsable(@ApiParam(value = "是否可用",required = true)@PathVariable("isUsable") int isUsable){
         // TODO 对应接口文档修改接收参数model
-        List<TemplateGroupEntity> templateModels = templateContentService.queryTempByIsUsable(isUsable);
+        List<qTempByIsUsableModel> templateModels = templateContentService.queryTempByIsUsable(isUsable);
         if (templateModels.size()==0){
             return ResultUtils.build(CodeEnumUtils.SELECT_FINISH.getCode(),CodeEnumUtils.SELECT_FINISH.getMessage());
         }

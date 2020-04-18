@@ -18,7 +18,7 @@ import java.io.Serializable;
 public class TemplateGroupEntity implements Serializable{
 
 
-
+	@Id
 	@Column(name = "id")
 	private String id;
 	@Column(name = "tempalteGroupName")
