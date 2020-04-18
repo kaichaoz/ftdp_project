@@ -1,6 +1,8 @@
 package com.tfjybj.ftdp.provider.controller;
 
+import com.tfjybj.ftdp.entity.TemplateEntity;
 import com.tfjybj.ftdp.entity.TemplaterulerecordEntity;
+import com.tfjybj.ftdp.model.TemplateRuleAndConponentNameModel;
 import com.tfjybj.ftdp.model.TemplateRuleRecordModel;
 import com.tfjybj.ftdp.provider.service.TemplateRuleRecordService;
 import com.tfjybj.ftdp.utils.CodeEnumUtils;
@@ -40,7 +42,7 @@ public class TemplateRuleRecordController {
      * @Modification Time:
      **/
     @ApiOperation(value = "初始化模板规则页面")
-    @GetMapping(value = "templateId")
+    @GetMapping(value = "/queryTemplateRuleRecord/{templateId}")
     public ResultUtils queryTemplateRuleRecord(@ApiParam(value = "模板id")@RequestParam  String  templateId){
         List<TemplaterulerecordEntity> TemplateRuleRecordModels = templateRuleRecordService.queryTemplateRuleRecord(templateId);
         if (TemplateRuleRecordModels .size() == 0 ){
@@ -48,6 +50,19 @@ public class TemplateRuleRecordController {
         }
         return ResultUtils.build(CodeEnumUtils.SELECT_SUCCESS.getCode(),CodeEnumUtils.SELECT_SUCCESS.getMessage(),TemplateRuleRecordModels );
     }
+
+
+    @ApiOperation(value = "初始化规则页面的组件名称")
+    @GetMapping(value = "/queryTemplateComponentNameRuleRecord{templateId}")
+    public ResultUtils queryTemplateComponentNameRuleRecord(@ApiParam(value = "模板id")@RequestParam  String  templateId){
+        List<TemplateRuleAndConponentNameModel> TemplateRuleAndConponentNameModels = templateRuleRecordService.queryTemplateComponentNameRuleRecord(templateId);
+        if (TemplateRuleAndConponentNameModels .size() == 0 ){
+            return ResultUtils.build(CodeEnumUtils.SELECT_FINISH.getCode(),CodeEnumUtils.SELECT_FINISH.getMessage());
+        }
+        return ResultUtils.build(CodeEnumUtils.SELECT_SUCCESS.getCode(),CodeEnumUtils.SELECT_SUCCESS.getMessage(),TemplateRuleAndConponentNameModels );
+    }
+
+
 
     /**
      * @Description: 添加组件规则
