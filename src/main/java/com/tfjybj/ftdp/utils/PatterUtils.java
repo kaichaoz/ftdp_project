@@ -32,9 +32,7 @@ public class PatterUtils {
             Pattern pattern = Pattern.compile(regEX);
             Matcher matcher = pattern.matcher(Id);
             String[] Ids = matcher.replaceAll("").trim().split("",8);
-            System.out.println(Ids[7]);
-            String finalyId = Ids[7].substring(0,7);
-            return finalyId ;
+            return Ids[7].substring(0,7);
         }
 
 }
