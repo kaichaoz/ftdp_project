@@ -8,7 +8,7 @@ public class qTempByIsUsableModel {
     @Column(name = "id")
     private String templateId;
     @Column(name = "tempalteGroupName")
-    private String tempalteGroupName;
+    private String templateGroupName;
     @Column(name = "isUsable")
     private Integer isUsable;
     private String tempalteName;
