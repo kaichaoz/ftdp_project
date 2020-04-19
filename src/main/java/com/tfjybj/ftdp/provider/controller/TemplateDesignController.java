@@ -39,10 +39,10 @@ public class TemplateDesignController {
      */
     @ApiOperation("初始化全部模板列表")
     @RequestMapping(value = "/queryTemplateContent",method = RequestMethod.GET)
-    public ResultUtils queryTemplateContent(){
+    public ResultUtils queryTemplateContent(String templateId){
         // TODO 对应接口文档修改接收参数model
         //List<TemplateContent> templateContentList
-        List<TemplateContent> templateContentMap = templateContentService.queryTemplateContent();
+        List<TemplateContent> templateContentMap = templateContentService.queryTemplateContent(templateId);
         if (templateContentMap ==null){
             return ResultUtils.build(CodeEnumUtils.SELECT_FINISH.getCode(),CodeEnumUtils.SELECT_FINISH.getMessage());
         }else {

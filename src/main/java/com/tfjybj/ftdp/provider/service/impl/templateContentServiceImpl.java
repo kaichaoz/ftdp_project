@@ -81,8 +81,8 @@ public class templateContentServiceImpl implements TemplateContentService {
      * @return
      */
     @Override
-    public List<TemplateContent> queryTemplateContent() {
-        List<TemplatecontentEntity> templatecontentEntities = templateContentDao.queryTemplateContent();
+    public List<TemplateContent> queryTemplateContent(String templateId) {
+        List<TemplatecontentEntity> templatecontentEntities = templateContentDao.queryTemplateContent(templateId);
         List<TemplateContent> templateContents = new ArrayList<>();
         templatecontentEntities.forEach(item->{
             TemplateContent templateContent =new TemplateContent();
