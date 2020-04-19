@@ -94,6 +94,11 @@ public class templateContentServiceImpl implements TemplateContentService {
             TemplateContentModel2 templateContentModel2 =new TemplateContentModel2();
             BeanUtils.copyProperties(item,templateContentModel2);
 
+            TemplateContentTitleModel templateContentTitleModel=new TemplateContentTitleModel();
+            BeanUtils.copyProperties(item,templateContentTitleModel);
+
+            templateContentModel.setTemplateContentTitleModel(templateContentTitleModel);
+            
             templateContentModel.setTemplateContentData2(templateContentModel2);
 
             templateContent.setTemplateContentData(templateContentModel);
