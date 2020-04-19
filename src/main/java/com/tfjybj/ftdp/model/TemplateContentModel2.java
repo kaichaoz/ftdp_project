@@ -7,17 +7,23 @@ import lombok.ToString;
 import lombok.experimental.Accessors;
 
 import javax.persistence.Column;
-import javax.persistence.Id;
-import java.util.List;
 
 @Data
 @ApiModel(value = "TemplateContentModel:TemplateContentModel")
 @NoArgsConstructor
 @Accessors(chain = true)
 @ToString(callSuper = true)
-public class TemplateContentModel {
-    @Column(name = "componentId")
+public class TemplateContentModel2 {
+    @Column(name = "id")
+    private String id;
+    @Column(name = "title ")
+    private String title ;
+    @Column(name = "promptField")
+    private String promptField;
+    @Column(name = "isUsable ")
+    private String isUsable ;
+    @Column(name = "groupSequence")
+    private String groupSequence;
+
     private String componentId;
-    @Column(name = "templateContentData2")
-    private TemplateContentModel2 templateContentData2;
 }
