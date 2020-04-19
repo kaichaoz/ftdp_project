@@ -1,7 +1,9 @@
 package com.tfjybj.ftdp.provider.dao;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.tfjybj.ftdp.entity.TemplateEntity;
 import com.tfjybj.ftdp.entity.TemplaterulerecordEntity;
+import com.tfjybj.ftdp.model.TemplateRuleAndConponentNameModel;
 import com.tfjybj.ftdp.model.TemplateRuleRecordModel;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
@@ -21,6 +23,18 @@ public interface TemplateRuleRecordDao extends BaseMapper<TemplaterulerecordEnti
      * @Modification Time:
      **/
     List<TemplaterulerecordEntity> queryTemplateRuleRecord(String templateId);
+
+    /**
+     * @Description:  初始化规则页面的组件名称
+     * @Return:  List<TemplaterulerecordEntity>
+     * @Author: 陈海明
+     * @Data: 2020/4/2
+     * @Time: 8:37
+     * @Version: V1.0.0
+     * @Modified by :
+     * @Modification Time:
+     **/
+    List<TemplateRuleAndConponentNameModel> queryTemplateComponentNameRuleRecord(String templateId);
 
     /**
      * @Description:  添加组件规则

@@ -57,7 +57,7 @@ public interface TemplateContentService {
      * 初始化全部模板列表
      * @return
      */
-    List<TemplateContent> queryTemplateContent();
+    List<TemplateContent> queryTemplateContent(String templateId);
 
     /**
      * 根据isUsable查询模板

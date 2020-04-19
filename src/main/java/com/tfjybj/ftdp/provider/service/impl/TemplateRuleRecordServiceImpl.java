@@ -1,7 +1,9 @@
 package com.tfjybj.ftdp.provider.service.impl;
 
 
+import com.tfjybj.ftdp.entity.TemplateEntity;
 import com.tfjybj.ftdp.entity.TemplaterulerecordEntity;
+import com.tfjybj.ftdp.model.TemplateRuleAndConponentNameModel;
 import com.tfjybj.ftdp.model.TemplateRuleRecordModel;
 import com.tfjybj.ftdp.provider.dao.TemplateRuleRecordDao;
 import com.tfjybj.ftdp.provider.service.TemplateRuleRecordService;
@@ -62,10 +64,40 @@ public  class TemplateRuleRecordServiceImpl implements TemplateRuleRecordService
         return flag;
     }
 
+
+    /**
+     * @Description: 添加组件规则
+     * @Param:
+     * @Return:
+     * @Author: 陈海明
+     * @Data: 2020/4/2
+     * @Time: 10:03
+     * @Version: V1.0.0
+     * @Modified by :
+     * @Modification Time:
+     **/
     @Override
     public boolean addComponentIdRuleRecord(TemplateRuleRecordModel templateRuleRecordModel, String Id) {
         boolean flag = templaterulerecordDao.addComponentIdRuleRecord(templateRuleRecordModel,Id);
         return flag;
+    }
+
+    /**
+     * @Description: 初始化规则页面的组件名称
+     * @Param:
+     * @Return:
+     * @Author: 陈海明
+     * @Data: 2020/4/2
+     * @Time: 10:03
+     * @Version: V1.0.0
+     * @Modified by :
+     * @Modification Time:
+     **/
+
+    @Override
+    public List<TemplateRuleAndConponentNameModel> queryTemplateComponentNameRuleRecord(String templateId) {
+        List<TemplateRuleAndConponentNameModel> TemplateRuleAndConponentNameModelList=templaterulerecordDao.queryTemplateComponentNameRuleRecord(templateId);
+        return  TemplateRuleAndConponentNameModelList;
     }
 
     /**
