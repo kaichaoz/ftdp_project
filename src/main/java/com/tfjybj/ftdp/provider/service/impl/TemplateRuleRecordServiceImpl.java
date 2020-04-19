@@ -83,7 +83,7 @@ public  class TemplateRuleRecordServiceImpl implements TemplateRuleRecordService
     }
 
     /**
-     * @Description: 查询组件名称
+     * @Description: 初始化规则页面的组件名称
      * @Param:
      * @Return:
      * @Author: 陈海明

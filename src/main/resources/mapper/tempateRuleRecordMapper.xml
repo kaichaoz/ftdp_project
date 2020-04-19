@@ -39,7 +39,7 @@
     from tin_template te
     LEFT JOIN tin_templatecontent con ON te.id=con.templateId
     LEFT JOIN tin_componentlibrary com ON con.componentId=com.componentId
-    WHERE te.id=1 and com.isUsable=0 and com.componentType='bbb'
+    WHERE te.id=#{TemplateRuleAndConponentNameModel.templateId} and com.isUsable=0 and com.componentType='enterInfomation'
     </select>
 
 	<select id="queryTemplateRuleRecord" resultType="com.tfjybj.ftdp.entity.TemplaterulerecordEntity">
