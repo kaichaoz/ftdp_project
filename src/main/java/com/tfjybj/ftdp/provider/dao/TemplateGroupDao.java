@@ -2,7 +2,9 @@ package com.tfjybj.ftdp.provider.dao;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.tfjybj.ftdp.entity.TemplateEntity;
+import com.tfjybj.ftdp.model.TemplateContentModel;
 import com.tfjybj.ftdp.model.TemplateGroupModel;
+import com.tfjybj.ftdp.model.TemplateModel;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
@@ -41,7 +43,7 @@ public interface TemplateGroupDao extends BaseMapper<TemplateGroupModel> {
     * @Modified by :
     * @Modification Time:
     **/
-    Boolean addTemplateGroup (@Param("Id") String Id , @Param("groupName") String groupName,@Param("groupSequence") String groupSequence);
+    Boolean addTemplateGroup (@Param("Id") String Id , @Param("groupName") String groupName,@Param("groupSequence") String groupSequence,@Param("isUsable") Integer isUsable);
 
     /**
     * @Description: 更新模板分组位置
@@ -55,4 +57,10 @@ public interface TemplateGroupDao extends BaseMapper<TemplateGroupModel> {
     * @Modification Time:
     **/
     boolean updateTemplateGroup(@Param("templateGroupModel") TemplateGroupModel templateGroupModel);
+
+    boolean deleteId(@Param("id") String id);
+
+    List<TemplateModel> queryTemplate(String id);
+
+    int update(@Param("templateGroupModel") TemplateGroupModel templateGroupModel);
 }
