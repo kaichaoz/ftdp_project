@@ -32,7 +32,7 @@ public interface TemplateContentDao extends BaseMapper<TemplateModel> {
      * 初始化全部模板
      * @return
      */
-    List<TemplatecontentEntity> queryTemplateContent(String templateId);
+    List<TemplateContent> queryTemplateContent(String templateId);
 
     /**
      * 查询可用模板
