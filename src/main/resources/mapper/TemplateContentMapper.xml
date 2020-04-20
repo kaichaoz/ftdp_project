@@ -75,7 +75,7 @@
                 templateId,
                 componentId,
                 title,
-                promptField,
+                fieldSequence,
                 isUsable,
                 groupSequence
         from tin_templatecontent
@@ -87,11 +87,11 @@
         <id property="templateId" column="templateId" />
 
         <collection property="templateContentData" ofType="com.tfjybj.ftdp.model.TemplateContentModel">
-            <result property="componentId" column="componentId"/>
+            <id property="componentId" column="componentId"/>
             <collection property="templateContentData2" ofType="com.tfjybj.ftdp.model.TemplateContentModel2">
                 <result property="id" column="id"/>
                 <result property="title" column="title"/>
-                <result property="promptField" column="promptField"/>
+                <result property="fieldSequence" column="fieldSequence"/>
                 <result property="isUsable" column="isUsable"/>
                 <result property="groupSequence" column="groupSequence"/>
                 <result property="componentId" column="componentId"/>

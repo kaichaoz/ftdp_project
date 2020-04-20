@@ -19,7 +19,7 @@ public class TemplateContentModel2 {
     @Column(name = "title ")
     private String title ;
     @Column(name = "promptField")
-    private String promptField;
+    private String fieldSequence;
     @Column(name = "isUsable ")
     private String isUsable ;
     @Column(name = "groupSequence")
