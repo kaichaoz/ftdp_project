@@ -70,12 +70,12 @@
     </resultMap>
 
     <!--    查询tin_templateContent表-->
-    <select id="queryTemplateContent" resultType="com.tfjybj.ftdp.entity.TemplatecontentEntity">
+    <select id="queryTemplateContent" resultMap="TemplateContent">
         select  id,
                 templateId,
                 componentId,
                 title,
-                promptField,
+                fieldSequence,
                 isUsable,
                 groupSequence
         from tin_templatecontent
@@ -83,6 +83,25 @@
         order by
         id asc
     </select>
+    <resultMap type="com.tfjybj.ftdp.model.TemplateContent" id="TemplateContent" autoMapping="true">
+        <id property="templateId" column="templateId" />
+
+        <collection property="templateContentData" ofType="com.tfjybj.ftdp.model.TemplateContentModel">
+            <id property="componentId" column="componentId"/>
+            <collection property="templateContentData2" ofType="com.tfjybj.ftdp.model.TemplateContentModel2">
+                <result property="id" column="id"/>
+                <result property="title" column="title"/>
+                <result property="fieldSequence" column="fieldSequence"/>
+                <result property="isUsable" column="isUsable"/>
+                <result property="groupSequence" column="groupSequence"/>
+                <result property="componentId" column="componentId"/>
+            </collection>
+            <collection property="templateContentTitleModel" ofType="com.tfjybj.ftdp.model.TemplateContentTitleModel">
+                <result property="title" column="title"/>
+            </collection>
+        </collection>
+    </resultMap>
+
     <!--    查询tin_template表-->
     <select id="queryTemplate" resultType="com.tfjybj.ftdp.model.QueryTemplateModel">
         select

@@ -1,6 +1,6 @@
 package com.tfjybj.ftdp.provider.service.impl;
 
-import com.tfjybj.ftdp.entity.TemplatecontentEntity;
+import com.tfjybj.ftdp.model.TemplateContent;
 import com.tfjybj.ftdp.model.*;
 import com.tfjybj.ftdp.provider.dao.TemplateGroupDao;
 import com.tfjybj.ftdp.utils.PatterUtils;
@@ -79,37 +79,9 @@ public class TemplateContentServiceImpl implements TemplateContentService {
      */
     @Override
     public List<TemplateContent> queryTemplateContent(String templateId) {
-        List<TemplatecontentEntity> templatecontentEntities = templateContentDao.queryTemplateContent(templateId);
-        List<TemplateContent> templateContents = new ArrayList<>();
-        templatecontentEntities.forEach(item->{
-            TemplateContent templateContent =new TemplateContent();
-            templateContent.setTemplateId(item.getTemplateId().toString());
+        List<TemplateContent> templateContents = templateContentDao.queryTemplateContent(templateId);
 
-            TemplateContentModel templateContentModel = new TemplateContentModel();
-            templateContentModel.setComponentId(item.getComponentId().toString());
-
-            TemplateContentModel2 templateContentModel2 =new TemplateContentModel2();
-            BeanUtils.copyProperties(item,templateContentModel2);
-
-            TemplateContentTitleModel templateContentTitleModel=new TemplateContentTitleModel();
-            BeanUtils.copyProperties(item,templateContentTitleModel);
-
-            templateContentModel.setTemplateContentTitleModel(templateContentTitleModel);
-            
-            templateContentModel.setTemplateContentData2(templateContentModel2);
-
-            templateContent.setTemplateContentData(templateContentModel);
-
-            templateContents.add(templateContent);
-        });
-
-
-        templateContents.removeAll(Collections.singleton(null));
-        if (CollectionUtils.isEmpty(templateContents)){
-            return null;
-        }else{
             return templateContents;
-        }
     }
 
     /**
