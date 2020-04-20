@@ -32,17 +32,17 @@ spring:
         login-username: druid
         login-password: druid
   #redis  TODO 修改地址 端口
-#  redis:
-#    host: 192.168.22.60
-#    port: 6379
-#    password:
-#    database: 0
-#    timeout: 300000ms
-#    jedis:
-#      pool:
-#        max-active: 8
-#        max-wait: -1ms
-#        max-idle: 500
+  redis:
+    host: d-redis.tfjybj.cn
+    port: 6379
+    password:  123
+    database: 0
+    timeout: 300000ms
+    jedis:
+      pool:
+        max-active: 8
+        max-wait: -1ms
+        max-idle: 500
 mybatis-plus:
   mapper-locations: classpath:mapper/*.xml
   global-config:
@@ -103,18 +103,18 @@ pagehelper:
           reset-enable: true
           login-username: druid
           login-password: druid
-    #redis  TODO 修改地址 端口
-    redis:
-      host: 192.168.22.60
-      port: 6379
-      password:
-      database: 0
-      timeout: 300000ms
-      jedis:
-        pool:
-          max-active: 8
-          max-wait: -1ms
-          max-idle: 500
+#    #redis  TODO 修改地址 端口
+#    redis:
+#      host: 192.168.22.60
+#      port: 6379
+#      password:
+#      database: 0
+#      timeout: 300000ms
+#      jedis:
+#        pool:
+#          max-active: 8
+#          max-wait: -1ms
+#          max-idle: 500
   mybatis-plus:
     mapper-locations: classpath:mapper/*.xml
     global-config:
@@ -164,30 +164,30 @@ spring:
     url: jdbc:p6spy:mysql://192.168.60.54:3306/ftdp_test?autoReconnect=true&useSSL=false&characterEncoding=utf-8&serverTimezone=Asia/Shanghai&allowMultiQueries=true
     username: ftdp
     password: ftdp
-    druid:
-      initial-size: 2
-      min-idle: 2
-      max-active: 50
-      validation-query: SELECT 1
-      test-while-idle: true
-      aop-patterns: com.tfjybj.physical.*
-      stat-view-servlet:
-        url-pattern: /druid/*
-        reset-enable: true
-        login-username: druid
-        login-password: druid
+#    druid:
+#      initial-size: 2
+#      min-idle: 2
+#      max-active: 50
+#      validation-query: SELECT 1
+#      test-while-idle: true
+#      aop-patterns: com.tfjybj.physical.*
+#      stat-view-servlet:
+#        url-pattern: /druid/*
+#        reset-enable: true
+#        login-username: druid
+#        login-password: druid
   #redis  TODO 修改地址 端口
-  redis:
-    host: 192.168.22.60
-    port: 6379
-    password:
-    database: 0
-    timeout: 300000ms
-    jedis:
-      pool:
-        max-active: 8
-        max-wait: -1ms
-        max-idle: 500
+#  redis:
+#    host: 192.168.22.60
+#    port: 6379
+#    password:
+#    database: 0
+#    timeout: 300000ms
+#    jedis:
+#      pool:
+#        max-active: 8
+#        max-wait: -1ms
+#        max-idle: 500
 mybatis-plus:
   mapper-locations: classpath:mapper/*.xml
   global-config:
