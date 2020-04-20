@@ -1,9 +1,12 @@
 package com.tfjybj.ftdp.provider.service.impl;
 
 import com.tfjybj.ftdp.model.TemplateGroupModel;
+import com.tfjybj.ftdp.model.TemplateModel;
+import com.tfjybj.ftdp.provider.dao.TemplateContentDao;
 import com.tfjybj.ftdp.provider.dao.TemplateGroupDao;
 import com.tfjybj.ftdp.provider.service.TemplateGroupService;
 import com.tfjybj.ftdp.utils.PatterUtils;
+import freemarker.template.Template;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -23,6 +26,8 @@ public class TemlateGroupServiceImpl implements TemplateGroupService {
     @Resource
     private TemplateGroupDao templateGroupDao;
 
+    @Resource
+    private TemplateContentDao templateContentDao;
     /**
      * @Description: 初始化模板分组页面
      * @Author: 张凯超
@@ -50,8 +55,8 @@ public class TemlateGroupServiceImpl implements TemplateGroupService {
      * @Modification Time:
      **/
     @Override
-    public boolean addTemplateGroup(String Id, String groupName, String groupSequence) {
-        return templateGroupDao.addTemplateGroup(Id, groupName, groupSequence);
+    public boolean addTemplateGroup(String Id, String groupName, String groupSequence,Integer isUsable) {
+        return templateGroupDao.addTemplateGroup(Id, groupName, groupSequence,isUsable);
     }
 
     /**
@@ -67,6 +72,15 @@ public class TemlateGroupServiceImpl implements TemplateGroupService {
      **/
     @Override
     public boolean updateTemplateGroup(TemplateGroupModel templateGroupModel) {
+        List<TemplateModel> templateModels = templateGroupDao.queryTemplate(templateGroupModel.getId());
+        if (templateModels.size() == 0){
+          int num =   templateGroupDao.update(templateGroupModel);
+          if (num > 0 ){
+              return true ;
+          }else{
+              return false;
+          }
+        }
         return templateGroupDao.updateTemplateGroup(templateGroupModel);
     }
 

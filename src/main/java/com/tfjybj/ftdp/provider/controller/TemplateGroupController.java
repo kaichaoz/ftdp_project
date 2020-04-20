@@ -64,8 +64,9 @@ public class TemplateGroupController {
     @ApiOperation(value = "添加模板分组")
     @PostMapping(value = "/addTemplateGroup/{groupName}/{groupSequence}")
     public ResultUtils addTemplateGroup(@ApiParam(value = "模板分组名称") @PathVariable String groupName,
-                                        @ApiParam(value = "模板分组顺序") @PathVariable String groupSequence){
-        boolean flag = templateGroupService.addTemplateGroup(PatterUtils.getNumberPattern(),groupName,groupSequence);
+                                        @ApiParam(value = "模板分组顺序") @PathVariable String groupSequence,
+                                        @ApiParam(value = "模板分组是否启用") @PathVariable Integer isUsable){
+        boolean flag = templateGroupService.addTemplateGroup(PatterUtils.getNumberPattern(),groupName,groupSequence,isUsable);
         if (flag){
             return  ResultUtils.build(CodeEnumUtils.INSERT_SUCCESS.getCode(),CodeEnumUtils.INSERT_SUCCESS.getMessage(), flag);
         }
@@ -114,7 +115,8 @@ public class TemplateGroupController {
                 TemplateGroupModel template = new TemplateGroupModel();
                 template.setTemplateGroupName(templateGroupModel.getTemplateGroupName());
                 template.setGroupSequence(templateGroupModel.getGroupSequence());
-                this.addTemplateGroup(template.getTemplateGroupName(),template.getGroupSequence());
+                template.setIsUsable(templateGroupModel.getIsUsable());
+                this.addTemplateGroup(template.getTemplateGroupName(),template.getGroupSequence(),template.getIsUsable());
             }else {
                 this.updateTemplateGroup(templateGroupModel);
             }

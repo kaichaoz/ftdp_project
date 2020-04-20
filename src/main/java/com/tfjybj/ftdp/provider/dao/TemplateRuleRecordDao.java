@@ -25,7 +25,7 @@ public interface TemplateRuleRecordDao extends BaseMapper<TemplaterulerecordEnti
     List<TemplaterulerecordEntity> queryTemplateRuleRecord(String templateId);
 
     /**
-     * @Description:  组件名称
+     * @Description:  初始化规则页面的组件名称
      * @Return:  List<TemplaterulerecordEntity>
      * @Author: 陈海明
      * @Data: 2020/4/2

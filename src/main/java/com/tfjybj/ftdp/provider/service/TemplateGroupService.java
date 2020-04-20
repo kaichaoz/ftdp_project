@@ -37,7 +37,7 @@ public interface TemplateGroupService {
     * @Modified by :
     * @Modification Time:
     **/
-    boolean addTemplateGroup(String Id ,String groupName, String groupSequence);
+    boolean addTemplateGroup(String Id ,String groupName, String groupSequence,Integer isUsable);
 
 
     /**

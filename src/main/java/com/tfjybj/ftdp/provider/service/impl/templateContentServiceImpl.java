@@ -81,8 +81,8 @@ public class templateContentServiceImpl implements TemplateContentService {
      * @return
      */
     @Override
-    public List<TemplateContent> queryTemplateContent() {
-        List<TemplatecontentEntity> templatecontentEntities = templateContentDao.queryTemplateContent();
+    public List<TemplateContent> queryTemplateContent(String templateId) {
+        List<TemplatecontentEntity> templatecontentEntities = templateContentDao.queryTemplateContent(templateId);
         List<TemplateContent> templateContents = new ArrayList<>();
         templatecontentEntities.forEach(item->{
             TemplateContent templateContent =new TemplateContent();
@@ -94,6 +94,11 @@ public class templateContentServiceImpl implements TemplateContentService {
             TemplateContentModel2 templateContentModel2 =new TemplateContentModel2();
             BeanUtils.copyProperties(item,templateContentModel2);
 
+            TemplateContentTitleModel templateContentTitleModel=new TemplateContentTitleModel();
+            BeanUtils.copyProperties(item,templateContentTitleModel);
+
+            templateContentModel.setTemplateContentTitleModel(templateContentTitleModel);
+            
             templateContentModel.setTemplateContentData2(templateContentModel2);
 
             templateContent.setTemplateContentData(templateContentModel);

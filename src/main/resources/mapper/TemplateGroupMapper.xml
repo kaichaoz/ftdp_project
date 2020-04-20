@@ -4,7 +4,7 @@
     <insert id="addTemplateGroup">
        INSERT INTO tin_templategroup ( tin_templategroup.id, tin_templategroup.templateGroupName, tin_templategroup.groupSequence, tin_templategroup.isUsable )
 VALUES
-	(#{Id},#{groupName},#{groupSequence},0)
+	(#{Id},#{groupName},#{groupSequence},#{isUsable})
     </insert>
     <update id="updateTemplateGroup">
 UPDATE tin_templategroup,
@@ -18,7 +18,33 @@ WHERE
 	AND
 	tin_template.templateGroupID = #{templateGroupModel.id}
     </update>
+    <update id="update">
+        UPDATE
+        tin_templategroup
+        SET
+        tin_templategroup.templateGroupName=#{templateGroupModel.templateGroupName},
+        tin_templategroup.isUsable = #{templateGroupModel.isUsable},
+        tin_templategroup.groupSequence =#{templateGroupModel.groupSequence}
+        WHERE
+        tin_templategroup.id=  #{templateGroupModel.id}
+    </update>
+    <delete id="deleteId">
+        delete from tin_templategroup where tin_templategroup.id= #{id}
+    </delete>
     <select id="queryTemplateGroup" resultType="com.tfjybj.ftdp.model.TemplateGroupModel">
 SELECT * FROM tin_templategroup WHERE isUsable = 0 GROUP BY   groupSequence
+    </select>
+    <select id="queryTemplate" resultType="com.tfjybj.ftdp.model.TemplateModel">
+        select
+                tin_template.id,
+                tin_template.templateName,
+                tin_template.templateGroupID,
+                tin_template.staffID,
+                tin_template.postscript,
+                tin_template.isUsable,
+                tin_template.groupSequence,
+                tin_template.isFinish
+        from tin_template
+        WHERE tin_template.templateGroupID = #{id}
     </select>
 </mapper>

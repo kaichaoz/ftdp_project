@@ -70,7 +70,7 @@
                 isUsable,
                 groupSequence
         from tin_templatecontent
-
+        where tin_templatecontent.templateId = #{templateId}
         order by
         id asc
     </select>

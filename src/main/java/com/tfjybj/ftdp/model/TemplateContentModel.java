@@ -20,4 +20,6 @@ public class TemplateContentModel {
     private String componentId;
     @Column(name = "templateContentData2")
     private TemplateContentModel2 templateContentData2;
+    @Column(name = "templateContentTitleModel")
+    private TemplateContentTitleModel templateContentTitleModel;
 }

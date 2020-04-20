@@ -38,11 +38,11 @@ public class TemplateDesignController {
      * @return
      */
     @ApiOperation("初始化全部模板列表")
-    @RequestMapping(value = "/queryGroup",method = RequestMethod.GET)
-    public ResultUtils queryTemplateContent(){
+    @RequestMapping(value = "/queryTemplateContent",method = RequestMethod.GET)
+    public ResultUtils queryTemplateContent(String templateId){
         // TODO 对应接口文档修改接收参数model
         //List<TemplateContent> templateContentList
-        List<TemplateContent> templateContentMap = templateContentService.queryTemplateContent();
+        List<TemplateContent> templateContentMap = templateContentService.queryTemplateContent(templateId);
         if (templateContentMap ==null){
             return ResultUtils.build(CodeEnumUtils.SELECT_FINISH.getCode(),CodeEnumUtils.SELECT_FINISH.getMessage());
         }else {
@@ -57,7 +57,7 @@ public class TemplateDesignController {
      * @return
      */
     @ApiOperation("根据isUsable查询模板")
-    @RequestMapping(value = "/queryGroup/{isUsable}",method = RequestMethod.GET)
+    @GetMapping(value = "/queryTempByIsUsable/{isUsable}")
     public ResultUtils queryTempByIsUsable(@ApiParam(value = "是否可用",required = true)@PathVariable("isUsable") int isUsable){
         // TODO 对应接口文档修改接收参数model
         List<qTempByIsUsableModel> templateModels = templateContentService.queryTempByIsUsable(isUsable);
@@ -78,7 +78,7 @@ public class TemplateDesignController {
      * @return
      */
     @ApiOperation("添加模板内容")
-    @RequestMapping(value = "/addTemplateContent/{id}/{templateId}/{componentId}/{title}/{promptField}/{groupSequence}",method = RequestMethod.POST)
+    @RequestMapping(value = "/insertTemplateContent/{id}/{templateId}/{componentId}/{title}/{promptField}/{groupSequence}",method = RequestMethod.POST)
     public ResultUtils insertTemplateContent(@ApiParam(value = "模板内容id",required = true) @PathVariable String id ,
                                           @ApiParam(value = "模板id",required = true) @PathVariable String templateId ,
                                           @ApiParam(value = "组件id",required = true) @PathVariable String componentId ,
@@ -94,7 +94,7 @@ public class TemplateDesignController {
     }
 
     @ApiOperation("添加模板")
-    @PostMapping(value = "/updateTemplate/{id}/{templateName}/{templateGroupID}/{staffID}/{postscript}/{isUsable}/{groupSequence}/{isFinish}")
+    @PostMapping(value = "/insertTemplate/{id}/{templateName}/{templateGroupID}/{staffID}/{postscript}/{isUsable}/{groupSequence}/{isFinish}")
     public ResultUtils insertTemplate(@ApiParam(value = "模板id",required = true) @PathVariable String id ,
                                       @ApiParam(value = "模板名称",required = true) @PathVariable String templateName ,
                                       @ApiParam(value = "模板分组id",required = true) @PathVariable String templateGroupID ,
@@ -119,7 +119,7 @@ public class TemplateDesignController {
      * @return
      */
     @ApiOperation("删除模板")
-    @RequestMapping(value = "/TemplateDelete/{id}",method = RequestMethod.POST)
+    @RequestMapping(value = "/deleteTemplate/{id}",method = RequestMethod.POST)
     public ResultUtils deleteTemplate(@ApiParam(value = "id",required = true)@PathVariable String id){
         boolean flag = templateContentService.templateDelete(id);
         if (flag){
@@ -133,7 +133,7 @@ public class TemplateDesignController {
      * @return
      */
     @ApiOperation("模板编辑界面加载")
-    @RequestMapping(value = "/QueryTemplate/{id}",method = RequestMethod.GET)
+    @RequestMapping(value = "/queryTemplate/{id}",method = RequestMethod.GET)
     public ResultUtils queryTemplate (@ApiParam (value="id",required = true)@PathVariable String id){
         QueryTemplateModel queryTemplateModels=templateContentService.queryTemplate(id);
         if (queryTemplateModels == null){

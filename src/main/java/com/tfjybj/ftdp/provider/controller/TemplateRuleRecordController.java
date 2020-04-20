@@ -43,7 +43,7 @@ public class TemplateRuleRecordController {
      **/
     @ApiOperation(value = "初始化模板规则页面")
     @GetMapping(value = "/queryTemplateRuleRecord/{templateId}")
-    public ResultUtils queryTemplateRuleRecord(@ApiParam(value = "模板id")@RequestParam  String  templateId){
+    public ResultUtils queryTemplateRuleRecord(@ApiParam(value = "模板id",required=true)@RequestParam  String  templateId){
         List<TemplaterulerecordEntity> TemplateRuleRecordModels = templateRuleRecordService.queryTemplateRuleRecord(templateId);
         if (TemplateRuleRecordModels .size() == 0 ){
             return ResultUtils.build(CodeEnumUtils.SELECT_FINISH.getCode(),CodeEnumUtils.SELECT_FINISH.getMessage());
@@ -53,8 +53,8 @@ public class TemplateRuleRecordController {
 
 
     @ApiOperation(value = "初始化规则页面的组件名称")
-    @GetMapping(value = "/queryTemplateComponentNameRuleRecord{templateId}")
-    public ResultUtils queryTemplateComponentNameRuleRecord(@ApiParam(value = "模板id")@RequestParam  String  templateId){
+    @GetMapping(value = "/queryTemplateComponentNameRuleRecord/{templateId}")
+    public ResultUtils queryTemplateComponentNameRuleRecord(@ApiParam(value = "模板id",required=true)@RequestParam  String  templateId){
         List<TemplateRuleAndConponentNameModel> TemplateRuleAndConponentNameModels = templateRuleRecordService.queryTemplateComponentNameRuleRecord(templateId);
         if (TemplateRuleAndConponentNameModels .size() == 0 ){
             return ResultUtils.build(CodeEnumUtils.SELECT_FINISH.getCode(),CodeEnumUtils.SELECT_FINISH.getMessage());
