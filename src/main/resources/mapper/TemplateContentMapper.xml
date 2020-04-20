@@ -44,11 +44,11 @@
     <update id="templateDelete">
         UPDATE tin_templatecontent
         SET  isUsable = "1"
-        WHERE id = #{id}
+        WHERE templateId = #{id}
     </update>
 
     <!--   根据isUsable字段查询tin_templateGroup表可用的模板-->
-    <select id="queryTempByIsUsable" resultType="com.tfjybj.ftdp.model.qTempByIsUsableModel">
+    <select id="queryTempByIsUsable" resultMap="TempByIsUsableModel" >
         select tin_templategroup.id AS templateGroupId,
                tin_templategroup.templateGroupName AS templateGroupName,
                tin_templategroup.isUsable,
@@ -59,6 +59,15 @@
         where tin_template.isUsable = #{isUsable}
         and   tin_template.templategroupID = tin_templategroup.id
     </select>
+    <resultMap type="com.tfjybj.ftdp.model.TempByIsUsableModel" id="TempByIsUsableModel" autoMapping="true">
+        <id property="templateGroupId" column="templateGroupId" />
+        <result property="templateGroupName" column="templateGroupName"/>
+        <collection property="tempByIsUsableData" ofType="com.tfjybj.ftdp.model.TempByIsUsableData">
+            <result property="templateId" column="templateId"/>
+            <result property="isUsable" column="isUsable"/>
+            <result property="tempalteName" column="tempalteName"/>
+        </collection>
+    </resultMap>
 
     <!--    查询tin_templateContent表-->
     <select id="queryTemplateContent" resultType="com.tfjybj.ftdp.entity.TemplatecontentEntity">
@@ -70,7 +79,7 @@
                 isUsable,
                 groupSequence
         from tin_templatecontent
-        where tin_templatecontent.templateId = #{templateId}
+
         order by
         id asc
     </select>

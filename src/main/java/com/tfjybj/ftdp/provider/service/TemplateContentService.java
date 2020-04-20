@@ -1,15 +1,11 @@
 package com.tfjybj.ftdp.provider.service;
 
-import com.tfjybj.ftdp.entity.TemplateGroupEntity;
-import com.tfjybj.ftdp.entity.TemplatecontentEntity;
 import com.tfjybj.ftdp.model.QueryTemplateModel;
 import com.tfjybj.ftdp.model.TemplateContent;
-import com.tfjybj.ftdp.model.TemplateContentModel;
-import com.tfjybj.ftdp.model.qTempByIsUsableModel;
+import com.tfjybj.ftdp.model.TempByIsUsableModel;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Map;
 
 /**
  * @Classname TemplateContentService
@@ -64,7 +60,7 @@ public interface TemplateContentService {
      * @param isUsable 是否可用
      * @return
      */
-    List<qTempByIsUsableModel> queryTempByIsUsable(int isUsable);
+    List<TempByIsUsableModel> queryTempByIsUsable(int isUsable);
 
 //    /**
 //     * 根据id修改模板

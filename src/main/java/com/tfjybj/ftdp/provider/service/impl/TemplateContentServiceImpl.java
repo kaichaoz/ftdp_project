@@ -1,21 +1,18 @@
 package com.tfjybj.ftdp.provider.service.impl;
 
-import com.tfjybj.ftdp.entity.TemplateGroupEntity;
 import com.tfjybj.ftdp.entity.TemplatecontentEntity;
 import com.tfjybj.ftdp.model.*;
 import com.tfjybj.ftdp.provider.dao.TemplateGroupDao;
 import com.tfjybj.ftdp.utils.PatterUtils;
 import org.springframework.beans.BeanUtils;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import com.tfjybj.ftdp.provider.service.TemplateContentService;
 import com.tfjybj.ftdp.provider.dao.TemplateContentDao;
 import org.springframework.util.CollectionUtils;
 
 import javax.annotation.Resource;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 /**
@@ -24,7 +21,7 @@ import java.util.stream.Collectors;
  * @Created by 车龙梁
  */
 @Service("templateContentService")
-public class templateContentServiceImpl implements TemplateContentService {
+public class TemplateContentServiceImpl implements TemplateContentService {
 
     @Resource
     private TemplateContentDao templateContentDao;
@@ -121,9 +118,12 @@ public class templateContentServiceImpl implements TemplateContentService {
      * @return
      */
     @Override
-    public List<qTempByIsUsableModel> queryTempByIsUsable(int isUsable) {
-        return templateContentDao.queryTempByIsUsable(isUsable);
+    public List<TempByIsUsableModel> queryTempByIsUsable(int isUsable) {
+        List<TempByIsUsableModel> dataAll = templateContentDao.queryTempByIsUsable(isUsable);//将要返回的参数查出
+        return dataAll;
     }
+
+
 
     /**
      * 删除模板（修改tin_complateContent表isUsable字段为1）
@@ -141,6 +141,7 @@ public class templateContentServiceImpl implements TemplateContentService {
      * @return
      */
     @Override
+    @Cacheable(value = "queryTemplate",key="#id")
     public QueryTemplateModel queryTemplate(String id) {
 
         QueryTemplateModel queryTemplateModels = templateContentDao.queryTemplate(id);

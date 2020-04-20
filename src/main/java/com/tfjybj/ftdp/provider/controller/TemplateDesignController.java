@@ -1,11 +1,8 @@
 package com.tfjybj.ftdp.provider.controller;
 
-import com.alibaba.fastjson.JSON;
-import com.tfjybj.ftdp.entity.TemplateGroupEntity;
-import com.tfjybj.ftdp.entity.TemplatecontentEntity;
 import com.tfjybj.ftdp.model.QueryTemplateModel;
 import com.tfjybj.ftdp.model.TemplateContent;
-import com.tfjybj.ftdp.model.qTempByIsUsableModel;
+import com.tfjybj.ftdp.model.TempByIsUsableModel;
 import com.tfjybj.ftdp.provider.service.TemplateContentService;
 import com.tfjybj.ftdp.utils.CodeEnumUtils;
 import com.tfjybj.ftdp.utils.ResultUtils;
@@ -15,9 +12,7 @@ import io.swagger.annotations.ApiParam;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 
 @Api(tags = {"模板接口"})
@@ -60,7 +55,7 @@ public class TemplateDesignController {
     @GetMapping(value = "/queryTempByIsUsable/{isUsable}")
     public ResultUtils queryTempByIsUsable(@ApiParam(value = "是否可用",required = true)@PathVariable("isUsable") int isUsable){
         // TODO 对应接口文档修改接收参数model
-        List<qTempByIsUsableModel> templateModels = templateContentService.queryTempByIsUsable(isUsable);
+        List<TempByIsUsableModel> templateModels = templateContentService.queryTempByIsUsable(isUsable);
         if (templateModels.size()==0){
             return ResultUtils.build(CodeEnumUtils.SELECT_FINISH.getCode(),CodeEnumUtils.SELECT_FINISH.getMessage());
         }
