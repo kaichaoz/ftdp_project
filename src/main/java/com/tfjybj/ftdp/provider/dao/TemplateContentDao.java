@@ -36,10 +36,9 @@ public interface TemplateContentDao extends BaseMapper<TemplateModel> {
 
     /**
      * 查询可用模板
-     * @param isUsable 是否可用
      * @return
      */
-    List<TempByIsUsableModel> queryTempByIsUsable(int isUsable);
+    List<TempByIsUsableModel> queryTempByIsUsable();
 
 //    /**
 //     *编辑模板

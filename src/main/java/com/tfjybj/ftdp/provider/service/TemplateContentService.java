@@ -57,18 +57,10 @@ public interface TemplateContentService {
 
     /**
      * 根据isUsable查询模板
-     * @param isUsable 是否可用
      * @return
      */
-    List<TempByIsUsableModel> queryTempByIsUsable(int isUsable);
+    List<TempByIsUsableModel> queryTempByIsUsable();
 
-//    /**
-//     * 根据id修改模板
-//     * @param id id
-//     * @param TemplateContentModel 修改实体
-//     * @return
-//     */
-//    boolean updateTemplateContent(String id, TemplateContentModel TemplateContentModel);
 
     /**
      * 删除模板（修改tin_complateContent表isUsable字段为1）

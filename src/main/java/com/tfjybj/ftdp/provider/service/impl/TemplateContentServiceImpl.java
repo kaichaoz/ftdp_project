@@ -5,7 +5,9 @@ import com.tfjybj.ftdp.model.*;
 import com.tfjybj.ftdp.provider.dao.TemplateGroupDao;
 import com.tfjybj.ftdp.utils.PatterUtils;
 import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 import com.tfjybj.ftdp.provider.service.TemplateContentService;
 import com.tfjybj.ftdp.provider.dao.TemplateContentDao;
@@ -27,6 +29,8 @@ public class TemplateContentServiceImpl implements TemplateContentService {
     private TemplateContentDao templateContentDao;
     @Resource
     private TemplateGroupDao templateGroupDao;
+    @Autowired
+    private  RedisTemplate redisTemplate;
 
     /**
      * 添加模板内容
@@ -80,18 +84,27 @@ public class TemplateContentServiceImpl implements TemplateContentService {
     @Override
     public List<TemplateContent> queryTemplateContent(String templateId) {
         List<TemplateContent> templateContents = templateContentDao.queryTemplateContent(templateId);
-
             return templateContents;
     }
 
     /**
      * 根据isUsable查询可用模板
-     * @param isUsable 是否可用
      * @return
      */
     @Override
-    public List<TempByIsUsableModel> queryTempByIsUsable(int isUsable) {
-        List<TempByIsUsableModel> dataAll = templateContentDao.queryTempByIsUsable(isUsable);//将要返回的参数查出
+    public List<TempByIsUsableModel> queryTempByIsUsable() {
+/*Redis缓存技术引入
+        //先从缓存中查询当前对象
+        List<TempByIsUsableModel> tempByIsUsableModels= redisTemplate.opsForValue().get("template_"+templateId);
+        if (tempByIsUsableModels==null){
+            //如果缓存中没有则查库
+            tempByIsUsableModels =  templateContentDao.queryTempByIsUsable(isUsable);//将要返回的参数查出
+            //set到Redis中
+            redisTemplate.opsForValue().set("template_"+templateId,tempByIsUsableModels);
+        }
+        return tempByIsUsableModels;
+*/
+        List<TempByIsUsableModel> dataAll = templateContentDao.queryTempByIsUsable();//将要返回的参数查出
         return dataAll;
     }
 

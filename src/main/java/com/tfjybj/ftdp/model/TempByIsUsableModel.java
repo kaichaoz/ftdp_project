@@ -6,10 +6,9 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 import lombok.experimental.Accessors;
-
 import javax.persistence.Column;
-import javax.persistence.Table;
 import java.util.List;
+
 @Data
 @ApiModel(value = "TempByIsUsableModel:TempByIsUsableModel")
 @NoArgsConstructor

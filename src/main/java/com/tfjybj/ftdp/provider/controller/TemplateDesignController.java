@@ -48,14 +48,13 @@ public class TemplateDesignController {
 
     /**
      * 根据isUsable查询
-     * @param isUsable
      * @return
      */
     @ApiOperation("根据isUsable查询模板")
-    @GetMapping(value = "/queryTempByIsUsable/{isUsable}")
-    public ResultUtils queryTempByIsUsable(@ApiParam(value = "是否可用",required = true)@PathVariable("isUsable") int isUsable){
+    @GetMapping(value = "/queryTempByIsUsable")
+    public ResultUtils queryTempByIsUsable(){
         // TODO 对应接口文档修改接收参数model
-        List<TempByIsUsableModel> templateModels = templateContentService.queryTempByIsUsable(isUsable);
+        List<TempByIsUsableModel> templateModels = templateContentService.queryTempByIsUsable();
         if (templateModels.size()==0){
             return ResultUtils.build(CodeEnumUtils.SELECT_FINISH.getCode(),CodeEnumUtils.SELECT_FINISH.getMessage());
         }
@@ -93,11 +92,11 @@ public class TemplateDesignController {
     public ResultUtils insertTemplate(@ApiParam(value = "模板id",required = true) @PathVariable String id ,
                                       @ApiParam(value = "模板名称",required = true) @PathVariable String templateName ,
                                       @ApiParam(value = "模板分组id",required = true) @PathVariable String templateGroupID ,
-                                      @ApiParam(value = "人员id",required = true) @PathVariable String staffID ,
-                                      @ApiParam(value = "备注",required = true) @PathVariable String postscript ,
-                                      @ApiParam(value = "是否可用（0可用1不可用）",required = true) @PathVariable String isUsable,
+                                      @ApiParam(value = "人员id") @PathVariable String staffID ,
+                                      @ApiParam(value = "备注") @PathVariable String postscript ,
+                                      @ApiParam(value = "是否可用（0可用1不可用）") @PathVariable String isUsable,
                                       @ApiParam(value = "分组排序",required = true) @PathVariable String groupSequence ,
-                                      @ApiParam(value = "是否编辑完成（0完成，1未完成）",required = true) @PathVariable String isFinish
+                                      @ApiParam(value = "是否编辑完成（0完成，1未完成）") @PathVariable String isFinish
                                     ){
         boolean flag = templateContentService.templateInsert(id,templateName,templateGroupID,staffID,postscript,isUsable,groupSequence,isFinish);
 
