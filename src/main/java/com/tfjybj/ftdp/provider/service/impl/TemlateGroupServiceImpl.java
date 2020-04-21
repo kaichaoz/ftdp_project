@@ -62,8 +62,8 @@ public class TemlateGroupServiceImpl implements TemplateGroupService {
         Id = templateGroupModel.getId();
         groupName = templateGroupModel.getTemplateGroupName();
         groupSequence = templateGroupModel.getGroupSequence();
-        isUsable = templateGroupModel.getIsUsable();
-        return templateGroupDao.addTemplateGroup(Id, groupName, groupSequence,isUsable);
+        templateGroupModel.setIsUsable(0);
+        return templateGroupDao.addTemplateGroup(Id, groupName, groupSequence,templateGroupModel.getIsUsable());
     }
 
     /**
@@ -80,7 +80,7 @@ public class TemlateGroupServiceImpl implements TemplateGroupService {
     @Override
     public boolean updateTemplateGroup(TemplateGroupModel templateGroupModel) {
         List<TemplateModel> templateModels = templateGroupDao.queryTemplate(templateGroupModel.getId());
-        if (templateModels.size() == 0){
+        if (templateModels.size() == 0 || templateGroupModel.getIsUsable() == 0 ){
           int num =   templateGroupDao.update(templateGroupModel);
           if (num > 0 ){
               return true ;
