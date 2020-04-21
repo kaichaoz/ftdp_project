@@ -6,11 +6,12 @@ import com.tfjybj.ftdp.utils.CodeEnumUtils;
 import com.tfjybj.ftdp.utils.ResultUtils;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import lombok.Data;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import java.util.List;
-
+@Data
 
 /**
  * @Classname ComponentlibraryController
@@ -46,7 +47,7 @@ public class ComponentlibraryController {
             }
 
         }
-        return ResultUtils.build(CodeEnumUtils.MODIFY_FINISH.getCode(),CodeEnumUtils.MODIFY_FINISH.getMessage());
+        return ResultUtils.build(CodeEnumUtils.MODIFY_SUCCESS.getCode(),CodeEnumUtils.MODIFY_SUCCESS.getMessage());
     }
 
 //    @ApiOperation(value = "启用组件")
