@@ -2,21 +2,13 @@ package com.tfjybj.ftdp.provider.service.impl;
 
 import com.tfjybj.ftdp.model.TemplateGroupModel;
 import com.tfjybj.ftdp.model.TemplateModel;
-import com.tfjybj.ftdp.provider.dao.TemplateContentDao;
 import com.tfjybj.ftdp.provider.dao.TemplateGroupDao;
 import com.tfjybj.ftdp.provider.service.TemplateGroupService;
-import com.tfjybj.ftdp.utils.FtdpRedisKey;
 import com.tfjybj.ftdp.utils.PatterUtils;
-import com.tfjybj.ftdp.utils.RedisUtil;
-import freemarker.template.Template;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
-import scala.util.parsing.combinator.testing.Str;
 
 import javax.annotation.Resource;
 import java.util.List;
-import java.util.Map;
 
 /**
  * @Classname TemlateGroupServiceImpl
