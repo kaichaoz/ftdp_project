@@ -1,12 +1,9 @@
 package com.tfjybj.ftdp.provider.dao;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.tfjybj.ftdp.entity.TemplateGroupEntity;
 import com.tfjybj.ftdp.entity.TemplatecontentEntity;
 import com.tfjybj.ftdp.model.*;
-import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
-import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
 
@@ -35,14 +32,13 @@ public interface TemplateContentDao extends BaseMapper<TemplateModel> {
      * 初始化全部模板
      * @return
      */
-    List<TemplatecontentEntity> queryTemplateContent(String templateId);
+    List<TemplateContent> queryTemplateContent(String templateId);
 
     /**
      * 查询可用模板
-     * @param isUsable 是否可用
      * @return
      */
-    List<qTempByIsUsableModel> queryTempByIsUsable(int isUsable);
+    List<TempByIsUsableModel> queryTempByIsUsable();
 
 //    /**
 //     *编辑模板

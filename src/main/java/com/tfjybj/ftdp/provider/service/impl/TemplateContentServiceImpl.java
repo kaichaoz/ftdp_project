@@ -1,21 +1,20 @@
 package com.tfjybj.ftdp.provider.service.impl;
 
-import com.tfjybj.ftdp.entity.TemplateGroupEntity;
-import com.tfjybj.ftdp.entity.TemplatecontentEntity;
+import com.tfjybj.ftdp.model.TemplateContent;
 import com.tfjybj.ftdp.model.*;
 import com.tfjybj.ftdp.provider.dao.TemplateGroupDao;
 import com.tfjybj.ftdp.utils.PatterUtils;
 import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 import com.tfjybj.ftdp.provider.service.TemplateContentService;
 import com.tfjybj.ftdp.provider.dao.TemplateContentDao;
 import org.springframework.util.CollectionUtils;
 
 import javax.annotation.Resource;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 /**
@@ -24,12 +23,14 @@ import java.util.stream.Collectors;
  * @Created by 车龙梁
  */
 @Service("templateContentService")
-public class templateContentServiceImpl implements TemplateContentService {
+public class TemplateContentServiceImpl implements TemplateContentService {
 
     @Resource
     private TemplateContentDao templateContentDao;
     @Resource
     private TemplateGroupDao templateGroupDao;
+    @Autowired
+    private  RedisTemplate redisTemplate;
 
     /**
      * 添加模板内容
@@ -82,48 +83,32 @@ public class templateContentServiceImpl implements TemplateContentService {
      */
     @Override
     public List<TemplateContent> queryTemplateContent(String templateId) {
-        List<TemplatecontentEntity> templatecontentEntities = templateContentDao.queryTemplateContent(templateId);
-        List<TemplateContent> templateContents = new ArrayList<>();
-        templatecontentEntities.forEach(item->{
-            TemplateContent templateContent =new TemplateContent();
-            templateContent.setTemplateId(item.getTemplateId().toString());
-
-            TemplateContentModel templateContentModel = new TemplateContentModel();
-            templateContentModel.setComponentId(item.getComponentId().toString());
-
-            TemplateContentModel2 templateContentModel2 =new TemplateContentModel2();
-            BeanUtils.copyProperties(item,templateContentModel2);
-
-            TemplateContentTitleModel templateContentTitleModel=new TemplateContentTitleModel();
-            BeanUtils.copyProperties(item,templateContentTitleModel);
-
-            templateContentModel.setTemplateContentTitleModel(templateContentTitleModel);
-            
-            templateContentModel.setTemplateContentData2(templateContentModel2);
-
-            templateContent.setTemplateContentData(templateContentModel);
-
-            templateContents.add(templateContent);
-        });
-
-
-        templateContents.removeAll(Collections.singleton(null));
-        if (CollectionUtils.isEmpty(templateContents)){
-            return null;
-        }else{
+        List<TemplateContent> templateContents = templateContentDao.queryTemplateContent(templateId);
             return templateContents;
-        }
     }
 
     /**
      * 根据isUsable查询可用模板
-     * @param isUsable 是否可用
      * @return
      */
     @Override
-    public List<qTempByIsUsableModel> queryTempByIsUsable(int isUsable) {
-        return templateContentDao.queryTempByIsUsable(isUsable);
+    public List<TempByIsUsableModel> queryTempByIsUsable() {
+/*Redis缓存技术引入
+        //先从缓存中查询当前对象
+        List<TempByIsUsableModel> tempByIsUsableModels= redisTemplate.opsForValue().get("template_"+templateId);
+        if (tempByIsUsableModels==null){
+            //如果缓存中没有则查库
+            tempByIsUsableModels =  templateContentDao.queryTempByIsUsable(isUsable);//将要返回的参数查出
+            //set到Redis中
+            redisTemplate.opsForValue().set("template_"+templateId,tempByIsUsableModels);
+        }
+        return tempByIsUsableModels;
+*/
+        List<TempByIsUsableModel> dataAll = templateContentDao.queryTempByIsUsable();//将要返回的参数查出
+        return dataAll;
     }
+
+
 
     /**
      * 删除模板（修改tin_complateContent表isUsable字段为1）
@@ -141,6 +126,7 @@ public class templateContentServiceImpl implements TemplateContentService {
      * @return
      */
     @Override
+    @Cacheable(value = "queryTemplate",key="#id")
     public QueryTemplateModel queryTemplate(String id) {
 
         QueryTemplateModel queryTemplateModels = templateContentDao.queryTemplate(id);

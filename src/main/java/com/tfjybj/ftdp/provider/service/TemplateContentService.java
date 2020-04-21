@@ -1,15 +1,11 @@
 package com.tfjybj.ftdp.provider.service;
 
-import com.tfjybj.ftdp.entity.TemplateGroupEntity;
-import com.tfjybj.ftdp.entity.TemplatecontentEntity;
 import com.tfjybj.ftdp.model.QueryTemplateModel;
 import com.tfjybj.ftdp.model.TemplateContent;
-import com.tfjybj.ftdp.model.TemplateContentModel;
-import com.tfjybj.ftdp.model.qTempByIsUsableModel;
+import com.tfjybj.ftdp.model.TempByIsUsableModel;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Map;
 
 /**
  * @Classname TemplateContentService
@@ -61,18 +57,10 @@ public interface TemplateContentService {
 
     /**
      * 根据isUsable查询模板
-     * @param isUsable 是否可用
      * @return
      */
-    List<qTempByIsUsableModel> queryTempByIsUsable(int isUsable);
+    List<TempByIsUsableModel> queryTempByIsUsable();
 
-//    /**
-//     * 根据id修改模板
-//     * @param id id
-//     * @param TemplateContentModel 修改实体
-//     * @return
-//     */
-//    boolean updateTemplateContent(String id, TemplateContentModel TemplateContentModel);
 
     /**
      * 删除模板（修改tin_complateContent表isUsable字段为1）

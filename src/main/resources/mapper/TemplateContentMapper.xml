@@ -44,29 +44,37 @@
     <update id="templateDelete">
         UPDATE tin_templatecontent
         SET  isUsable = "1"
-        WHERE id = #{id}
+        WHERE templateId = #{id}
     </update>
 
     <!--   根据isUsable字段查询tin_templateGroup表可用的模板-->
-    <select id="queryTempByIsUsable" resultType="com.tfjybj.ftdp.model.qTempByIsUsableModel">
+    <select id="queryTempByIsUsable" resultMap="TempByIsUsableModel" >
         select tin_templategroup.id AS templateGroupId,
                tin_templategroup.templateGroupName AS templateGroupName,
-               tin_templategroup.isUsable,
                tin_template.id AS templateId,
                tin_template.templateName AS tempalteName
         from tin_templategroup,
              tin_template
-        where tin_template.isUsable = #{isUsable}
+        where tin_template.isUsable = 0
+        and   tin_templategroup.isUsable = 0
         and   tin_template.templategroupID = tin_templategroup.id
     </select>
+    <resultMap type="com.tfjybj.ftdp.model.TempByIsUsableModel" id="TempByIsUsableModel" autoMapping="true">
+        <id property="templateGroupId" column="templateGroupId" />
+        <result property="templateGroupName" column="templateGroupName"/>
+        <collection property="tempByIsUsableData" ofType="com.tfjybj.ftdp.model.TempByIsUsableData">
+            <result property="templateId" column="templateId"/>
+            <result property="tempalteName" column="tempalteName"/>
+        </collection>
+    </resultMap>
 
     <!--    查询tin_templateContent表-->
-    <select id="queryTemplateContent" resultType="com.tfjybj.ftdp.entity.TemplatecontentEntity">
+    <select id="queryTemplateContent" resultMap="TemplateContent">
         select  id,
                 templateId,
                 componentId,
                 title,
-                promptField,
+                fieldSequence,
                 isUsable,
                 groupSequence
         from tin_templatecontent
@@ -74,6 +82,25 @@
         order by
         id asc
     </select>
+    <resultMap type="com.tfjybj.ftdp.model.TemplateContent" id="TemplateContent" autoMapping="true">
+        <id property="templateId" column="templateId" />
+
+        <collection property="templateContentData" ofType="com.tfjybj.ftdp.model.TemplateContentModel">
+            <id property="componentId" column="componentId"/>
+            <collection property="templateContentData2" ofType="com.tfjybj.ftdp.model.TemplateContentModel2">
+                <result property="id" column="id"/>
+                <result property="title" column="title"/>
+                <result property="fieldSequence" column="fieldSequence"/>
+                <result property="isUsable" column="isUsable"/>
+                <result property="groupSequence" column="groupSequence"/>
+                <result property="componentId" column="componentId"/>
+            </collection>
+            <collection property="templateContentTitleModel" ofType="com.tfjybj.ftdp.model.TemplateContentTitleModel">
+                <result property="title" column="title"/>
+            </collection>
+        </collection>
+    </resultMap>
+
     <!--    查询tin_template表-->
     <select id="queryTemplate" resultType="com.tfjybj.ftdp.model.QueryTemplateModel">
         select

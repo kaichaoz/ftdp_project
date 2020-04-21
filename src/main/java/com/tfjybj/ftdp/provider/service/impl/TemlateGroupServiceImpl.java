@@ -2,16 +2,13 @@ package com.tfjybj.ftdp.provider.service.impl;
 
 import com.tfjybj.ftdp.model.TemplateGroupModel;
 import com.tfjybj.ftdp.model.TemplateModel;
-import com.tfjybj.ftdp.provider.dao.TemplateContentDao;
 import com.tfjybj.ftdp.provider.dao.TemplateGroupDao;
 import com.tfjybj.ftdp.provider.service.TemplateGroupService;
 import com.tfjybj.ftdp.utils.PatterUtils;
-import freemarker.template.Template;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.List;
-import java.util.Map;
 
 /**
  * @Classname TemlateGroupServiceImpl
@@ -26,8 +23,8 @@ public class TemlateGroupServiceImpl implements TemplateGroupService {
     @Resource
     private TemplateGroupDao templateGroupDao;
 
-    @Resource
-    private TemplateContentDao templateContentDao;
+    private String Id, groupName, groupSequence;
+    private Integer isUsable;
     /**
      * @Description: 初始化模板分组页面
      * @Author: 张凯超
@@ -40,6 +37,11 @@ public class TemlateGroupServiceImpl implements TemplateGroupService {
     @Override
     public List<TemplateGroupModel> queryTemplateGroup() {
         List<TemplateGroupModel> templateEntityList = templateGroupDao.queryTemplateGroup();
+//        if (redisUtil.hasKey(ftdpRedisKey.getTemplateGroup())){
+//            redisUtil.del(ftdpRedisKey.getTemplateGroup());
+//        }
+//        //放入缓存中
+//        redisUtil.llSetAll("FTDP:templateGroup",templateEntityList);
         return templateEntityList;
     }
 
@@ -55,7 +57,12 @@ public class TemlateGroupServiceImpl implements TemplateGroupService {
      * @Modification Time:
      **/
     @Override
-    public boolean addTemplateGroup(String Id, String groupName, String groupSequence,Integer isUsable) {
+    public boolean addTemplateGroup(TemplateGroupModel templateGroupModel) {
+        templateGroupModel.setId(PatterUtils.getNumberPattern());
+        Id = templateGroupModel.getId();
+        groupName = templateGroupModel.getTemplateGroupName();
+        groupSequence = templateGroupModel.getGroupSequence();
+        isUsable = templateGroupModel.getIsUsable();
         return templateGroupDao.addTemplateGroup(Id, groupName, groupSequence,isUsable);
     }
 
