@@ -41,11 +41,11 @@
 <!--        where tin_templatecontent.id = #{id}-->
 <!--    </update>-->
 
-    <!--    修改tin_templateContent表isUsable字段完成删除-->
+    <!--    修改tin_template表isUsable字段完成删除-->
     <update id="templateDelete">
         UPDATE tin_template
         SET  isUsable = "1"
-        WHERE id = #{id}
+        WHERE id= #{id}
     </update>
 
     <!--   根据isUsable字段查询tin_templateGroup表可用的模板-->
@@ -59,14 +59,14 @@
         where tin_template.isUsable = 0
         and   tin_templategroup.isUsable = 0
         and   tin_template.templategroupID = tin_templategroup.id
-        order by tin_templategroup.groupSequence asc,tin_template.groupSequence asc
     </select>
     <resultMap type="com.tfjybj.ftdp.model.TempByIsUsableModel" id="TempByIsUsableModel" autoMapping="true">
         <id property="templateGroupId" column="templateGroupId" />
         <result property="templateGroupName" column="templateGroupName"/>
         <collection property="tempByIsUsableData" ofType="com.tfjybj.ftdp.model.TempByIsUsableData">
             <result property="templateId" column="templateId"/>
-            <result property="templateName" column="templateName"/>
+            <result property="isUsable" column="isUsable"/>
+            <result property="tempalteName" column="tempalteName"/>
         </collection>
     </resultMap>
 
