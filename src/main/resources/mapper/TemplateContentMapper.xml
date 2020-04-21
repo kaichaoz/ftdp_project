@@ -40,7 +40,7 @@
 <!--        where tin_templatecontent.id = #{id}-->
 <!--    </update>-->
 
-    <!--    修改tin_templateContent表isUsable字段完成删除-->
+    <!--    修改tin_template表isUsable字段完成删除-->
     <update id="templateDelete">
         UPDATE tin_template
         SET  isUsable = "1"

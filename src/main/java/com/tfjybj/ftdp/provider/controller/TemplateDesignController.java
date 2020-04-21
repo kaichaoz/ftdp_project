@@ -108,7 +108,7 @@ public class TemplateDesignController {
     }
 
     /**
-     * 删除模板（修改tin_complateContent表isUsable字段为1）
+     * 删除模板（修改tin_complate表isUsable字段为1）
      * @param id
      * @return
      */
