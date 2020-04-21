@@ -38,11 +38,11 @@ public class ComponentlibraryServiceImpl implements ComponentlibraryService {
             //如果接收到的IsUsable是0
             if (componentModels.getIsUsable().equals("0")) {
                 //将启用变成停用
-                componentlibraryDao.updateComponentIsUsableOff(componentModels.getComponentId());
+                componentlibraryDao.updateComponentIsUsableOpen(componentModels.getComponentId());
                 //如果IsUsable是1
             } else if (componentModels.getIsUsable().equals("1")) {
                 //将停用变成启用
-                componentlibraryDao.updateComponentIsUsableOpen(componentModels.getComponentId());
+                componentlibraryDao.updateComponentIsUsableOff(componentModels.getComponentId());
             }
         }catch (Exception e){
             e.printStackTrace();
