@@ -31,8 +31,8 @@ public class PatterUtils {
             String regEX= "[^0-9]+";
             Pattern pattern = Pattern.compile(regEX);
             Matcher matcher = pattern.matcher(Id);
-            String[] Ids = matcher.replaceAll("").trim().split("",8);
-            return Ids[7].substring(0,7);
+            String Ids = matcher.replaceAll("").trim();
+            return Ids;
         }
 
 }
