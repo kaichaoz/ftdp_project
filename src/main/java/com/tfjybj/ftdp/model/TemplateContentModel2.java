@@ -18,7 +18,7 @@ public class TemplateContentModel2 {
     private String id;
     @Column(name = "title ")
     private String title ;
-    @Column(name = "promptField")
+    @Column(name = "fieldSequence")
     private String fieldSequence;
     @Column(name = "isUsable ")
     private String isUsable ;

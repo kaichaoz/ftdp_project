@@ -22,7 +22,7 @@ public class TemplatecontentEntity implements Serializable{
 	private Integer componentId;  
 	private String title;  
 	private Double titleLength;  
-	private String inputField;  
+	private String fieldSequence;
 	private String promptField;  
 	private Double promptFieldLength;  
 	private String isUsable;  
