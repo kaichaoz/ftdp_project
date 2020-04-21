@@ -1,8 +1,6 @@
 package com.tfjybj.ftdp.provider.service;
 
-import com.tfjybj.ftdp.model.QueryTemplateModel;
-import com.tfjybj.ftdp.model.TemplateContent;
-import com.tfjybj.ftdp.model.TempByIsUsableModel;
+import com.tfjybj.ftdp.model.*;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -18,36 +16,17 @@ public interface TemplateContentService {
 
     /**
      * 添加模板内容
-     * @param id
-     * @param templateId
-     * @param componentId
-     * @param title
-     * @param promptField
-     * @param groupSequence
+     * @param templateContentRequest
      * @return
      */
-    boolean addTemplateContent(String id, String templateId, String componentId, String title, String promptField, String groupSequence);
+    boolean addTemplateContent(TemplateContentRequest templateContentRequest);
 
     /**
      * 添加模板
-     * @param id
-     * @param templateName
-     * @param templateGroupId
-     * @param staffID
-     * @param postscript
-     * @param isUsable
-     * @param groupSequence
-     * @param isFinish
+     * @param templateModel
      * @return
      */
-    boolean templateInsert(String id,
-                           String templateName,
-                           String templateGroupId,
-                           String staffID,
-                           String postscript,
-                           String isUsable,
-                           String groupSequence,
-                           String isFinish);
+    boolean templateInsert(TemplateModel templateModel);
 
     /**
      * 初始化全部模板列表
@@ -75,4 +54,7 @@ public interface TemplateContentService {
      * @return
      */
     QueryTemplateModel queryTemplate (String id);
+
+
+    List<ComponentlibraryModel> queryComponentlibrary();
 }

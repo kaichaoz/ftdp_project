@@ -1,13 +1,11 @@
 package com.tfjybj.ftdp.model;
 
 import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 import lombok.experimental.Accessors;
-
-import javax.persistence.Column;
-import javax.persistence.Id;
 import java.util.List;
 
 @Data

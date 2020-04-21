@@ -59,6 +59,7 @@
         where tin_template.isUsable = 0
         and   tin_templategroup.isUsable = 0
         and   tin_template.templategroupID = tin_templategroup.id
+        order by tin_templategroup.groupSequence
     </select>
     <resultMap type="com.tfjybj.ftdp.model.TempByIsUsableModel" id="TempByIsUsableModel" autoMapping="true">
         <id property="templateGroupId" column="templateGroupId" />
@@ -66,7 +67,7 @@
         <collection property="tempByIsUsableData" ofType="com.tfjybj.ftdp.model.TempByIsUsableData">
             <result property="templateId" column="templateId"/>
             <result property="isUsable" column="isUsable"/>
-            <result property="tempalteName" column="tempalteName"/>
+            <result property="templateName" column="templateName"/>
         </collection>
     </resultMap>
 
