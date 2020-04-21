@@ -1,7 +1,6 @@
 package com.tfjybj.ftdp.model;
 
 import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
@@ -15,16 +14,16 @@ import javax.persistence.Column;
 @Accessors(chain = true)
 @ToString(callSuper = true)
 public class TemplateContentModel2 {
-    @ApiModelProperty(value = "模板id")
+    @Column(name = "id")
     private String id;
-    @ApiModelProperty(value = "标题")
+    @Column(name = "title ")
     private String title ;
-    @ApiModelProperty(value = "组内字段排序")
+    @Column(name = "fieldSequence")
     private String fieldSequence;
-    @ApiModelProperty(value = "是否可用")
+    @Column(name = "isUsable ")
     private String isUsable ;
-    @ApiModelProperty(value = "分组排序")
+    @Column(name = "groupSequence")
     private String groupSequence;
-    @ApiModelProperty(value = "组件id")
+
     private String componentId;
 }

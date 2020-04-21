@@ -75,4 +75,10 @@ public interface TemplateContentDao extends BaseMapper<TemplateModel> {
      * @return
      */
     QueryTemplateModel queryTemplate (String id);
+
+    /**
+     * 侧边栏加载
+     * @return
+     */
+    List<ComponentlibraryModel> queryComponentlibrary();
 }
