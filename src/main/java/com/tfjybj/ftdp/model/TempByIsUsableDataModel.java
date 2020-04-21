@@ -1,19 +1,16 @@
 package com.tfjybj.ftdp.model;
 
+import lombok.Data;
+
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.Id;
 
-public class qTempByIsUsableModel {
+@Data
+public class TempByIsUsableDataModel {
     @Id
-    @Column(name = "id")
     private String templateId;
-    @Column(name = "tempalteGroupName")
     private String templateGroupName;
-    @Column(name = "isUsable")
-    private Integer isUsable;
     private String tempalteName;
     private String templateGroupId;
-
-
-
 }

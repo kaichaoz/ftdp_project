@@ -17,6 +17,5 @@ import javax.persistence.Id;
 public class TempByIsUsableData {
     @Id
     private String templateId;
-    private Integer isUsable;
     private String tempalteName;
 }
