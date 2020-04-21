@@ -24,6 +24,4 @@ public class TemplateContentModel2 {
     private String isUsable ;
     @Column(name = "groupSequence")
     private String groupSequence;
-
-    private String componentId;
 }
