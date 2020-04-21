@@ -42,9 +42,9 @@
 
     <!--    修改tin_templateContent表isUsable字段完成删除-->
     <update id="templateDelete">
-        UPDATE tin_templatecontent
+        UPDATE tin_template
         SET  isUsable = "1"
-        WHERE templateId = #{id}
+        WHERE id= #{id}
     </update>
 
     <!--   根据isUsable字段查询tin_templateGroup表可用的模板-->
@@ -64,6 +64,7 @@
         <result property="templateGroupName" column="templateGroupName"/>
         <collection property="tempByIsUsableData" ofType="com.tfjybj.ftdp.model.TempByIsUsableData">
             <result property="templateId" column="templateId"/>
+            <result property="isUsable" column="isUsable"/>
             <result property="tempalteName" column="tempalteName"/>
         </collection>
     </resultMap>
@@ -78,7 +79,7 @@
                 isUsable,
                 groupSequence
         from tin_templatecontent
-        where tin_templatecontent.templateId = #{templateId}
+
         order by
         id asc
     </select>
