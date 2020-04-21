@@ -34,47 +34,35 @@ public class TemplateContentServiceImpl implements TemplateContentService {
 
     /**
      * 添加模板内容
-     * @param id
-     * @param templateId
-     * @param componentId
-     * @param title
-     * @param promptField
-     * @param groupSequence
+     * @param templateContentRequest
      * @return
      */
     @Override
-    public boolean addTemplateContent(String id,
-                                      String templateId,
-                                      String componentId,
-                                      String title,
-                                      String promptField,
-                                      String groupSequence) {
-        return templateContentDao.addTemplateContent(id,templateId, componentId, title,promptField, groupSequence);
+    public boolean addTemplateContent(TemplateContentRequest templateContentRequest) {
+        return templateContentDao.addTemplateContent(templateContentRequest.getId(),
+                                                     templateContentRequest.getTemplateId(),
+                                                     templateContentRequest.getComponentId(),
+                                                     templateContentRequest.getTitle(),
+                                                     templateContentRequest.getPromptField(),
+                                                     templateContentRequest.getGroupSequence(),
+                                                     templateContentRequest.getFieldSequence());
     }
 
     /**
      * 添加模板
-     * @param id
-     * @param templateName
-     * @param templateGroupId
-     * @param staffID
-     * @param postscript
-     * @param isUsable
-     * @param groupSequence
-     * @param isFinish
+     * @param templateModel
      * @return
      */
     @Override
-    public boolean templateInsert(String id,
-                                  String templateName,
-                                  String templateGroupId,
-                                  String staffID,
-                                  String postscript,
-                                  String isUsable,
-                                  String groupSequence,
-                                  String isFinish){
-
-        return templateContentDao.templateInsert(PatterUtils.getNumberPattern(),templateName,templateGroupId,staffID,postscript,isUsable,groupSequence,isFinish);
+    public boolean templateInsert(TemplateModel templateModel){
+        return templateContentDao.templateInsert(templateModel.getId(),
+                                                templateModel.getTemplateGroupID(),
+                                                templateModel.getTemplateName(),
+                                                templateModel.getGroupSequence(),
+                                                templateModel.getIsFinish(),
+                                                templateModel.getPostscript(),
+                                                templateModel.getIsUsable(),
+                                                templateModel.getStaffID());
     }
 
     /**

@@ -25,7 +25,7 @@ public class TemplateModel {
     @Column(name = "templateName")
     private String templateName;//模板名称
     @Column(name = "templateGroupingID")
-    private String templateGroupingID;//模板分组ID
+    private String templateGroupID;//模板分组ID
     @Column(name = "staffID")
     private String staffID;//人员ID
     @Column(name = "postscript")

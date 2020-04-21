@@ -1,10 +1,9 @@
 package com.tfjybj.ftdp.provider.controller;
 
-import com.tfjybj.ftdp.model.QueryTemplateModel;
-import com.tfjybj.ftdp.model.TemplateContent;
-import com.tfjybj.ftdp.model.TempByIsUsableModel;
+import com.tfjybj.ftdp.model.*;
 import com.tfjybj.ftdp.provider.service.TemplateContentService;
 import com.tfjybj.ftdp.utils.CodeEnumUtils;
+import com.tfjybj.ftdp.utils.PatterUtils;
 import com.tfjybj.ftdp.utils.ResultUtils;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -63,24 +62,13 @@ public class TemplateDesignController {
 
     /**
      * 添加模板内容
-     * @param id 组件id
-     * @param templateId 模板id
-     * @param componentId 组件id
-     * @param title 提示字段
-     * @param promptField 分组排序
-     * @param groupSequence 标题
+     * @param templateContentRequest
      * @return
      */
     @ApiOperation("添加模板内容")
-    @RequestMapping(value = "/insertTemplateContent/{id}/{templateId}/{componentId}/{title}/{promptField}/{groupSequence}",method = RequestMethod.POST)
-    public ResultUtils insertTemplateContent(@ApiParam(value = "模板内容id",required = true) @PathVariable String id ,
-                                          @ApiParam(value = "模板id",required = true) @PathVariable String templateId ,
-                                          @ApiParam(value = "组件id",required = true) @PathVariable String componentId ,
-                                          @ApiParam(value = "提示字段",required = true) @PathVariable String title ,
-                                          @ApiParam(value = "分组排序",required = true) @PathVariable String promptField ,
-                                          @ApiParam(value = "标题",required = true) @PathVariable String groupSequence
-                                          ){
-        boolean flag = templateContentService.addTemplateContent(id,templateId,componentId,title,promptField,groupSequence);
+    @PostMapping(value = "/insertTemplateContent")
+    public ResultUtils insertTemplateContent(@RequestBody TemplateContentRequest templateContentRequest ){
+        boolean flag = templateContentService.addTemplateContent(templateContentRequest);
         if (flag){
             return  ResultUtils.build(CodeEnumUtils.INSERT_SUCCESS.getCode(),CodeEnumUtils.INSERT_SUCCESS.getMessage(), flag);
         }
@@ -89,16 +77,12 @@ public class TemplateDesignController {
 
     @ApiOperation("添加模板")
     @PostMapping(value = "/insertTemplate/{id}/{templateName}/{templateGroupID}/{staffID}/{postscript}/{isUsable}/{groupSequence}/{isFinish}")
-    public ResultUtils insertTemplate(@ApiParam(value = "模板id",required = true) @PathVariable String id ,
-                                      @ApiParam(value = "模板名称",required = true) @PathVariable String templateName ,
-                                      @ApiParam(value = "模板分组id",required = true) @PathVariable String templateGroupID ,
-                                      @ApiParam(value = "人员id") @PathVariable String staffID ,
-                                      @ApiParam(value = "备注") @PathVariable String postscript ,
-                                      @ApiParam(value = "是否可用（0可用1不可用）") @PathVariable String isUsable,
-                                      @ApiParam(value = "分组排序",required = true) @PathVariable String groupSequence ,
-                                      @ApiParam(value = "是否编辑完成（0完成，1未完成）") @PathVariable String isFinish
-                                    ){
-        boolean flag = templateContentService.templateInsert(id,templateName,templateGroupID,staffID,postscript,isUsable,groupSequence,isFinish);
+    public ResultUtils insertTemplate(@RequestBody TemplateModel templateModel){
+        String Id = templateModel.getId();
+        if (Id==null||Id==""){
+            templateModel.setId(PatterUtils.getNumberPattern());
+        }
+        boolean flag = templateContentService.templateInsert(templateModel);
 
         if (flag){
             return  ResultUtils.build(CodeEnumUtils.INSERT_SUCCESS.getCode(),CodeEnumUtils.INSERT_SUCCESS.getMessage(), flag);

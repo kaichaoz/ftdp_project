@@ -9,10 +9,11 @@
                                       componentId,
                                       title,
                                       promptField,
+                                      fieldSequence,
                                       groupSequence
                                      )
-      VALUES (#{id},#{templateId},#{componentId},#{title},#{promptField},#{groupSequence})
-      ON DUPLICATE KEY UPDATE id= #{id},templateId= #{templateId},componentId= #{componentId},title= #{title},promptField= #{promptField},groupSequence= #{groupSequence}
+      VALUES (#{id},#{templateId},#{componentId},#{title},#{promptField},#{fieldSequence},#{groupSequence})
+      ON DUPLICATE KEY UPDATE id= #{id},templateId= #{templateId},componentId= #{componentId},title= #{title},promptField= #{promptField},fieldSequence=#{fieldSequence},groupSequence= #{groupSequence}
     </insert>
 
     <!--    添加模板（插入template表）-->
@@ -42,9 +43,9 @@
 
     <!--    修改tin_templateContent表isUsable字段完成删除-->
     <update id="templateDelete">
-        UPDATE tin_templatecontent
+        UPDATE tin_template
         SET  isUsable = "1"
-        WHERE templateId = #{id}
+        WHERE id = #{id}
     </update>
 
     <!--   根据isUsable字段查询tin_templateGroup表可用的模板-->
@@ -52,19 +53,20 @@
         select tin_templategroup.id AS templateGroupId,
                tin_templategroup.templateGroupName AS templateGroupName,
                tin_template.id AS templateId,
-               tin_template.templateName AS tempalteName
+               tin_template.templateName AS templateName
         from tin_templategroup,
              tin_template
         where tin_template.isUsable = 0
         and   tin_templategroup.isUsable = 0
         and   tin_template.templategroupID = tin_templategroup.id
+        order by tin_templategroup.groupSequence asc,tin_template.groupSequence asc
     </select>
     <resultMap type="com.tfjybj.ftdp.model.TempByIsUsableModel" id="TempByIsUsableModel" autoMapping="true">
         <id property="templateGroupId" column="templateGroupId" />
         <result property="templateGroupName" column="templateGroupName"/>
         <collection property="tempByIsUsableData" ofType="com.tfjybj.ftdp.model.TempByIsUsableData">
             <result property="templateId" column="templateId"/>
-            <result property="tempalteName" column="tempalteName"/>
+            <result property="templateName" column="templateName"/>
         </collection>
     </resultMap>
 

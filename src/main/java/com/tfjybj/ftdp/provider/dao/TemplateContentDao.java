@@ -1,7 +1,6 @@
 package com.tfjybj.ftdp.provider.dao;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.tfjybj.ftdp.entity.TemplatecontentEntity;
 import com.tfjybj.ftdp.model.*;
 import org.springframework.stereotype.Repository;
 
@@ -18,6 +17,8 @@ public interface TemplateContentDao extends BaseMapper<TemplateModel> {
 
     /**
      * 添加模板内容（templateContent表）
+     *
+     * @param templateContentRequestId
      * @param id
      * @param templateId
      * @param componentId
@@ -26,7 +27,7 @@ public interface TemplateContentDao extends BaseMapper<TemplateModel> {
      * @param groupSequence
      * @return
      */
-    boolean addTemplateContent(String id, String templateId, String componentId, String title, String promptField, String groupSequence);
+    boolean addTemplateContent(String templateContentRequestId, String id, String templateId, String componentId, String title, String promptField, String groupSequence);
 
     /**
      * 初始化全部模板
@@ -66,7 +67,7 @@ public interface TemplateContentDao extends BaseMapper<TemplateModel> {
      * @param isFinish 是否编辑完成（0完成，1未完成）
      * @return
      */
-    boolean templateInsert(String id, String templateName, String templateGroupId, String staffID, String postscript, String isUsable, String groupSequence, String isFinish);
+    boolean templateInsert(String id, String templateName, String templateGroupId, String staffID, int postscript, String isUsable, int groupSequence, String isFinish);
 
     /**
      * 模板编辑界面加载

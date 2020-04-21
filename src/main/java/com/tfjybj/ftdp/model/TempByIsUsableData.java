@@ -1,6 +1,7 @@
 package com.tfjybj.ftdp.model;
 
 import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
@@ -16,6 +17,8 @@ import javax.persistence.Id;
 @ToString(callSuper = true)
 public class TempByIsUsableData {
     @Id
+    @ApiModelProperty(value = "模板id")
     private String templateId;
-    private String tempalteName;
+    @ApiModelProperty(value = "模板id")
+    private String templateName;
 }
