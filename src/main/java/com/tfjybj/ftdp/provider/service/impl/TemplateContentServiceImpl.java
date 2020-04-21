@@ -134,4 +134,15 @@ public class TemplateContentServiceImpl implements TemplateContentService {
         queryTemplateModels.setTemplateData(templateEntityList);
         return queryTemplateModels;
     }
+
+    /**
+     *侧边栏加载
+     *
+     * @return
+     */
+    @Override
+    public List<ComponentlibraryModel> queryComponentlibrary() {
+        List<ComponentlibraryModel> componentlibraryList = templateContentDao.queryComponentlibrary();//将要返回的参数查出
+        return componentlibraryList;
+    }
 }

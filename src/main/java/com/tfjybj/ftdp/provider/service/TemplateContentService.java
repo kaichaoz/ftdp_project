@@ -1,5 +1,6 @@
 package com.tfjybj.ftdp.provider.service;
 
+import com.tfjybj.ftdp.model.ComponentlibraryModel;
 import com.tfjybj.ftdp.model.QueryTemplateModel;
 import com.tfjybj.ftdp.model.TemplateContent;
 import com.tfjybj.ftdp.model.TempByIsUsableModel;
@@ -75,5 +76,7 @@ public interface TemplateContentService {
      * @return
      */
     QueryTemplateModel queryTemplate (String id);
+
+    List<ComponentlibraryModel> queryComponentlibrary();
 }
 

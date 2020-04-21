@@ -69,7 +69,7 @@
         </collection>
     </resultMap>
 
-    <!-- 询tin_templateContent表-->
+    <!-- 查询tin_templateContent表-->
     <select id="queryTemplateContent" resultMap="TemplateContent">
         select  id,
                 templateId,
@@ -84,9 +84,9 @@
         groupSequence asc
     </select>
     <resultMap type="com.tfjybj.ftdp.model.TemplateContent" id="TemplateContent" autoMapping="true">
-        <id property="templateId" column="templateId" />
 
         <collection property="templateContentData" ofType="com.tfjybj.ftdp.model.TemplateContentModel">
+            <id property="templateId" column="templateId" />
             <id property="componentId" column="componentId"/>
             <collection property="templateContentData2" ofType="com.tfjybj.ftdp.model.TemplateContentModel2">
                 <result property="id" column="id"/>
@@ -94,7 +94,7 @@
                 <result property="fieldSequence" column="fieldSequence"/>
                 <result property="isUsable" column="isUsable"/>
                 <result property="groupSequence" column="groupSequence"/>
-                <result property="componentId" column="componentId"/>
+
             </collection>
             <collection property="templateContentTitleModel" ofType="com.tfjybj.ftdp.model.TemplateContentTitleModel">
                 <result property="title" column="title"/>
@@ -117,7 +117,17 @@
         WHERE id = #{id}
 
     </select>
+    <!--    查询tin_componentlibrary表-->
+    <select id="queryComponentlibrary" resultType="com.tfjybj.ftdp.model.ComponentlibraryModel">
+        select
+               groupId,
+               groupSequence
+        from tin_componentlibrary
+        WHERE isUsable = 0
+        order by
+            groupSequence
 
+    </select>
 
 
 </mapper>

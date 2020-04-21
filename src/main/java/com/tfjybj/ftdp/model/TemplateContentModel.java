@@ -1,6 +1,7 @@
 package com.tfjybj.ftdp.model;
 
 import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
@@ -17,6 +18,8 @@ import java.util.List;
 @ToString(callSuper = true)
 public class TemplateContentModel {
     @Column(name = "componentId")
+    @ApiModelProperty(value = "模板id")
+    private String templateId ;//模板id
     private String componentId;
     @Column(name = "templateContentData2")
     private TemplateContentModel2 templateContentData2;

@@ -10,7 +10,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.springframework.web.bind.annotation.*;
-
+import com.tfjybj.ftdp.model.ComponentlibraryModel;
 import javax.annotation.Resource;
 import java.util.List;
 
@@ -137,6 +137,15 @@ public class TemplateDesignController {
 
     }
 
+    @ApiOperation("侧边栏加载")
+    @GetMapping(value = "/queryComponentlibrary")
+    public ResultUtils queryComponentlibrary(){
+        // TODO 对应接口文档修改接收参数model
+        List<ComponentlibraryModel> queryComponentlibrary = templateContentService.queryComponentlibrary();
+        if (queryComponentlibrary.size()==0){
+            return ResultUtils.build(CodeEnumUtils.SELECT_FINISH.getCode(),CodeEnumUtils.SELECT_FINISH.getMessage());
+        }
+        return  ResultUtils.build(CodeEnumUtils.SELECT_SUCCESS.getCode(),CodeEnumUtils.SELECT_SUCCESS.getMessage(),queryComponentlibrary);
+    }
 
-    
 }
