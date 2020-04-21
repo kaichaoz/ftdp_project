@@ -69,7 +69,7 @@
         </collection>
     </resultMap>
 
-    <!--    查询tin_templateContent表-->
+    <!-- 询tin_templateContent表-->
     <select id="queryTemplateContent" resultMap="TemplateContent">
         select  id,
                 templateId,
@@ -79,7 +79,7 @@
                 isUsable,
                 groupSequence
         from tin_templatecontent
-        where tin_templatecontent.templateId=#{templateId}
+        where tin_templatecontent.templateId=#{templateId}and isUsable=0
         order by
         groupSequence asc
     </select>
