@@ -32,7 +32,7 @@ public class TemplateDesignController {
      *初始化全部模板列表
      * @return
      */
-    @ApiOperation("初始化全部模板列表")
+    @ApiOperation("初始化模板")
     @RequestMapping(value = "/queryTemplateContent",method = RequestMethod.GET)
     public ResultUtils queryTemplateContent(String templateId){
         // TODO 对应接口文档修改接收参数model
@@ -136,5 +136,7 @@ public class TemplateDesignController {
         return  ResultUtils.build(CodeEnumUtils.SELECT_SUCCESS.getCode(),CodeEnumUtils.SELECT_SUCCESS.getMessage(),queryTemplateModels);
 
     }
+
+
     
 }

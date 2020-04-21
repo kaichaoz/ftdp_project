@@ -76,3 +76,4 @@ public interface TemplateContentService {
      */
     QueryTemplateModel queryTemplate (String id);
 }
+

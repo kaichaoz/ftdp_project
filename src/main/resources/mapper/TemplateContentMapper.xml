@@ -79,9 +79,9 @@
                 isUsable,
                 groupSequence
         from tin_templatecontent
-
+        where tin_templatecontent.templateId=#{templateId}
         order by
-        id asc
+        groupSequence asc
     </select>
     <resultMap type="com.tfjybj.ftdp.model.TemplateContent" id="TemplateContent" autoMapping="true">
         <id property="templateId" column="templateId" />
