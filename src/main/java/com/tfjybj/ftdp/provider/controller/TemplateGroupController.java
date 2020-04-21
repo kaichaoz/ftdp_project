@@ -21,7 +21,7 @@ import java.util.List;
  * @Version 1.0
  */
 @Api(tags = {"分组页面"})
-@RequestMapping(value = "/TemplateGroup")
+@RequestMapping(value = "/templateGroup")
 @RestController
 public class TemplateGroupController {
 
