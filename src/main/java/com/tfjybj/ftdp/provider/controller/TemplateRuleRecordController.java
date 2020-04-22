@@ -25,7 +25,7 @@ import java.util.UUID;
  * @Version 1.0
  */
 @Api(tags = {"模板规则接口"})
-@RequestMapping(value = "/TemplateRuleRecord")
+@RequestMapping(value = "/templateRuleRecord")
 @RestController
 public class TemplateRuleRecordController {
 
