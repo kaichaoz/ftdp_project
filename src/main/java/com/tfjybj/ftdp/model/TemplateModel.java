@@ -22,19 +22,19 @@ import javax.persistence.Column;
 public class TemplateModel {
 
     private String id;//模板ID
-    @Column(name = "templateName")
+
     private String templateName;//模板名称
-    @Column(name = "templateGroupingID")
+
     private String templateGroupID;//模板分组ID
-    @Column(name = "staffID")
+
     private String staffID;//人员ID
-    @Column(name = "postscript")
+
     private String postscript;//备注
-    @Column(name = "isUsable")
+
     private int isUsable;//是否可用（0可用，1不可用）
-    @Column(name = "groupSequence")
+
     private String groupSequence;//分组排序
-    @Column(name = "isFinish")
+
     private int isFinish;//是否编辑完成（0完成，1未完成）
 
 }
