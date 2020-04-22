@@ -18,7 +18,7 @@ public interface TemplateContentDao extends BaseMapper<TemplateModel> {
     /**
      * 添加模板内容（templateContent表）
      *
-     * @param templateContentRequestId
+     * @param fieldSequence
      * @param id
      * @param templateId
      * @param componentId
@@ -27,7 +27,7 @@ public interface TemplateContentDao extends BaseMapper<TemplateModel> {
      * @param groupSequence
      * @return
      */
-    boolean addTemplateContent(String templateContentRequestId, String id, String templateId, String componentId, String title, String promptField, String groupSequence);
+    boolean addTemplateContent(String fieldSequence , String id, String templateId, String componentId, String title, String promptField, String groupSequence);
 
     /**
      * 初始化全部模板
@@ -67,7 +67,7 @@ public interface TemplateContentDao extends BaseMapper<TemplateModel> {
      * @param isFinish 是否编辑完成（0完成，1未完成）
      * @return
      */
-    boolean templateInsert(String id, String templateName, String templateGroupId, String staffID, int postscript, String isUsable, int groupSequence, String isFinish);
+    boolean templateInsert(String id,String templateGroupId,String templateName,String groupSequence,int isFinish,String postscript,int isUsable,String staffID);
 
     /**
      * 模板编辑界面加载

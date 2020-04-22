@@ -76,7 +76,7 @@ public class TemplateDesignController {
     }
 
     @ApiOperation("添加模板")
-    @PostMapping(value = "/insertTemplate/{id}/{templateName}/{templateGroupID}/{staffID}/{postscript}/{isUsable}/{groupSequence}/{isFinish}")
+    @PostMapping(value = "/insertTemplate")
     public ResultUtils insertTemplate(@RequestBody TemplateModel templateModel){
         String Id = templateModel.getId();
         if (Id==null||Id==""){
