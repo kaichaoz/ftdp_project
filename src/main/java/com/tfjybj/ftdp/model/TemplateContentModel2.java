@@ -25,5 +25,5 @@ public class TemplateContentModel2 {
     @Column(name = "groupSequence")
     private String groupSequence;
 
-    private String componentId;
+
 }

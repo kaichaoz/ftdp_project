@@ -8,6 +8,7 @@ import lombok.ToString;
 import lombok.experimental.Accessors;
 
 import javax.persistence.Column;
+import java.io.Serializable;
 import java.util.List;
 
 @Data
@@ -16,13 +17,13 @@ import java.util.List;
 @Accessors(chain = true)
 @ToString(callSuper = true)
 
-public class QueryTemplateModel {
+public class QueryTemplateModel implements Serializable {
     @Column(name = "id")
     private String id;
     @Column(name = "templateName")
     private String templateName;
-    @Column(name = "componentGroupId")
-    private String componentGroupId;
+    @Column(name = "templateGroupId")
+    private String templateGroupId;
     @Column(name = "staffId")
     private String staffId;
     @Column(name = "postscript")

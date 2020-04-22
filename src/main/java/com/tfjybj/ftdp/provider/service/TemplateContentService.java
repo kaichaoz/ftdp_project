@@ -53,7 +53,7 @@ public interface TemplateContentService {
      * @param id
      * @return
      */
-    QueryTemplateModel queryTemplate (String id);
+//    QueryTemplateModel queryTemplate (String id);
 
 
     List<ComponentlibraryModel> queryComponentlibrary();

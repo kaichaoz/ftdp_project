@@ -44,8 +44,8 @@ public class TemplateContentServiceImpl implements TemplateContentService {
                                                      templateContentRequest.getComponentId(),
                                                      templateContentRequest.getTitle(),
                                                      templateContentRequest.getPromptField(),
-                                                     templateContentRequest.getGroupSequence(),
-                                                     templateContentRequest.getFieldSequence());
+                                                     templateContentRequest.getFieldSequence(),
+                                                     templateContentRequest.getGroupSequence());
     }
 
     /**
@@ -66,7 +66,7 @@ public class TemplateContentServiceImpl implements TemplateContentService {
     }
 
     /**
-     * 初始化全部模板列表
+     * 初始化全部模板
      * @return
      */
     @Override
@@ -113,15 +113,15 @@ public class TemplateContentServiceImpl implements TemplateContentService {
      * @param id
      * @return
      */
-    @Override
-    @Cacheable(value = "queryTemplate",key="#id")
-    public QueryTemplateModel queryTemplate(String id) {
-
-        QueryTemplateModel queryTemplateModels = templateContentDao.queryTemplate(id);
-        List<TemplateGroupModel> templateEntityList = templateGroupDao.queryTemplateGroup();
-        queryTemplateModels.setTemplateData(templateEntityList);
-        return queryTemplateModels;
-    }
+//    @Override
+//    @Cacheable(value = "queryTemplate",key="#id")
+//    public QueryTemplateModel queryTemplate(String id) {
+//
+//        QueryTemplateModel queryTemplateModels = templateContentDao.queryTemplate(id);
+//        List<TemplateGroupModel> templateEntityList = templateGroupDao.queryTemplateGroup();
+//        queryTemplateModels.setTemplateData(templateEntityList);
+//        return queryTemplateModels;
+//    }
 
     /**
      *侧边栏加载

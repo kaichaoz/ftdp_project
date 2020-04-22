@@ -28,7 +28,7 @@ public class TemplateDesignController {
     private TemplateContentService templateContentService;
 
     /**
-     *初始化全部模板列表
+     *初始化模板
      * @return
      */
     @ApiOperation("初始化模板")
@@ -68,6 +68,10 @@ public class TemplateDesignController {
     @ApiOperation("添加模板内容")
     @PostMapping(value = "/insertTemplateContent")
     public ResultUtils insertTemplateContent(@RequestBody TemplateContentRequest templateContentRequest ){
+        String Id = templateContentRequest.getId();
+        if (Id==null||Id==""){
+            templateContentRequest.setId(PatterUtils.getNumberPattern());
+        }
         boolean flag = templateContentService.addTemplateContent(templateContentRequest);
         if (flag){
             return  ResultUtils.build(CodeEnumUtils.INSERT_SUCCESS.getCode(),CodeEnumUtils.INSERT_SUCCESS.getMessage(), flag);
@@ -105,21 +109,21 @@ public class TemplateDesignController {
         }
         return ResultUtils.build(CodeEnumUtils.DELETE_FALL.getCode(),CodeEnumUtils.DELETE_FALL.getMessage());
     }
-    /**
-     * 模板编辑界面加载
-     * @param id
-     * @return
-     */
-    @ApiOperation("模板编辑界面加载")
-    @RequestMapping(value = "/queryTemplate/{id}",method = RequestMethod.GET)
-    public ResultUtils queryTemplate (@ApiParam (value="id",required = true)@PathVariable String id){
-        QueryTemplateModel queryTemplateModels=templateContentService.queryTemplate(id);
-        if (queryTemplateModels == null){
-            return ResultUtils.build(CodeEnumUtils.SELECT_FINISH.getCode(),CodeEnumUtils.SELECT_FINISH.getMessage());
-        }
-        return  ResultUtils.build(CodeEnumUtils.SELECT_SUCCESS.getCode(),CodeEnumUtils.SELECT_SUCCESS.getMessage(),queryTemplateModels);
-
-    }
+//    /**
+////     * 模板编辑界面加载
+////     * @param id
+////     * @return
+////     */
+//    @ApiOperation("模板编辑界面加载")
+//    @RequestMapping(value = "/queryTemplate/{id}",method = RequestMethod.GET)
+//    public ResultUtils queryTemplate (@ApiParam (value="id",required = true)@PathVariable String id){
+//        QueryTemplateModel queryTemplateModels=templateContentService.queryTemplate(id);
+//        if (queryTemplateModels == null){
+//            return ResultUtils.build(CodeEnumUtils.SELECT_FINISH.getCode(),CodeEnumUtils.SELECT_FINISH.getMessage());
+//        }
+//        return  ResultUtils.build(CodeEnumUtils.SELECT_SUCCESS.getCode(),CodeEnumUtils.SELECT_SUCCESS.getMessage(),queryTemplateModels);
+//
+//    }
 
     @ApiOperation("侧边栏加载")
     @GetMapping(value = "/queryComponentlibrary")
