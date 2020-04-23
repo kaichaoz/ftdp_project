@@ -76,9 +76,9 @@ public class TemplateRuleRecordController {
      * @Modified by :
      * @Modification Time:
      **/
-    @ApiOperation(value = "添加组件规则")
-//    @PostMapping(value = "/addComponentIdRuleRecord/{templateId}/{componentId}/{grade}/{sex}")
-    @PostMapping(value = "/addComponentIdRuleRecord/{templateRuleRecordModel}")
+//    @ApiOperation(value = "添加组件规则")
+////    @PostMapping(value = "/addComponentIdRuleRecord/{templateId}/{componentId}/{grade}/{sex}")
+//    @PostMapping(value = "/addComponentIdRuleRecord/{templateRuleRecordModel}")
 /*    public ResultUtils addComponentIdRuleRecord(@ApiParam(value = "模板id",required=true) @PathVariable   String  templateId ,
                                           @ApiParam(value = "组件id",required=true) @PathVariable String  componentId,
                                           @ApiParam(value = "年级",required=true) @PathVariable String grade,
@@ -89,13 +89,13 @@ public class TemplateRuleRecordController {
                                           @ApiParam(value = "权重",required=true) @PathVariable String weight,
                                           @ApiParam(value = "评级",required=true) @PathVariable String level,
                                           @ApiParam(value = "创建者",required=true) @PathVariable String creater){*/
-public ResultUtils addComponentIdRuleRecord(@RequestBody TemplateRuleRecordModel templateRuleRecordModel){
-        boolean flag = templateRuleRecordService.addComponentIdRuleRecord(templateRuleRecordModel,PatterUtils.getNumberPattern());
-        if (flag){
-            return  ResultUtils.build(CodeEnumUtils.INSERT_SUCCESS.getCode(),CodeEnumUtils.INSERT_SUCCESS.getMessage(), flag);
-        }
-        return ResultUtils.build(CodeEnumUtils.INSERT_FALL.getCode(),CodeEnumUtils.INSERT_FALL.getMessage());
-    }
+//public ResultUtils addComponentIdRuleRecord(@RequestBody TemplateRuleRecordModel templateRuleRecordModel){
+//        boolean flag = templateRuleRecordService.addComponentIdRuleRecord(templateRuleRecordModel,PatterUtils.getNumberPattern());
+//        if (flag){
+//            return  ResultUtils.build(CodeEnumUtils.INSERT_SUCCESS.getCode(),CodeEnumUtils.INSERT_SUCCESS.getMessage(), flag);
+//        }
+//        return ResultUtils.build(CodeEnumUtils.INSERT_FALL.getCode(),CodeEnumUtils.INSERT_FALL.getMessage());
+//    }
 
     /**
      * @Description: 添加模板规则
