@@ -74,7 +74,7 @@ public interface TemplateContentDao extends BaseMapper<TemplateModel> {
      * @param id
      * @return
      */
-    QueryTemplateModel queryTemplate (String id);
+//    QueryTemplateModel queryTemplate (String id);
 
     /**
      * 侧边栏加载

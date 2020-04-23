@@ -72,53 +72,66 @@
     </resultMap>
 
     <!-- 查询tin_templateContent表-->
-    <select id="queryTemplateContent" resultMap="TemplateContent">
-        select  id,
-                templateId,
-                componentId,
-                title,
-                fieldSequence,
-                isUsable,
-                groupSequence
-        from tin_templatecontent
-        order by
-        groupSequence asc
-    </select>
-    <resultMap type="com.tfjybj.ftdp.model.TemplateContent" id="TemplateContent" autoMapping="true">
-        <id property="templateId" column="templateId" />
+        <select id="queryTemplateContent" resultType="com.tfjybj.ftdp.model.TemplateContent">
+            select  id,
+                    templateId,
+                    componentId,
+                    title,
+                    fieldSequence,
+                    isUsable,
+                    groupSequence
+            from tin_templatecontent
+            where templateId= #{templateId}
+            order by
+            groupSequence asc
+        </select>
+<!--    <select id="queryTemplateContent" resultMap="TemplateContent">-->
+<!--        select  id,-->
+<!--                templateId,-->
+<!--                componentId,-->
+<!--                title,-->
+<!--                fieldSequence,-->
+<!--                isUsable,-->
+<!--                groupSequence-->
+<!--        from tin_templatecontent-->
+<!--        order by-->
+<!--        groupSequence asc-->
+<!--    </select>-->
+<!--    <resultMap type="com.tfjybj.ftdp.model.TemplateContent" id="TemplateContent" autoMapping="true">-->
+<!--        <id property="templateId" column="templateId" />-->
 
-        <collection property="templateContentData" ofType="com.tfjybj.ftdp.model.TemplateContentModel">
-            <id property="templateId" column="templateId" />
-            <id property="componentId" column="componentId"/>
-            <collection property="templateContentData2" ofType="com.tfjybj.ftdp.model.TemplateContentModel2">
-                <result property="id" column="id"/>
-                <result property="title" column="title"/>
-                <result property="fieldSequence" column="fieldSequence"/>
-                <result property="isUsable" column="isUsable"/>
-                <result property="groupSequence" column="groupSequence"/>
+<!--        <collection property="templateContentData" ofType="com.tfjybj.ftdp.model.TemplateContentModel">-->
+<!--            <id property="templateId" column="templateId" />-->
+<!--            <id property="componentId" column="componentId"/>-->
+<!--            <collection property="templateContentData2" ofType="com.tfjybj.ftdp.model.TemplateContentModel2">-->
+<!--                <result property="id" column="id"/>-->
+<!--                <result property="title" column="title"/>-->
+<!--                <result property="fieldSequence" column="fieldSequence"/>-->
+<!--                <result property="isUsable" column="isUsable"/>-->
+<!--                <result property="groupSequence" column="groupSequence"/>-->
 
-            </collection>
-            <collection property="templateContentTitleModel" ofType="com.tfjybj.ftdp.model.TemplateContentTitleModel">
-                <result property="title" column="title"/>
-            </collection>
-        </collection>
-    </resultMap>
+<!--            </collection>-->
+<!--            <collection property="templateContentTitleModel" ofType="com.tfjybj.ftdp.model.TemplateContentTitleModel">-->
+<!--                <result property="title" column="title"/>-->
+<!--            </collection>-->
+<!--        </collection>-->
+<!--    </resultMap>-->
 
-    <!--    查询tin_template表-->
-    <select id="queryTemplate" resultType="com.tfjybj.ftdp.model.QueryTemplateModel">
-        select
-                tin_template.id,
-                tin_template.templateName,
-                tin_template.templateGroupID,
-                tin_template.staffID,
-                tin_template.postscript,
-                tin_template.isUsable,
-                tin_template.groupSequence,
-                tin_template.isFinish
-        from tin_template
-        WHERE id = #{id}
+<!--    &lt;!&ndash;    查询tin_template表&ndash;&gt;-->
+<!--    <select id="queryTemplate" resultType="com.tfjybj.ftdp.model.QueryTemplateModel">-->
+<!--        select-->
+<!--                tin_template.id,-->
+<!--                tin_template.templateName,-->
+<!--                tin_template.templateGroupID,-->
+<!--                tin_template.staffID,-->
+<!--                tin_template.postscript,-->
+<!--                tin_template.isUsable,-->
+<!--                tin_template.groupSequence,-->
+<!--                tin_template.isFinish-->
+<!--        from tin_template-->
+<!--        WHERE id = #{id}-->
 
-    </select>
+<!--    </select>-->
     <!--    查询tin_componentlibrary表-->
     <select id="queryComponentlibrary" resultType="com.tfjybj.ftdp.model.ComponentlibraryModel">
         select
