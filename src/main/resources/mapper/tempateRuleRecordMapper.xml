@@ -52,7 +52,7 @@
 <!--    WHERE te.id=#{TemplateRuleAndConponentNameModel.templateId} and com.isUsable=0 and com.componentType='enterInfomation'-->
 <!--    </select>-->
 	<select id="queryTemplateComponentNameRuleRecord" resultType="com.tfjybj.ftdp.model.TemplateRuleAndConponentNameModel">
-    select  con.templateId, con.title,con.componentId
+    select con.id, con.templateId, con.title,con.componentId
     from tin_templatecontent con
     WHERE con.templateId=#{TemplateRuleAndConponentNameModel.templateId}and componentId="4833953"
 

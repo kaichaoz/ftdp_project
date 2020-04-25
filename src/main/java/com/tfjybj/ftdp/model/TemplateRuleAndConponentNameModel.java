@@ -10,6 +10,8 @@ import java.io.Serializable;
 public class TemplateRuleAndConponentNameModel implements Serializable{
 
 
+    private String Id;//模板内容表的ID
+
     private String templateId;//模板ID
 
     private String componentId;//组件id
