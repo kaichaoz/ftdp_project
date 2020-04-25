@@ -52,6 +52,7 @@ public class TemplateRuleRecordController {
     }
 
 
+
     @ApiOperation(value = "初始化规则页面的组件名称")
     @GetMapping(value = "/queryTemplateComponentNameRuleRecord/{templateId}")
     public ResultUtils queryTemplateComponentNameRuleRecord(@ApiParam(value = "模板id",required=true)@RequestParam  String  templateId){
