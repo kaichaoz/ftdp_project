@@ -24,19 +24,13 @@ public class TemplateContent implements Serializable {
 
 //    @ApiModelProperty(value = "组件内容")
 //    private List<TemplateContentModel> templateContentData;
-    @Column(name = "组件内容id")
-    private String id;
+
     @ApiModelProperty(value = "模板id")
     private String templateId;
     @ApiModelProperty(value = "组件id")
     private String componentId;
-    @Column(name = "标题 ")
-    private String title ;
-    @Column(name = "组内字段排序")
-    private String fieldSequence;
-    @Column(name = "是否可用 ")
-    private String isUsable ;
     @Column(name = "分组排序")
     private String groupSequence;
-
+    @ApiModelProperty(value = "模板")
+    private List<TemplateContentModel> templateContentData;
 }
