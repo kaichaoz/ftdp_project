@@ -28,7 +28,7 @@
 
     <insert id="addTemplateRuleRecord">
    INSERT INTO tin_templaterulerecord (tin_templaterulerecord.templateId,
-	tin_templaterulerecord.componentId,
+	tin_templaterulerecord.templateContentId,
 	tin_templaterulerecord.grade,
 	tin_templaterulerecord.sex,
 	tin_templaterulerecord.startRange,
@@ -38,7 +38,17 @@
 	tin_templaterulerecord.level,
     tin_templaterulerecord.creater,
      tin_templaterulerecord.id)
-	 VALUES(#{templateRuleRecordModel.templateId},#{templateRuleRecordModel.componentId},#{templateRuleRecordModel.grade},#{templateRuleRecordModel.sex},#{templateRuleRecordModel.startRange},#{templateRuleRecordModel.endRange},#{templateRuleRecordModel.originalScore},#{templateRuleRecordModel.weight},#{templateRuleRecordModel.level},#{templateRuleRecordModel.creater},#{Id})
+	 VALUES(#{templateRuleRecordModel.templateId},
+	 #{templateRuleRecordModel.templateContentId},
+	 #{templateRuleRecordModel.grade},
+	 #{templateRuleRecordModel.sex},
+	 #{templateRuleRecordModel.startRange},
+	 #{templateRuleRecordModel.endRange},
+	 #{templateRuleRecordModel.originalScore},
+	 #{templateRuleRecordModel.weight},
+	 #{templateRuleRecordModel.level},
+	 #{templateRuleRecordModel.creater},
+	 #{Id})
     </insert>
 
 <!--    <select id="queryTemplateComponentNameRuleRecord" resultType="com.tfjybj.ftdp.model.TemplateRuleAndConponentNameModel">-->

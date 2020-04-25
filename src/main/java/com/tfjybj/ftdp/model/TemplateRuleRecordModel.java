@@ -27,8 +27,8 @@ public class TemplateRuleRecordModel implements Serializable{
     private String  id;
     @Column(name = "templateId")
     private String  templateId;
-    @Column(name = "componentId")
-    private String  componentId;
+    @Column(name = "templateContentId")
+    private String  templateContentId;
     @Column(name = "grade")
     private String grade;
     @Column(name = "sex")
@@ -66,12 +66,12 @@ public class TemplateRuleRecordModel implements Serializable{
         this.templateId = templateId;
     }
 
-    public String  getComponentId() {
-        return componentId;
+    public String  getTemplateContentId() {
+        return templateContentId;
     }
 
-    public void setComponentId(String  componentId) {
-        this.componentId = componentId;
+    public void setTemplateContentId(String  templateContentId) {
+        this.templateContentId = templateContentId;
     }
 
     public String getGrade() {

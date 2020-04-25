@@ -24,8 +24,8 @@ public class TemplaterulerecordEntity implements Serializable{
 	private String  id;
 	@Column(name = "templateId")
 	private String  templateId;
-	@Column(name = "componentId")
-	private String  componentId;
+	@Column(name = "templateContentId")
+	private String  templateContentId;
 	@Column(name = "grade")
 	private String grade;
 	@Column(name = "sex")

@@ -60,7 +60,7 @@ public  class TemplateRuleRecordServiceImpl implements TemplateRuleRecordService
   //      return flag;
   //  }
     public boolean addTemplateRuleRecord(TemplateRuleRecordModel templateRuleRecordModel, String Id) {
-        boolean flag = templaterulerecordDao.addComponentIdRuleRecord(templateRuleRecordModel,Id);
+        boolean flag = templaterulerecordDao.addTemplateRuleRecord(templateRuleRecordModel,Id);
         return flag;
     }
 
