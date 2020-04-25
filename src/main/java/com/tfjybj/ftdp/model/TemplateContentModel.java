@@ -6,6 +6,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 import lombok.experimental.Accessors;
+
+import javax.persistence.Column;
 import java.util.List;
 
 @Data
@@ -14,10 +16,15 @@ import java.util.List;
 @Accessors(chain = true)
 @ToString(callSuper = true)
 public class TemplateContentModel {
-    @ApiModelProperty(value = "组件id")
-    private String componentId;
-    @ApiModelProperty(value = "模板data")
-    private TemplateContentModel2 templateContentData2;
-    @ApiModelProperty(value = "模板title")
-    private List<TemplateContentTitleModel> templateContentTitleModel;
+    @Column(name = "组件内容id")
+    private String id;
+    @ApiModelProperty(name = "标题 ")
+    private String title ;
+    @ApiModelProperty(name = "组内字段排序")
+    private String fieldSequence;
+    @ApiModelProperty(name = "提示字段")
+    private String promptField;
+    @Column(name = "是否可用 ")
+    private String isUsable ;
+
 }
