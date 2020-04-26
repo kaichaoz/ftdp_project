@@ -87,25 +87,29 @@
 <!--            groupSequence asc-->
 <!--        </select>-->
     <select id="queryTemplateContent" resultMap="TemplateContent">
-        select  id,
-                templateId,
-                componentId,
-                title,
-                fieldSequence,
-                isUsable,
-                groupSequence
-        from tin_templatecontent
-        where templateId= #{templateId}
-        order by
-        groupSequence asc
+        SELECT
+	id,
+	templateId,
+	componentId,
+	title,
+	fieldSequence,
+	isUsable,
+	groupSequence, promptField
+FROM
+	tin_templatecontent
+WHERE
+	templateId = #{templateId}
+ORDER BY
+	groupSequence ASC
     </select>
-    <resultMap type="com.tfjybj.ftdp.model.TemplateContent" id="TemplateContent" autoMapping="true">
-        <id property="templateId" column="templateId" />
-        <result property="componentId" column="componentId"/>
-        <result property="groupSequence" column="groupSequence"/>
+<!--    <resultMap type="com.tfjybj.ftdp.model.TemplateContent" id="TemplateContent" autoMapping="true">-->
+    <resultMap type="com.tfjybj.ftdp.model.TemplateContentModel" id="TemplateContent" autoMapping="true">
+<!--        <collection property="templateData" ofType="com.tfjybj.ftdp.model.TemplateContentModel">-->
+            <id property="templateId" column="templateId" />
+            <id property="componentId" column="componentId"/>
+            <result property="groupSequence" column="groupSequence"/>
 
-
-            <collection property="templateContentData" ofType="com.tfjybj.ftdp.model.TemplateContentModel">
+            <collection property="templateContentData" ofType="com.tfjybj.ftdp.model.TemplateContentModel2">
                 <result property="id" column="id"/>
                 <result property="title" column="title"/>
                 <result property="fieldSequence" column="fieldSequence"/>
@@ -114,6 +118,7 @@
                 <result property="isUsable" column="isUsable"/>
 
             </collection>
+<!--        </collection>-->
 
 <!--        </collection>-->
     </resultMap>
