@@ -19,6 +19,9 @@ public class TempByIsUsableData {
     @Id
     @ApiModelProperty(value = "模板id")
     private String templateId;
-    @ApiModelProperty(value = "模板id")
+    @ApiModelProperty(value = "模板名称")
     private String templateName;
+    @ApiModelProperty(value = "备注")
+    private String postscript;
+
 }

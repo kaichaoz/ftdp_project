@@ -53,7 +53,8 @@
         select tin_templategroup.id AS templateGroupId,
                tin_templategroup.templateGroupName AS templateGroupName,
                tin_template.id AS templateId,
-               tin_template.templateName AS templateName
+               tin_template.templateName AS templateName,
+               tin_template.postscript AS postscript
         from tin_templategroup,
              tin_template
         where tin_template.isUsable = 0
@@ -66,7 +67,7 @@
         <result property="templateGroupName" column="templateGroupName"/>
         <collection property="tempByIsUsableData" ofType="com.tfjybj.ftdp.model.TempByIsUsableData">
             <result property="templateId" column="templateId"/>
-            <result property="isUsable" column="isUsable"/>
+            <result property="postscript" column="postscript"/>
             <result property="templateName" column="templateName"/>
         </collection>
     </resultMap>
