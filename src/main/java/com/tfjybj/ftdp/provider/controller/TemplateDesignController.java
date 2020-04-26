@@ -25,51 +25,47 @@ import java.util.List;
 public class TemplateDesignController {
 
     @Resource
-    private TemplateContentService templateContentService;
+    private TemplateContentService templateContentService;//默认按name注入，可以通过name和type属性进行选择性注入
 
     /**
      *初始化模板
-     * @return
+     * @return templateContentMap
      */
     @ApiOperation("初始化模板")
-    @RequestMapping(value = "/queryTemplateContent",method = RequestMethod.GET)
+    @GetMapping(value = "/queryTemplateContent")
     public ResultUtils queryTemplateContent(String templateId){
-        // TODO 对应接口文档修改接收参数model
-        //List<TemplateContent> templateContentList
-        List<TemplateContent> templateContentMap = templateContentService.queryTemplateContent(templateId);
-        if (templateContentMap ==null){
-            return ResultUtils.build(CodeEnumUtils.SELECT_FINISH.getCode(),CodeEnumUtils.SELECT_FINISH.getMessage());
-        }else {
-            //String json = JSON.toJSONString(templateContentMap);
+        List<TemplateContent> templateContentMap = templateContentService.queryTemplateContent(templateId);//调用初始化查询接口
+        if (templateContentMap !=null){
             return ResultUtils.build(CodeEnumUtils.SELECT_SUCCESS.getCode(), CodeEnumUtils.SELECT_SUCCESS.getMessage(), templateContentMap);
+        }else {
+            return ResultUtils.build(CodeEnumUtils.SELECT_FINISH.getCode(),CodeEnumUtils.SELECT_FINISH.getMessage());
         }
     }
 
     /**
      * 根据isUsable查询
-     * @return
+     * @return templateModels
      */
     @ApiOperation("根据isUsable查询模板")
     @GetMapping(value = "/queryTempByIsUsable")
     public ResultUtils queryTempByIsUsable(){
-        // TODO 对应接口文档修改接收参数model
-        List<TempByIsUsableModel> templateModels = templateContentService.queryTempByIsUsable();
-        if (templateModels.size()==0){
-            return ResultUtils.build(CodeEnumUtils.SELECT_FINISH.getCode(),CodeEnumUtils.SELECT_FINISH.getMessage());
+        List<TempByIsUsableModel> templateModels = templateContentService.queryTempByIsUsable();//两表联查查询可用模板
+        if (templateModels!=null){
+            return  ResultUtils.build(CodeEnumUtils.SELECT_SUCCESS.getCode(),CodeEnumUtils.SELECT_SUCCESS.getMessage(),templateModels);
         }
-        return  ResultUtils.build(CodeEnumUtils.SELECT_SUCCESS.getCode(),CodeEnumUtils.SELECT_SUCCESS.getMessage(),templateModels);
+        return ResultUtils.build(CodeEnumUtils.SELECT_FINISH.getCode(),CodeEnumUtils.SELECT_FINISH.getMessage());
     }
 
     /**
      * 添加模板内容
      * @param templateContentRequest
-     * @return
+     * @return flag
      */
     @ApiOperation("添加模板内容")
     @PostMapping(value = "/insertTemplateContent")
     public ResultUtils insertTemplateContent(@RequestBody TemplateContentRequest templateContentRequest ){
         String Id = templateContentRequest.getId();
-        if (Id==null||Id==""){
+        if ("".equals(Id)){
             templateContentRequest.setId(PatterUtils.getNumberPattern());
         }
         boolean flag = templateContentService.addTemplateContent(templateContentRequest);
@@ -79,11 +75,16 @@ public class TemplateDesignController {
         return new ResultUtils(CodeEnumUtils.INSERT_FALL.getCode(),CodeEnumUtils.INSERT_FALL.getMessage());
     }
 
+    /**
+     *添加模板
+     * @param templateModel
+     * @return flag
+     */
     @ApiOperation("添加模板")
     @PostMapping(value = "/insertTemplate")
     public ResultUtils insertTemplate(@RequestBody TemplateModel templateModel){
         String Id = templateModel.getId();
-        if (Id==null||Id==""){
+        if ("".equals(Id)){
             templateModel.setId(PatterUtils.getNumberPattern());
         }
         boolean flag = templateContentService.templateInsert(templateModel);
@@ -101,7 +102,7 @@ public class TemplateDesignController {
      * @return
      */
     @ApiOperation("删除模板")
-    @RequestMapping(value = "/deleteTemplate/{id}",method = RequestMethod.POST)
+    @PostMapping(value = "/deleteTemplate/{id}")
     public ResultUtils deleteTemplate(@ApiParam(value = "id",required = true)@PathVariable String id){
         boolean flag = templateContentService.templateDelete(id);
         if (flag){
@@ -109,22 +110,11 @@ public class TemplateDesignController {
         }
         return ResultUtils.build(CodeEnumUtils.DELETE_FALL.getCode(),CodeEnumUtils.DELETE_FALL.getMessage());
     }
-//    /**
-////     * 模板编辑界面加载
-////     * @param id
-////     * @return
-////     */
-//    @ApiOperation("模板编辑界面加载")
-//    @RequestMapping(value = "/queryTemplate/{id}",method = RequestMethod.GET)
-//    public ResultUtils queryTemplate (@ApiParam (value="id",required = true)@PathVariable String id){
-//        QueryTemplateModel queryTemplateModels=templateContentService.queryTemplate(id);
-//        if (queryTemplateModels == null){
-//            return ResultUtils.build(CodeEnumUtils.SELECT_FINISH.getCode(),CodeEnumUtils.SELECT_FINISH.getMessage());
-//        }
-//        return  ResultUtils.build(CodeEnumUtils.SELECT_SUCCESS.getCode(),CodeEnumUtils.SELECT_SUCCESS.getMessage(),queryTemplateModels);
-//
-//    }
 
+    /**
+     *侧边栏加载
+     * @return queryComponentlibrary
+     */
     @ApiOperation("侧边栏加载")
     @GetMapping(value = "/queryComponentlibrary")
     public ResultUtils queryComponentlibrary(){
