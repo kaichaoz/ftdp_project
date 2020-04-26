@@ -1,6 +1,7 @@
 package com.tfjybj.ftdp.model;
 
 import lombok.Data;
+import org.joda.time.DateTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -17,8 +18,7 @@ import java.io.Serializable;
  * @author Administrator
  *
  */
-@Entity
-@Table(name="tin_templaterulerecord")
+
 @Data
 public class TemplateRuleRecordModel implements Serializable{
 
@@ -49,119 +49,6 @@ public class TemplateRuleRecordModel implements Serializable{
     private Date creatTime;
     @Column(name = "modifier")
     private String modifier;
-
-    public String  getId() {
-        return id;
-    }
-
-    public void setId(String  id) {
-        this.id = id;
-    }
-
-    public String  getTemplateId() {
-        return templateId;
-    }
-
-    public void setTemplateId(String  templateId) {
-        this.templateId = templateId;
-    }
-
-    public String  getTemplateContentId() {
-        return templateContentId;
-    }
-
-    public void setTemplateContentId(String  templateContentId) {
-        this.templateContentId = templateContentId;
-    }
-
-    public String getGrade() {
-        return grade;
-    }
-
-    public void setGrade(String grade) {
-        this.grade = grade;
-    }
-
-    public int getSex() {
-        return sex;
-    }
-
-    public void setSex(int sex) {
-        this.sex = sex;
-    }
-
-    public String getStartRange() {
-        return startRange;
-    }
-
-    public void setStartRange(String startRange) {
-        this.startRange = startRange;
-    }
-
-    public String getEndRange() {
-        return endRange;
-    }
-
-    public void setEndRange(String endRange) {
-        this.endRange = endRange;
-    }
-
-    public String getOriginalScore() {
-        return originalScore;
-    }
-
-    public void setOriginalScore(String originalScore) {
-        this.originalScore = originalScore;
-    }
-
-    public String getWeight() {
-        return weight;
-    }
-
-    public void setWeight(String weight) {
-        this.weight = weight;
-    }
-
-    public String getLevel() {
-        return level;
-    }
-
-    public void setLevel(String level) {
-        this.level = level;
-    }
-
-    public String getCreater() {
-        return creater;
-    }
-
-    public void setCreater(String creater) {
-        this.creater = creater;
-    }
-
-    public Date getCreatTime() {
-        return creatTime;
-    }
-
-    public void setCreatTime(Date creatTime) {
-        this.creatTime = creatTime;
-    }
-
-    public String getModifier() {
-        return modifier;
-    }
-
-    public void setModifier(String modifier) {
-        this.modifier = modifier;
-    }
-
-    public Date getModifyTime() {
-        return modifyTime;
-    }
-
-    public void setModifyTime(Date modifyTime) {
-        this.modifyTime = modifyTime;
-    }
-
     @Column(name = "modifyTime")
     private Date modifyTime;
 }

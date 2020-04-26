@@ -37,6 +37,10 @@
 	tin_templaterulerecord.weight,
 	tin_templaterulerecord.level,
     tin_templaterulerecord.creater,
+    tin_templaterulerecord.creatTime,
+     tin_templaterulerecord.modifier,
+      tin_templaterulerecord.modifyTime,
+
      tin_templaterulerecord.id)
 	 VALUES(#{templateRuleRecordModel.templateId},
 	 #{templateRuleRecordModel.templateContentId},
@@ -48,7 +52,10 @@
 	 #{templateRuleRecordModel.weight},
 	 #{templateRuleRecordModel.level},
 	 #{templateRuleRecordModel.creater},
-	 #{Id})
+	 #{templateRuleRecordModel.creatTime},
+	  #{templateRuleRecordModel.modifier},
+	  #{templateRuleRecordModel.modifyTime},
+	 #{templateRuleRecordModel.id})
     </insert>
 
 <!--    <select id="queryTemplateComponentNameRuleRecord" resultType="com.tfjybj.ftdp.model.TemplateRuleAndConponentNameModel">-->
