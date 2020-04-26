@@ -4,6 +4,7 @@ package com.tfjybj.ftdp.provider.service.impl;
 import com.tfjybj.ftdp.entity.TemplateEntity;
 import com.tfjybj.ftdp.entity.TemplaterulerecordEntity;
 import com.tfjybj.ftdp.model.TemplateRuleAndConponentNameModel;
+import com.tfjybj.ftdp.model.TemplateRuleRecordIdModel;
 import com.tfjybj.ftdp.model.TemplateRuleRecordModel;
 import com.tfjybj.ftdp.provider.dao.TemplateRuleRecordDao;
 import com.tfjybj.ftdp.provider.service.TemplateRuleRecordService;
@@ -40,6 +41,21 @@ public  class TemplateRuleRecordServiceImpl implements TemplateRuleRecordService
     public List<TemplaterulerecordEntity> queryTemplateRuleRecord(String templateId) {
         List<TemplaterulerecordEntity> templaterulerecordEntityList=templaterulerecordDao.queryTemplateRuleRecord(templateId);
         return  templaterulerecordEntityList;
+    }
+
+    /**
+     * @Description: 初始化模板页面一条规则
+     * @Author: 陈海明
+     * @Data: 2020/4/2
+     * @Time: 8:35
+     * @Version: V1.0.0
+     * @Modified by :
+     * @Modification Time:
+     **/
+    @Override
+    public List<TemplateRuleRecordIdModel> queryTemplateRuleRecordId(String Id) {
+        List<TemplateRuleRecordIdModel> TemplateRuleRecordIdModelList=templaterulerecordDao.queryTemplateRuleRecordId(Id);
+        return  TemplateRuleRecordIdModelList;
     }
 
 

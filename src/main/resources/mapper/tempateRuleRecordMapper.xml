@@ -72,4 +72,28 @@
 	<select id="queryTemplateRuleRecord" resultType="com.tfjybj.ftdp.entity.TemplaterulerecordEntity">
      SELECT * FROM tin_templateRuleRecord WHERE templateId=#{templateId}
     </select>
+
+	<select id="queryTemplateRuleRecordId" resultType="com.tfjybj.ftdp.model.TemplateRuleRecordIdModel">
+     SELECT
+	te.id,
+	te.templateId,
+	te.templateContentId,
+	con.title,
+	te.grade,
+	te.sex,
+	te.startRange,
+	te.endRange,
+	te.originalScore,
+	te.weight,
+	te. level,
+	te.creater,
+	te.creatTime,
+	te.modifyTime,
+	te.modifier
+	FROM
+	tin_templaterulerecord te
+    LEFT JOIN tin_templatecontent con ON con.id=te.templateContentId
+    WHERE
+	te.id = #{Id}
+    </select>
 </mapper>

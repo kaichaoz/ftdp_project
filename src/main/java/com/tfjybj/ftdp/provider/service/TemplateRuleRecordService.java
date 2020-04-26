@@ -3,6 +3,7 @@ package com.tfjybj.ftdp.provider.service;
 import com.tfjybj.ftdp.entity.TemplateEntity;
 import com.tfjybj.ftdp.entity.TemplaterulerecordEntity;
 import com.tfjybj.ftdp.model.TemplateRuleAndConponentNameModel;
+import com.tfjybj.ftdp.model.TemplateRuleRecordIdModel;
 import com.tfjybj.ftdp.model.TemplateRuleRecordModel;
 import org.springframework.stereotype.Service;
 
@@ -28,6 +29,17 @@ public interface TemplateRuleRecordService {
      * @Modification Time:
      **/
     List<TemplaterulerecordEntity> queryTemplateRuleRecord(String  templateId);
+
+    /**
+     * @Description: 初始化模板页面一条规则
+     * @Author: 陈海明
+     * @Data: 2020/4/2
+     * @Time: 8:34
+     * @Version: V1.0.0
+     * @Modified by :
+     * @Modification Time:
+     **/
+    List<TemplateRuleRecordIdModel> queryTemplateRuleRecordId(String Id);
 
     /**
      * @Description: 添加模板规则
