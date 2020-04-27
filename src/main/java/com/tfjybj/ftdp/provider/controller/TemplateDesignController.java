@@ -10,7 +10,10 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.springframework.web.bind.annotation.*;
 import com.tfjybj.ftdp.model.ComponentlibraryModel;
+import springfox.documentation.annotations.ApiIgnore;
+
 import javax.annotation.Resource;
+import javax.naming.spi.DirStateFactory;
 import java.util.List;
 
 
@@ -76,6 +79,7 @@ public class TemplateDesignController {
      * @param templateContentRequest
      * @return
      */
+    @ApiIgnore
     @ApiOperation("编辑模板内容")
     @PostMapping(value = "/updateTemplateContent")
     public ResultUtils updateTemplateContent(@RequestBody TemplateContentRequest templateContentRequest ){
@@ -110,6 +114,7 @@ public class TemplateDesignController {
      * @param templateModel
      * @return
      */
+    @ApiIgnore
     @ApiOperation("编辑模板")
     @PostMapping(value = "/updateTemplate")
     public ResultUtils updateTemplate(@RequestBody TemplateModel templateModel){

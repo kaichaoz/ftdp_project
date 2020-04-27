@@ -13,6 +13,7 @@
                                       groupSequence
                                      )
       VALUES (#{id},#{templateId},#{componentId},#{title},#{promptField},#{fieldSequence},#{groupSequence})
+      ON DUPLICATE KEY UPDATE id = #{id},templateId = #{templateId},componentId = #{componentId},title = #{title},promptField = #{promptField},fieldSequence = #{fieldSequence},groupSequence = #{groupSequence}
     </insert>
 
     <!-- 更新模板内容-->
@@ -40,6 +41,7 @@
                                   groupSequence,
                                   isFinish)
         VALUES (#{id},#{templateName},#{templateGroupId},#{staffID},#{postscript},#{isUsable},#{groupSequence},#{isFinish})
+         ON DUPLICATE KEY UPDATE id = #{id},templateName = #{templateName},templateGroupId = #{templateGroupId},staffID = #{staffID},postscript = #{postscript},isUsable = #{isUsable},groupSequence = #{groupSequence},isFinish = #{isFinish}
     </insert>
 
     <!--更新模板-->

@@ -31,13 +31,18 @@ public class TemplateContentServiceImpl implements TemplateContentService {
         //解析前端传入数据
         List<TemplateContentModel2> templateContentModel2=templateContentModel.getTemplateContentData();
         TemplateContentModel2 tem =templateContentModel2.get(0);
+        String id=tem.getId();
         String templateId =templateContentModel.getTemplateId();
         String componentId=templateContentModel .getComponentId();
         String groupSequence=templateContentModel.getGroupSequence();
-        String id = PatterUtils.getNumberPattern();
         String title=tem.getTitle();
         String promptField=tem.getPromptField();
         String fieldSequence=tem.getFieldSequence();
+        if("".equals(id)){
+            id = PatterUtils.getNumberPattern();
+        }else{
+            templateContentDao.addTemplateContent(id, templateId, componentId, title, promptField, fieldSequence, groupSequence);
+        }
         return templateContentDao.addTemplateContent(id,
                                                     templateId,
                                                     componentId,
