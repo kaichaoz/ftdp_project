@@ -57,6 +57,12 @@ public interface TemplateContentDao extends BaseMapper<TemplateModel> {
      * @return
      */
     boolean templateDelete(String id);
+    /**
+     * 删除模板内容（通过修改isUsable字段实现假删除）
+     * @param id
+     * @return
+     */
+    boolean templateContentDelete(String id);
 
     /**
      * 添加模板（插入template表）

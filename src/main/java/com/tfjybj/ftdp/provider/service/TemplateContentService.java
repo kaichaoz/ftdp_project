@@ -33,7 +33,8 @@ public interface TemplateContentService {
      * @param templateModel
      * @return
      */
-    boolean templateInsert(TemplateModel templateModel);
+    String templateInsert(TemplateModel templateModel);
+
 
     /**
      * 编辑模板

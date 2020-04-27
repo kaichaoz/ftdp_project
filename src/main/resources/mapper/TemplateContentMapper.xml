@@ -31,7 +31,8 @@
     </update>
 
     <!--    添加模板-->
-    <insert id="templateInsert">
+    <insert id="templateInsert"
+            useGeneratedKeys="true" keyProperty="id">
         INSERT INTO tin_template (id,
                                   templateName,
                                   templateGroupId,
@@ -65,7 +66,12 @@
         SET  isUsable = "1"
         WHERE id= #{id}
     </update>
-
+    <!--    修改tin_template表isUsable字段完成删除-->
+    <update id="templateContentDelete">
+        UPDATE tin_templatecontent
+        SET  isUsable = "1"
+        WHERE tin_templatecontent.templateId = #{id}
+    </update>
     <!--   根据isUsable字段查询tin_templateGroup表可用的模板-->
     <select id="queryTempByIsUsable" resultMap="TempByIsUsableModel" >
         select tin_templategroup.id AS templateGroupId,

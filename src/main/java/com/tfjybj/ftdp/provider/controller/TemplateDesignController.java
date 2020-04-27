@@ -102,8 +102,8 @@ public class TemplateDesignController {
         if ("".equals(Id)){
             templateModel.setId(PatterUtils.getNumberPattern());
         }
-        boolean flag = templateContentService.templateInsert(templateModel);
-        if (flag){
+        String flag = templateContentService.templateInsert(templateModel);
+        if (!flag.isEmpty()){
             return  ResultUtils.build(CodeEnumUtils.INSERT_SUCCESS.getCode(),CodeEnumUtils.INSERT_SUCCESS.getMessage(),templateModel.getId() );
         }
         return new ResultUtils(CodeEnumUtils.INSERT_FALL.getCode(),CodeEnumUtils.INSERT_FALL.getMessage());

@@ -74,8 +74,9 @@ public class TemplateContentServiceImpl implements TemplateContentService {
      * @return
      */
     @Override
-    public boolean templateInsert(TemplateModel templateModel){
-        return templateContentDao.templateInsert(templateModel.getId(),
+    public String templateInsert(TemplateModel templateModel){
+        templateContentDao.templateContentDelete(templateModel.getId());
+        templateContentDao.templateInsert(templateModel.getId(),
                                                 templateModel.getTemplateGroupID(),
                                                 templateModel.getTemplateName(),
                                                 templateModel.getGroupSequence(),
@@ -83,6 +84,7 @@ public class TemplateContentServiceImpl implements TemplateContentService {
                                                 templateModel.getPostscript(),
                                                 templateModel.getIsUsable(),
                                                 templateModel.getStaffID());
+        return templateModel.getId();
     }
 
     /**
