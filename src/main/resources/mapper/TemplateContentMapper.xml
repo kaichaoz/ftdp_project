@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.tfjybj.ftdp.provider.dao.TemplateContentDao">
 
-    <!--    添加模板-->
+    <!--    添加模板内容  -->
     <insert id="addTemplateContent" >
       INSERT INTO tin_templatecontent(id,
                                       templateId,
@@ -13,10 +13,23 @@
                                       groupSequence
                                      )
       VALUES (#{id},#{templateId},#{componentId},#{title},#{promptField},#{fieldSequence},#{groupSequence})
-      ON DUPLICATE KEY UPDATE id= #{id},templateId= #{templateId},componentId= #{componentId},title= #{title},promptField= #{promptField},fieldSequence=#{fieldSequence},groupSequence= #{groupSequence}
     </insert>
 
-    <!--    添加模板（插入template表）-->
+    <!-- 更新模板内容-->
+    <update id="updateTemplateContent">
+     UPDATE
+        tin_templatecontent
+     SET
+       tin_templatecontent.templateId=#{templateId},
+       tin_templatecontent.componentId=#{componentId},
+       tin_templatecontent.title=#{title},
+       tin_templatecontent.promptField=#{promptField},
+       tin_templatecontent.fieldSequence=#{fieldSequence},
+       tin_templatecontent.groupSequence=#{groupSequence}
+     WHERE id = #{id}
+    </update>
+
+    <!--    添加模板-->
     <insert id="templateInsert">
         INSERT INTO tin_template (id,
                                   templateName,
@@ -27,19 +40,22 @@
                                   groupSequence,
                                   isFinish)
         VALUES (#{id},#{templateName},#{templateGroupId},#{staffID},#{postscript},#{isUsable},#{groupSequence},#{isFinish})
-        ON DUPLICATE KEY UPDATE id = #{id},templateName = #{templateName},templateGroupId = #{templateGroupId},staffID = #{staffID},postscript = #{postscript},isUsable = #{isUsable},groupSequence = #{groupSequence},isFinish = #{isFinish}
     </insert>
 
-<!--    &lt;!&ndash;    根据template id编辑模板内容&ndash;&gt;-->
-<!--    <update id="updateTemplateContent" >-->
-<!--        UPDATE tin_templatecontent-->
-<!--        SET templateId = #{templateContentModel.templateId},-->
-<!--            componentId = #{templateContentModel.componentId},-->
-<!--            title = #{templateContentModel.promptFleld},-->
-<!--            titleLength = #{templateContentModel.groupSequence},-->
-<!--            inputField = #{templateContentModel.title}-->
-<!--        where tin_templatecontent.id = #{id}-->
-<!--    </update>-->
+    <!--更新模板-->
+    <update id="updateTemplate">
+     UPDATE
+        tin_template
+     SET
+       tin_template.templateGroupId=#{templateGroupId},
+       tin_template.templateName=#{templateName},
+       tin_template.groupSequence=#{groupSequence},
+       tin_template.isFinish=#{isFinish},
+       tin_template.postscript=#{postscript},
+       tin_template.isUsable=#{isUsable},
+       tin_template.staffID=#{staffID}
+     WHERE tin_template.id = #{id}
+    </update>
 
     <!--    修改tin_template表isUsable字段完成删除-->
     <update id="templateDelete">
@@ -72,45 +88,25 @@
         </collection>
     </resultMap>
 
-    <!-- 查询tin_templateContent表-->
-<!--        <select id="queryTemplateContent" resultType="com.tfjybj.ftdp.model.TemplateContent">-->
-<!--            select  id,-->
-<!--                    templateId,-->
-<!--                    componentId,-->
-<!--                    title,-->
-<!--                    fieldSequence,-->
-<!--                    isUsable,-->
-<!--                    groupSequence-->
-<!--            from tin_templatecontent-->
-<!--            where templateId= #{templateId}-->
-<!--            order by-->
-<!--            groupSequence asc-->
-<!--        </select>-->
+    <!--初始化查询模板内容-->
     <select id="queryTemplateContent" resultMap="TemplateContent">
-        SELECT
-	id,
-	templateId,
-	componentId,
-	title,
-	fieldSequence,
-	isUsable,
-	groupSequence,
-	 promptField
-FROM
-	tin_templatecontent
-WHERE
-	templateId = #{templateId}
-ORDER BY
-	fieldSequence,
-	groupSequence
+        select  id,
+                templateId,
+                componentId,
+                title,
+                fieldSequence,
+                isUsable,
+                groupSequence
+        from tin_templatecontent
+        where templateId= #{templateId}
+        order by
+        groupSequence ,fieldSequence asc
     </select>
-<!--    <resultMap type="com.tfjybj.ftdp.model.TemplateContent" id="TemplateContent" autoMapping="true">-->
-    <resultMap type="com.tfjybj.ftdp.model.TemplateContentModel" id="TemplateContent" autoMapping="true">
-<!--        <collection property="templateData" ofType="com.tfjybj.ftdp.model.TemplateContentModel">-->
-            <id property="templateId" column="templateId" />
-            <id property="componentId" column="componentId"/>
-            <result property="groupSequence" column="groupSequence"/>
 
+    <resultMap type="com.tfjybj.ftdp.model.TemplateContentModel" id="TemplateContent" autoMapping="true">
+        <id property="templateId" column="templateId" />
+        <id property="componentId" column="componentId"/>
+        <result property="groupSequence" column="groupSequence"/>
             <collection property="templateContentData" ofType="com.tfjybj.ftdp.model.TemplateContentModel2">
                 <result property="id" column="id"/>
                 <result property="title" column="title"/>
@@ -118,28 +114,9 @@ ORDER BY
                 <result property="isUsable" column="isUsable"/>
                 <result property="promptField" column="promptField"/>
                 <result property="isUsable" column="isUsable"/>
-
             </collection>
-<!--        </collection>-->
-
-<!--        </collection>-->
     </resultMap>
 
-<!--    &lt;!&ndash;    查询tin_template表&ndash;&gt;-->
-<!--    <select id="queryTemplate" resultType="com.tfjybj.ftdp.model.QueryTemplateModel">-->
-<!--        select-->
-<!--                tin_template.id,-->
-<!--                tin_template.templateName,-->
-<!--                tin_template.templateGroupID,-->
-<!--                tin_template.staffID,-->
-<!--                tin_template.postscript,-->
-<!--                tin_template.isUsable,-->
-<!--                tin_template.groupSequence,-->
-<!--                tin_template.isFinish-->
-<!--        from tin_template-->
-<!--        WHERE id = #{id}-->
-
-<!--    </select>-->
     <!--    查询tin_componentlibrary表-->
     <select id="queryComponentlibrary" resultType="com.tfjybj.ftdp.model.ComponentlibraryModel">
         select
@@ -149,9 +126,5 @@ ORDER BY
         WHERE isUsable = 0
         order by
             groupSequence
-
     </select>
-
-
-
 </mapper>

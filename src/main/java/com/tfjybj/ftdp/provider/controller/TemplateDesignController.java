@@ -58,21 +58,32 @@ public class TemplateDesignController {
 
     /**
      * 添加模板内容
-     * @param templateContentRequest
+     * @param templateContentModel
      * @return flag
      */
     @ApiOperation("添加模板内容")
     @PostMapping(value = "/insertTemplateContent")
-    public ResultUtils insertTemplateContent(@RequestBody TemplateContentRequest templateContentRequest ){
-        String Id = templateContentRequest.getId();
-        if ("".equals(Id)){
-            templateContentRequest.setId(PatterUtils.getNumberPattern());
-        }
-        boolean flag = templateContentService.addTemplateContent(templateContentRequest);
+    public ResultUtils insertTemplateContent(@RequestBody TemplateContentModel templateContentModel ){
+        boolean flag = templateContentService.addTemplateContent(templateContentModel);
         if (flag){
             return  ResultUtils.build(CodeEnumUtils.INSERT_SUCCESS.getCode(),CodeEnumUtils.INSERT_SUCCESS.getMessage(), flag);
         }
         return new ResultUtils(CodeEnumUtils.INSERT_FALL.getCode(),CodeEnumUtils.INSERT_FALL.getMessage());
+    }
+
+    /**
+     * 编辑模板内容
+     * @param templateContentRequest
+     * @return
+     */
+    @ApiOperation("编辑模板内容")
+    @PostMapping(value = "/updateTemplateContent")
+    public ResultUtils updateTemplateContent(@RequestBody TemplateContentRequest templateContentRequest ){
+        boolean flag = templateContentService.updateTemplateContent(templateContentRequest);
+        if (flag){
+            return  ResultUtils.build(CodeEnumUtils.MODIFY_SUCCESS.getCode(),CodeEnumUtils.MODIFY_SUCCESS.getMessage(), flag);
+        }
+        return new ResultUtils(CodeEnumUtils.MODIFY_FALL.getCode(),CodeEnumUtils.MODIFY_FALL.getMessage());
     }
 
     /**
@@ -88,12 +99,25 @@ public class TemplateDesignController {
             templateModel.setId(PatterUtils.getNumberPattern());
         }
         boolean flag = templateContentService.templateInsert(templateModel);
-
         if (flag){
-            return  ResultUtils.build(CodeEnumUtils.INSERT_SUCCESS.getCode(),CodeEnumUtils.INSERT_SUCCESS.getMessage(), flag);
+            return  ResultUtils.build(CodeEnumUtils.INSERT_SUCCESS.getCode(),CodeEnumUtils.INSERT_SUCCESS.getMessage(),templateModel.getId() );
         }
         return new ResultUtils(CodeEnumUtils.INSERT_FALL.getCode(),CodeEnumUtils.INSERT_FALL.getMessage());
+    }
 
+    /**
+     * 编辑模板
+     * @param templateModel
+     * @return
+     */
+    @ApiOperation("编辑模板")
+    @PostMapping(value = "/updateTemplate")
+    public ResultUtils updateTemplate(@RequestBody TemplateModel templateModel){
+        boolean flag =templateContentService.updateTemplate(templateModel);
+        if (flag){
+            return  ResultUtils.build(CodeEnumUtils.MODIFY_SUCCESS.getCode(),CodeEnumUtils.MODIFY_SUCCESS.getMessage(), flag);
+        }
+        return new ResultUtils(CodeEnumUtils.MODIFY_FALL.getCode(),CodeEnumUtils.MODIFY_FALL.getMessage());
     }
 
     /**

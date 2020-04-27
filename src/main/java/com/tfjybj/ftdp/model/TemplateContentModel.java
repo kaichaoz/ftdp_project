@@ -6,10 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 import lombok.experimental.Accessors;
-
 import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
 import javax.persistence.Table;
 import java.io.Serializable;
 import java.util.List;
@@ -21,10 +18,6 @@ import java.util.List;
 @Accessors(chain = true)
 @ToString(callSuper = true)
 public class TemplateContentModel implements Serializable {
-
-//    @ApiModelProperty(value = "组件内容")
-//    private List<TemplateContentModel> templateContentData;
-
     @ApiModelProperty(value = "模板id")
     private String templateId;
     @ApiModelProperty(value = "组件id")

@@ -19,7 +19,6 @@ public interface TemplateContentDao extends BaseMapper<TemplateModel> {
      * 添加模板内容（templateContent表）
      *
      * @param fieldSequence
-     * @param id
      * @param templateId
      * @param componentId
      * @param title
@@ -27,8 +26,19 @@ public interface TemplateContentDao extends BaseMapper<TemplateModel> {
      * @param groupSequence
      * @return
      */
-    boolean addTemplateContent(String fieldSequence , String id, String templateId, String componentId, String title, String promptField, String groupSequence);
+    boolean addTemplateContent(String id,String templateId,String componentId,String title,String promptField,String fieldSequence,String groupSequence);
 
+    /**
+     * 编辑模板内容
+     * @param templateId
+     * @param componentId
+     * @param title
+     * @param promptField
+     * @param fieldSequence
+     * @param groupSequence
+     * @return
+     */
+    boolean updateTemplateContent(String id ,String templateId,String componentId,String title,String promptField,String fieldSequence,String groupSequence);
     /**
      * 初始化全部模板
      * @return
@@ -40,13 +50,6 @@ public interface TemplateContentDao extends BaseMapper<TemplateModel> {
      * @return
      */
     List<TempByIsUsableModel> queryTempByIsUsable();
-
-//    /**
-//     *编辑模板
-//     * @param id
-//     * @return
-//     */
-//    boolean updateTemplateContent(@Param("id") String id,@RequestBody TemplateContentModel templateContentModel);
 
     /**
      * 删除模板（通过修改isUsable字段实现假删除）
@@ -70,11 +73,18 @@ public interface TemplateContentDao extends BaseMapper<TemplateModel> {
     boolean templateInsert(String id,String templateGroupId,String templateName,String groupSequence,int isFinish,String postscript,int isUsable,String staffID);
 
     /**
-     * 模板编辑界面加载
+     * 编辑模板
      * @param id
+     * @param templateGroupId
+     * @param templateName
+     * @param groupSequence
+     * @param isFinish
+     * @param postscript
+     * @param isUsable
+     * @param staffID
      * @return
      */
-//    QueryTemplateModel queryTemplate (String id);
+    boolean updateTemplate(String id,String templateGroupId,String templateName,String groupSequence,int isFinish,String postscript,int isUsable,String staffID);
 
     /**
      * 侧边栏加载
