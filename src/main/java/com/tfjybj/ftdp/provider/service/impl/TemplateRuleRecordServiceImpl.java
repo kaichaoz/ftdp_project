@@ -76,6 +76,8 @@ public  class TemplateRuleRecordServiceImpl implements TemplateRuleRecordService
   //      return flag;
   //  }
     public boolean addTemplateRuleRecord(TemplateRuleRecordModel templateRuleRecordModel, String Id) {
+       templateRuleRecordModel.setId(PatterUtils.getNumberPattern());
+       Id = templateRuleRecordModel.getId();
         boolean flag = templaterulerecordDao.addTemplateRuleRecord(templateRuleRecordModel,Id);
         return flag;
     }
