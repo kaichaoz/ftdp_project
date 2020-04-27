@@ -16,10 +16,17 @@ public interface TemplateContentService {
 
     /**
      * 添加模板内容
+     * @param templateContentModel
+     * @return
+     */
+    boolean addTemplateContent(TemplateContentModel templateContentModel);
+
+    /**
+     * 编辑模板内容
      * @param templateContentRequest
      * @return
      */
-    boolean addTemplateContent(TemplateContentRequest templateContentRequest);
+    boolean updateTemplateContent(TemplateContentRequest templateContentRequest);
 
     /**
      * 添加模板
@@ -27,6 +34,13 @@ public interface TemplateContentService {
      * @return
      */
     boolean templateInsert(TemplateModel templateModel);
+
+    /**
+     * 编辑模板
+     * @param templateModel
+     * @return
+     */
+    boolean updateTemplate(TemplateModel templateModel);
 
     /**
      * 初始化全部模板列表

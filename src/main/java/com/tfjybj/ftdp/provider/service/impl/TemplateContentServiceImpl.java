@@ -2,20 +2,13 @@ package com.tfjybj.ftdp.provider.service.impl;
 
 import com.tfjybj.ftdp.model.TemplateContent;
 import com.tfjybj.ftdp.model.*;
-import com.tfjybj.ftdp.provider.dao.TemplateGroupDao;
 import com.tfjybj.ftdp.utils.PatterUtils;
-import org.springframework.beans.BeanUtils;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cache.annotation.Cacheable;
-import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 import com.tfjybj.ftdp.provider.service.TemplateContentService;
 import com.tfjybj.ftdp.provider.dao.TemplateContentDao;
-import org.springframework.util.CollectionUtils;
-
 import javax.annotation.Resource;
 import java.util.*;
-import java.util.stream.Collectors;
+
 
 /**
  * @Classname templateService
@@ -27,25 +20,47 @@ public class TemplateContentServiceImpl implements TemplateContentService {
 
     @Resource
     private TemplateContentDao templateContentDao;
-    @Resource
-    private TemplateGroupDao templateGroupDao;
-    @Autowired
-    private  RedisTemplate redisTemplate;
 
     /**
      * 添加模板内容
+     * @param templateContentModel
+     * @return
+     */
+    @Override
+    public boolean addTemplateContent(TemplateContentModel templateContentModel) {
+        //解析前端传入数据
+        List<TemplateContentModel2> templateContentModel2=templateContentModel.getTemplateContentData();
+        TemplateContentModel2 tem =templateContentModel2.get(0);
+        String templateId =templateContentModel.getTemplateId();
+        String componentId=templateContentModel .getComponentId();
+        String groupSequence=templateContentModel.getGroupSequence();
+        String id = PatterUtils.getNumberPattern();
+        String title=tem.getTitle();
+        String promptField=tem.getPromptField();
+        String fieldSequence=tem.getFieldSequence();
+        return templateContentDao.addTemplateContent(id,
+                                                    templateId,
+                                                    componentId,
+                                                    title,
+                                                    promptField,
+                                                    fieldSequence,
+                                                    groupSequence);
+    }
+
+    /**
+     * 编辑模板内容
      * @param templateContentRequest
      * @return
      */
     @Override
-    public boolean addTemplateContent(TemplateContentRequest templateContentRequest) {
-        return templateContentDao.addTemplateContent(templateContentRequest.getId(),
-                                                     templateContentRequest.getTemplateId(),
-                                                     templateContentRequest.getComponentId(),
-                                                     templateContentRequest.getTitle(),
-                                                     templateContentRequest.getPromptField(),
-                                                     templateContentRequest.getFieldSequence(),
-                                                     templateContentRequest.getGroupSequence());
+    public boolean updateTemplateContent(TemplateContentRequest templateContentRequest){
+        return templateContentDao.updateTemplateContent(templateContentRequest.getId(),
+                                                        templateContentRequest.getTemplateId(),
+                                                        templateContentRequest.getComponentId(),
+                                                        templateContentRequest.getTitle(),
+                                                        templateContentRequest.getPromptField(),
+                                                        templateContentRequest.getFieldSequence(),
+                                                        templateContentRequest.getGroupSequence());
     }
 
     /**
@@ -56,6 +71,23 @@ public class TemplateContentServiceImpl implements TemplateContentService {
     @Override
     public boolean templateInsert(TemplateModel templateModel){
         return templateContentDao.templateInsert(templateModel.getId(),
+                                                templateModel.getTemplateGroupID(),
+                                                templateModel.getTemplateName(),
+                                                templateModel.getGroupSequence(),
+                                                templateModel.getIsFinish(),
+                                                templateModel.getPostscript(),
+                                                templateModel.getIsUsable(),
+                                                templateModel.getStaffID());
+    }
+
+    /**
+     * 编辑模板
+     * @param templateModel
+     * @return
+     */
+    @Override
+    public boolean updateTemplate(TemplateModel templateModel){
+        return templateContentDao.updateTemplate(templateModel.getId(),
                                                 templateModel.getTemplateGroupID(),
                                                 templateModel.getTemplateName(),
                                                 templateModel.getGroupSequence(),
@@ -81,22 +113,9 @@ public class TemplateContentServiceImpl implements TemplateContentService {
      */
     @Override
     public List<TempByIsUsableModel> queryTempByIsUsable() {
-/*Redis缓存技术引入
-        //先从缓存中查询当前对象
-        List<TempByIsUsableModel> tempByIsUsableModels= redisTemplate.opsForValue().get("template_"+templateId);
-        if (tempByIsUsableModels==null){
-            //如果缓存中没有则查库
-            tempByIsUsableModels =  templateContentDao.queryTempByIsUsable(isUsable);//将要返回的参数查出
-            //set到Redis中
-            redisTemplate.opsForValue().set("template_"+templateId,tempByIsUsableModels);
-        }
-        return tempByIsUsableModels;
-*/
         List<TempByIsUsableModel> dataAll = templateContentDao.queryTempByIsUsable();//将要返回的参数查出
         return dataAll;
     }
-
-
 
     /**
      * 删除模板（修改tin_complateContent表isUsable字段为1）
@@ -107,21 +126,6 @@ public class TemplateContentServiceImpl implements TemplateContentService {
     public boolean templateDelete(String id) {
         return templateContentDao.templateDelete(id);
     }
-
-    /**
-     * 模板编辑界面加载
-     * @param id
-     * @return
-     */
-//    @Override
-//    @Cacheable(value = "queryTemplate",key="#id")
-//    public QueryTemplateModel queryTemplate(String id) {
-//
-//        QueryTemplateModel queryTemplateModels = templateContentDao.queryTemplate(id);
-//        List<TemplateGroupModel> templateEntityList = templateGroupDao.queryTemplateGroup();
-//        queryTemplateModels.setTemplateData(templateEntityList);
-//        return queryTemplateModels;
-//    }
 
     /**
      *侧边栏加载

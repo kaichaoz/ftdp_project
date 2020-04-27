@@ -22,9 +22,6 @@ import java.util.List;
 @ToString(callSuper = true)
 public class TemplateContent implements Serializable {
 
-//    @ApiModelProperty(value = "组件内容")
-//    private List<TemplateContentModel> templateContentData;
-
     @ApiModelProperty(value = "模板")
     private List<TemplateContentModel> templateData;
 }
