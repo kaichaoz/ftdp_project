@@ -131,7 +131,7 @@ public class TemplateRuleRecordController {
      * @Modification Time:
      **/
     @ApiOperation(value = "添加模板规则")
-    @PostMapping(value = "/addTemplateRuleRecord/{templateRuleRecordModel}")
+    @PostMapping(value = "/addTemplateRuleRecord")
         public ResultUtils addTemplateRuleRecord(@RequestBody TemplateRuleRecordModel templateRuleRecordModel){
         boolean flag = templateRuleRecordService.addTemplateRuleRecord(templateRuleRecordModel, PatterUtils.getNumberPattern());
         if (flag){
