@@ -29,6 +29,7 @@ public class TemplateContentServiceImpl implements TemplateContentService {
     @Override
     public boolean addTemplateContent(TemplateContentModel templateContentModel) {
         //解析前端传入数据
+        templateContentDao.templateContentDelete(templateContentModel.getTemplateId());
         List<TemplateContentModel2> templateContentModel2=templateContentModel.getTemplateContentData();
         TemplateContentModel2 tem =templateContentModel2.get(0);
         String id=tem.getId();
@@ -75,7 +76,7 @@ public class TemplateContentServiceImpl implements TemplateContentService {
      */
     @Override
     public String templateInsert(TemplateModel templateModel){
-        templateContentDao.templateContentDelete(templateModel.getId());
+
         templateContentDao.templateInsert(templateModel.getId(),
                                                 templateModel.getTemplateGroupID(),
                                                 templateModel.getTemplateName(),
