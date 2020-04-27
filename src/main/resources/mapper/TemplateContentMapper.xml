@@ -94,13 +94,15 @@
 	title,
 	fieldSequence,
 	isUsable,
-	groupSequence, promptField
+	groupSequence,
+	 promptField
 FROM
 	tin_templatecontent
 WHERE
 	templateId = #{templateId}
 ORDER BY
-	groupSequence ASC
+	fieldSequence,
+	groupSequence
     </select>
 <!--    <resultMap type="com.tfjybj.ftdp.model.TemplateContent" id="TemplateContent" autoMapping="true">-->
     <resultMap type="com.tfjybj.ftdp.model.TemplateContentModel" id="TemplateContent" autoMapping="true">
