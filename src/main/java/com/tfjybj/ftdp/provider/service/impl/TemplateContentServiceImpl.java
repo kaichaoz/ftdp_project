@@ -27,30 +27,35 @@ public class TemplateContentServiceImpl implements TemplateContentService {
      * @return
      */
     @Override
-    public boolean addTemplateContent(TemplateContentModel templateContentModel) {
-        //解析前端传入数据
-        templateContentDao.templateContentDelete(templateContentModel.getTemplateId());
-        List<TemplateContentModel2> templateContentModel2=templateContentModel.getTemplateContentData();
-        TemplateContentModel2 tem =templateContentModel2.get(0);
-        String id=tem.getId();
-        String templateId =templateContentModel.getTemplateId();
-        String componentId=templateContentModel .getComponentId();
-        String groupSequence=templateContentModel.getGroupSequence();
-        String title=tem.getTitle();
-        String promptField=tem.getPromptField();
-        String fieldSequence=tem.getFieldSequence();
-        if("".equals(id)){
-            id = PatterUtils.getNumberPattern();
-        }else{
-            templateContentDao.addTemplateContent(id, templateId, componentId, title, promptField, fieldSequence, groupSequence);
+    public boolean addTemplateContent(List<TemplateContentModel> templateContentModel) {
+        String id,newid = null;
+        for (TemplateContentModel temmodel :templateContentModel){
+            //解析前端传入数据
+            templateContentDao.templateContentDelete(temmodel.getTemplateId());
+            List<TemplateContentModel2> templateContentModel2=temmodel.getTemplateContentData();
+            for (TemplateContentModel2 tempModel2:templateContentModel2){
+                id= tempModel2.getId();
+                if("".equals(id)){
+                    newid = PatterUtils.getNumberPattern();
+                    templateContentDao.addTemplateContent(newid,
+                            temmodel.getTemplateId(),
+                            temmodel.getComponentId(),
+                            tempModel2.getTitle(),
+                            tempModel2.getPromptField(),
+                            tempModel2.getFieldSequence(),
+                            temmodel.getGroupSequence());
+                }else{
+                 templateContentDao.addTemplateContent(id,
+                            temmodel.getTemplateId(),
+                            temmodel.getComponentId(),
+                            tempModel2.getTitle(),
+                            tempModel2.getPromptField(),
+                            tempModel2.getFieldSequence(),
+                            temmodel.getGroupSequence());
+                }
+            }
         }
-        return templateContentDao.addTemplateContent(id,
-                                                    templateId,
-                                                    componentId,
-                                                    title,
-                                                    promptField,
-                                                    fieldSequence,
-                                                    groupSequence);
+        return true ;
     }
 
     /**
@@ -76,7 +81,7 @@ public class TemplateContentServiceImpl implements TemplateContentService {
      */
     @Override
     public String templateInsert(TemplateModel templateModel){
-
+        templateContentDao.templateContentDelete(templateModel.getId());
         templateContentDao.templateInsert(templateModel.getId(),
                                                 templateModel.getTemplateGroupID(),
                                                 templateModel.getTemplateName(),

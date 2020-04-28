@@ -66,7 +66,8 @@ public class TemplateDesignController {
      */
     @ApiOperation("添加模板内容")
     @PostMapping(value = "/insertTemplateContent")
-    public ResultUtils insertTemplateContent(@RequestBody TemplateContentModel templateContentModel ){
+    public ResultUtils insertTemplateContent(@RequestBody List<TemplateContentModel> templateContentModel ){
+
         boolean flag = templateContentService.addTemplateContent(templateContentModel);
         if (flag){
             return  ResultUtils.build(CodeEnumUtils.INSERT_SUCCESS.getCode(),CodeEnumUtils.INSERT_SUCCESS.getMessage(), flag);
