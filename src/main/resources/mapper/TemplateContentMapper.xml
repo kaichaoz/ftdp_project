@@ -110,7 +110,7 @@
                 isUsable,
                 groupSequence
         from tin_templatecontent
-        where templateId= #{templateId}
+        where templateId= #{templateId} AND isUsable =0
         order by
         groupSequence ,fieldSequence asc
     </select>
