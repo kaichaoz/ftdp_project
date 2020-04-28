@@ -128,7 +128,20 @@ public class TemplateContentServiceImpl implements TemplateContentService {
      */
     @Override
     public List<TempByIsUsableModel> queryTempByIsUsable() {
-        List<TempByIsUsableModel> dataAll = templateContentDao.queryTempByIsUsable();//将要返回的参数查出
+        //将要返回的参数查出
+        List<TempByIsUsableModel> dataAll = templateContentDao.queryTempByIsUsable();
+        for (TempByIsUsableModel tempByIsUsableModel : dataAll){
+            List<TempByIsUsableData> tempByIsUsableDataList = tempByIsUsableModel.getTempByIsUsableData();
+            Iterator<TempByIsUsableData> tempByIsUsableDataIterator = tempByIsUsableDataList.iterator();
+            while (tempByIsUsableDataIterator.hasNext()){
+                TempByIsUsableData tempByIsUsableData = tempByIsUsableDataIterator.next();
+                if ("1".equals(tempByIsUsableData.getIsUsable())){
+                    tempByIsUsableDataIterator.remove();
+                }
+            }
+
+        }
+        System.out.println(dataAll);
         return dataAll;
     }
 

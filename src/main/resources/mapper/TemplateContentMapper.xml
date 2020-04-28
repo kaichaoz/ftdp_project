@@ -79,12 +79,14 @@
                tin_templategroup.templateGroupName AS templateGroupName,
                tin_template.id AS templateId,
                tin_template.templateName AS templateName,
-               tin_template.postscript AS postscript
+               tin_template.postscript AS postscript,
+							 tin_template.isUsable As isUsable
         from tin_templategroup,
              tin_template
-        where tin_template.isUsable = 0
-        and   tin_templategroup.isUsable = 0
-        and   tin_template.templategroupID = tin_templategroup.id
+        where
+				tin_templategroup.isUsable = 0
+				and
+        tin_template.templategroupID = tin_templategroup.id
         order by tin_templategroup.groupSequence
     </select>
     <resultMap type="com.tfjybj.ftdp.model.TempByIsUsableModel" id="TempByIsUsableModel" autoMapping="true">
@@ -94,6 +96,7 @@
             <result property="templateId" column="templateId"/>
             <result property="postscript" column="postscript"/>
             <result property="templateName" column="templateName"/>
+            <result property="isUsable" column="isUsable"/>
         </collection>
     </resultMap>
 

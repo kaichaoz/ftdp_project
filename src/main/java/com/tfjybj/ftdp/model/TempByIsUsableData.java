@@ -23,5 +23,7 @@ public class TempByIsUsableData {
     private String templateName;
     @ApiModelProperty(value = "备注")
     private String postscript;
+    @ApiModelProperty(value = "是否启用")
+    private String isUsable;
 
 }
