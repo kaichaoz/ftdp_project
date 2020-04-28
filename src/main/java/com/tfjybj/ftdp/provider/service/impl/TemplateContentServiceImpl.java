@@ -43,7 +43,8 @@ public class TemplateContentServiceImpl implements TemplateContentService {
                             tempModel2.getTitle(),
                             tempModel2.getPromptField(),
                             tempModel2.getFieldSequence(),
-                            temmodel.getGroupSequence());
+                            temmodel.getGroupSequence(),
+                            tempModel2.getIsUsable());
                 }else{
                  templateContentDao.addTemplateContent(id,
                             temmodel.getTemplateId(),
@@ -51,6 +52,7 @@ public class TemplateContentServiceImpl implements TemplateContentService {
                             tempModel2.getTitle(),
                             tempModel2.getPromptField(),
                             tempModel2.getFieldSequence(),
+                         tempModel2.getIsUsable(),
                             temmodel.getGroupSequence());
                 }
             }

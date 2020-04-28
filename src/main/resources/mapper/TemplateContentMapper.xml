@@ -10,10 +10,11 @@
                                       title,
                                       promptField,
                                       fieldSequence,
-                                      groupSequence
+                                      groupSequence,
+                                      isUsable
                                      )
-      VALUES (#{id},#{templateId},#{componentId},#{title},#{promptField},#{fieldSequence},#{groupSequence})
-      ON DUPLICATE KEY UPDATE id = #{id},templateId = #{templateId},componentId = #{componentId},title = #{title},promptField = #{promptField},fieldSequence = #{fieldSequence},groupSequence = #{groupSequence}
+      VALUES (#{id},#{templateId},#{componentId},#{title},#{promptField},#{fieldSequence},#{groupSequence},#{IsUsable})
+      ON DUPLICATE KEY UPDATE id = #{id},templateId = #{templateId},componentId = #{componentId},title = #{title},promptField = #{promptField},fieldSequence = #{fieldSequence},groupSequence = #{groupSequence},isUsable = #{IsUsable}
     </insert>
 
     <!-- 更新模板内容-->
