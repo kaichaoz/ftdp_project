@@ -6,6 +6,7 @@ import com.tfjybj.ftdp.entity.TemplaterulerecordEntity;
 import com.tfjybj.ftdp.model.TemplateRuleAndConponentNameModel;
 import com.tfjybj.ftdp.model.TemplateRuleRecordIdModel;
 import com.tfjybj.ftdp.model.TemplateRuleRecordModel;
+import com.tfjybj.ftdp.model.TemplateRuleRecordUpdateModel;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
@@ -74,6 +75,21 @@ public interface TemplateRuleRecordDao extends BaseMapper<TemplaterulerecordEnti
      * @Modification Time:
      **/
     Boolean addTemplateRuleRecord(@Param("templateRuleRecordModel") TemplateRuleRecordModel templateRuleRecordModel, @Param("Id") String Id) ;
+    //Boolean addTemplateRuleRecord(String templateId, String componentId,String grade,int sex,String startRange,String endRange,String originalScore,String weight,String level,String creater ) ;
+
+
+    /**
+     * @Description:  更新模板规则
+     * @Param:  groupName:模板分组名称   groupSequence:模板分组顺序
+     * @Return:  ResultUtils
+     * @Author: 陈海明
+     * @Data: 2020/4/2
+     * @Time: 8:36
+     * @Version: V1.0.0
+     * @Modified by :
+     * @Modification Time:
+     **/
+    Boolean updateTemplateRuleRecord(@Param("templateRuleRecordUpdateModel") TemplateRuleRecordUpdateModel templateRuleRecordUpdateModel) ;
     //Boolean addTemplateRuleRecord(String templateId, String componentId,String grade,int sex,String startRange,String endRange,String originalScore,String weight,String level,String creater ) ;
 
 

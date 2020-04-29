@@ -58,29 +58,45 @@
 	 #{templateRuleRecordModel.id})
     </insert>
 
-<!--    <select id="queryTemplateComponentNameRuleRecord" resultType="com.tfjybj.ftdp.model.TemplateRuleAndConponentNameModel">-->
-<!--    select  con.templateId,-->
-<!--            con.title,-->
-<!--            con.componentId,-->
-<!--            com.componentType-->
-<!--    from tin_template te-->
-<!--    LEFT JOIN tin_templatecontent con ON te.id=con.templateId-->
-<!--    LEFT JOIN tin_componentlibrary com ON con.componentId=com.componentId-->
-<!--    WHERE te.id=#{TemplateRuleAndConponentNameModel.templateId} and com.isUsable=0 and com.componentType='enterInfomation'-->
-<!--    </select>-->
-	<select id="queryTemplateComponentNameRuleRecord" resultType="com.tfjybj.ftdp.model.TemplateRuleAndConponentNameModel">
+    <!--    <select id="queryTemplateComponentNameRuleRecord" resultType="com.tfjybj.ftdp.model.TemplateRuleAndConponentNameModel">-->
+    <!--    select  con.templateId,-->
+    <!--            con.title,-->
+    <!--            con.componentId,-->
+    <!--            com.componentType-->
+    <!--    from tin_template te-->
+    <!--    LEFT JOIN tin_templatecontent con ON te.id=con.templateId-->
+    <!--    LEFT JOIN tin_componentlibrary com ON con.componentId=com.componentId-->
+    <!--    WHERE te.id=#{TemplateRuleAndConponentNameModel.templateId} and com.isUsable=0 and com.componentType='enterInfomation'-->
+    <!--    </select>-->
+    <select id="queryTemplateComponentNameRuleRecord"
+            resultType="com.tfjybj.ftdp.model.TemplateRuleAndConponentNameModel">
     select con.id, con.templateId, con.title,con.componentId
     from tin_templatecontent con
     WHERE con.templateId=#{TemplateRuleAndConponentNameModel.templateId}and componentId="4833953"
-
-
 	</select>
 
-	<select id="queryTemplateRuleRecord" resultType="com.tfjybj.ftdp.entity.TemplaterulerecordEntity">
+    <update id="updateTemplateRuleRecord">
+	UPDATE tin_templaterulerecord
+	SET tin_templaterulerecord.templateId=#{templateRuleRecordUpdateModel.templateId},
+	 tin_templaterulerecord.templateContentId=#{templateRuleRecordUpdateModel.templateContentId},
+	  tin_templaterulerecord.grade=#{templateRuleRecordUpdateModel.grade},
+	  tin_templaterulerecord.sex=#{templateRuleRecordUpdateModel.sex},
+	  tin_templaterulerecord.startRange=#{templateRuleRecordUpdateModel.startRange},
+	  tin_templaterulerecord.endRange=#{templateRuleRecordUpdateModel.endRange},
+	  tin_templaterulerecord.originalScore=#{templateRuleRecordUpdateModel.originalScore},
+	  tin_templaterulerecord.weight=#{templateRuleRecordUpdateModel.weight},
+	  tin_templaterulerecord.level=#{templateRuleRecordUpdateModel.level},
+	   tin_templaterulerecord.modifier=#{templateRuleRecordUpdateModel.modifier},
+	   tin_templaterulerecord.modifyTime=#{templateRuleRecordUpdateModel.modifyTime},
+	   tin_templaterulerecord.isUsable=#{templateRuleRecordUpdateModel.isUsable}
+	WHERE tin_templaterulerecord.id=#{templateRuleRecordUpdateModel.id}
+	</update>
+
+    <select id="queryTemplateRuleRecord" resultType="com.tfjybj.ftdp.entity.TemplaterulerecordEntity">
      SELECT * FROM tin_templateRuleRecord WHERE templateId=#{templateId}
     </select>
 
-	<select id="queryTemplateRuleRecordId" resultType="com.tfjybj.ftdp.model.TemplateRuleRecordIdModel">
+    <select id="queryTemplateRuleRecordId" resultType="com.tfjybj.ftdp.model.TemplateRuleRecordIdModel">
      SELECT
 	te.id,
 	te.templateId,

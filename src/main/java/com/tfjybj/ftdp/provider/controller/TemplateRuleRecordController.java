@@ -5,6 +5,7 @@ import com.tfjybj.ftdp.entity.TemplaterulerecordEntity;
 import com.tfjybj.ftdp.model.TemplateRuleAndConponentNameModel;
 import com.tfjybj.ftdp.model.TemplateRuleRecordIdModel;
 import com.tfjybj.ftdp.model.TemplateRuleRecordModel;
+import com.tfjybj.ftdp.model.TemplateRuleRecordUpdateModel;
 import com.tfjybj.ftdp.provider.service.TemplateRuleRecordService;
 import com.tfjybj.ftdp.utils.CodeEnumUtils;
 import com.tfjybj.ftdp.utils.PatterUtils;
@@ -139,7 +140,27 @@ public class TemplateRuleRecordController {
         }
         return ResultUtils.build(CodeEnumUtils.INSERT_FALL.getCode(),CodeEnumUtils.INSERT_FALL.getMessage());
     }
-
+    /**
+     * @Description: 更新模板规则
+     * @Param: @ApiParam(value = "模板规则") @PathVariable String templateId
+     @ApiParam(value = "模板规则") @PathVariable String groupSequence
+      * @Return: ResultUtils
+     * @Author: 陈海明
+     * @Data: 2020/4/2
+     * @Time: 8:29
+     * @Version: V1.0.0
+     * @Modified by :
+     * @Modification Time:
+     **/
+    @ApiOperation(value = "更新模板规则")
+    @PostMapping(value = "/updateTemplateRuleRecord")
+    public ResultUtils updateTemplateRuleRecord(@RequestBody TemplateRuleRecordUpdateModel templateRuleRecordUpdateModel){
+    boolean flag = templateRuleRecordService.updateTemplateRuleRecord(templateRuleRecordUpdateModel);
+        if (flag){
+        return  ResultUtils.build(CodeEnumUtils.INSERT_SUCCESS.getCode(),CodeEnumUtils.INSERT_SUCCESS.getMessage(), flag);
+    }
+        return ResultUtils.build(CodeEnumUtils.INSERT_FALL.getCode(),CodeEnumUtils.INSERT_FALL.getMessage());
+}
 
 
 }

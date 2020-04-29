@@ -5,6 +5,7 @@ import com.tfjybj.ftdp.entity.TemplaterulerecordEntity;
 import com.tfjybj.ftdp.model.TemplateRuleAndConponentNameModel;
 import com.tfjybj.ftdp.model.TemplateRuleRecordIdModel;
 import com.tfjybj.ftdp.model.TemplateRuleRecordModel;
+import com.tfjybj.ftdp.model.TemplateRuleRecordUpdateModel;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -54,6 +55,18 @@ public interface TemplateRuleRecordService {
 
    // boolean addTemplateRuleRecord(String  templateId, String  componentId, String grade, int sex, String startRange, String endRange, String originalScore, String weight, String level, String creater);
     boolean addTemplateRuleRecord(TemplateRuleRecordModel templateRuleRecordModel ,String Id);
+
+    /**
+     * @Description: 更新模板规则
+     * @Param 模板id: templateId, 组件id: componentId,年级：grade,性别：sex,开始范围： startRange,结束范围：endRange,原始得分：originalScore,权重： weight,评级：level,创建者： creater
+     * @Author: 陈海明
+     * @Data: 2020/4/2
+     * @Time: 8:34
+     * @Version: V1.0.0
+     * @Modified by :
+     * @Modification Time:
+     **/
+    boolean updateTemplateRuleRecord(TemplateRuleRecordUpdateModel templateRuleRecordUpdateModel );
     /**
      * @Description:  添加组件规则
      * @Param:  模板id: templateId, 组件id: componentId,年级：grade,性别：sex,开始范围： startRange,结束范围：endRange,原始得分：originalScore,权重： weight,评级：level,创建者： creater
@@ -66,6 +79,7 @@ public interface TemplateRuleRecordService {
      * @Modification Time:
      **/
     boolean addComponentIdRuleRecord(TemplateRuleRecordModel templateRuleRecordModel ,String Id);
+
 //    boolean addComponentIdRuleRecord(String  templateId, String  componentId, String grade, int sex, String startRange, String endRange, String originalScore, String weight, String level, String creater,String Id);
 
     /**
