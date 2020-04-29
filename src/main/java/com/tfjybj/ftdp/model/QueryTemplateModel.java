@@ -1,6 +1,5 @@
 package com.tfjybj.ftdp.model;
 
-import com.tfjybj.ftdp.entity.TemplateEntity;
 import io.swagger.annotations.ApiModel;
 import lombok.Data;
 import lombok.NoArgsConstructor;
