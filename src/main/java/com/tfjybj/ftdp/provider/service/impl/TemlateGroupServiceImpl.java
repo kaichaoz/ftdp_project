@@ -1,7 +1,9 @@
 package com.tfjybj.ftdp.provider.service.impl;
 
+import com.tfjybj.ftdp.model.TemplateContent;
 import com.tfjybj.ftdp.model.TemplateGroupModel;
 import com.tfjybj.ftdp.model.TemplateModel;
+import com.tfjybj.ftdp.provider.dao.TemplateContentDao;
 import com.tfjybj.ftdp.provider.dao.TemplateGroupDao;
 import com.tfjybj.ftdp.provider.service.TemplateGroupService;
 import com.tfjybj.ftdp.utils.PatterUtils;
@@ -23,6 +25,8 @@ public class TemlateGroupServiceImpl implements TemplateGroupService {
     @Resource
     private TemplateGroupDao templateGroupDao;
 
+    @Resource
+    private TemplateContentDao templateContentDao;
     private String Id, groupName, groupSequence;
     private Integer isUsable;
     /**
@@ -63,6 +67,7 @@ public class TemlateGroupServiceImpl implements TemplateGroupService {
         groupName = templateGroupModel.getTemplateGroupName();
         groupSequence = templateGroupModel.getGroupSequence();
         templateGroupModel.setIsUsable(0);
+        templateContentDao.templateInsert(PatterUtils.getNumberPattern(),Id,"","Don't Delete",0,"",1,"");
         return templateGroupDao.addTemplateGroup(Id, groupName, groupSequence,templateGroupModel.getIsUsable());
     }
 
