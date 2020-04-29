@@ -13,8 +13,8 @@
                                       groupSequence,
                                       isUsable
                                      )
-      VALUES (#{id},#{templateId},#{componentId},#{title},#{promptField},#{fieldSequence},#{groupSequence},#{IsUsable})
-      ON DUPLICATE KEY UPDATE id = #{id},templateId = #{templateId},componentId = #{componentId},title = #{title},promptField = #{promptField},fieldSequence = #{fieldSequence},groupSequence = #{groupSequence},isUsable = #{IsUsable}
+      VALUES (#{id},#{templateId},#{componentId},#{title},#{promptField},#{fieldSequence},#{groupSequence},#{isUsable})
+      ON DUPLICATE KEY UPDATE id = #{id},templateId = #{templateId},componentId = #{componentId},title = #{title},promptField = #{promptField},fieldSequence = #{fieldSequence},groupSequence = #{groupSequence},isUsable = #{isUsable}
     </insert>
 
     <!-- 更新模板内容-->
@@ -96,7 +96,6 @@
             <result property="templateId" column="templateId"/>
             <result property="postscript" column="postscript"/>
             <result property="templateName" column="templateName"/>
-            <result property="isUsable" column="isUsable"/>
         </collection>
     </resultMap>
 

@@ -26,7 +26,7 @@ public interface TemplateContentDao extends BaseMapper<TemplateModel> {
      * @param groupSequence
      * @return
      */
-    boolean addTemplateContent(String id,String templateId,String componentId,String title,String promptField,String fieldSequence,String groupSequence,String IsUsable);
+    boolean addTemplateContent(String id,String templateId,String componentId,String title,String promptField,String fieldSequence,String groupSequence,String isUsable);
 
     /**
      * 编辑模板内容
