@@ -20,14 +20,18 @@
 
     <dependencies>
         <dependency>
+            <!--RabbitMQ起步依赖-->
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-amqp</artifactId>
         </dependency>
         <dependency>
+            <!--Freemarker起步依赖-->
+            <!--Freemarker是模板引擎，基于模板和要改变的数据，生成文本(HTML网页，电子邮件等)通用工具-->
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-freemarker</artifactId>
         </dependency>
         <dependency>
+            <!--thymeleaf模板-->
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-thymeleaf</artifactId>
         </dependency>
@@ -74,7 +78,7 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-logging</artifactId>
         </dependency>
-        <!--    lombok依赖    -->
+        <!--lombok依赖-->
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
