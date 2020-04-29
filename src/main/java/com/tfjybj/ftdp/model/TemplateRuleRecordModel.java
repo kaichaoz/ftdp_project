@@ -22,17 +22,17 @@ import java.io.Serializable;
 @Data
 public class TemplateRuleRecordModel implements Serializable{
 
-//    public String getId() {
-//        return id;
-//    }
-//
-//    public void setId(String id) {
-//        this.id = id;
-//    }
+    public String getId() {
+        return id;
+    }
 
-//    @Id
-//    @Column(name = "id")
-//    private String  id;
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    @Id
+    @Column(name = "id")
+    private String  id;
     @Column(name = "templateId")
     private String  templateId;
     @Column(name = "templateContentId")
