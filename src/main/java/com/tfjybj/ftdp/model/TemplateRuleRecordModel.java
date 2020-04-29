@@ -22,17 +22,17 @@ import java.io.Serializable;
 @Data
 public class TemplateRuleRecordModel implements Serializable{
 
-    public String getId() {
-        return id;
-    }
+//    public String getId() {
+//        return id;
+//    }
+//
+//    public void setId(String id) {
+//        this.id = id;
+//    }
 
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    @Id
-    @Column(name = "id")
-    private String  id;
+//    @Id
+//    @Column(name = "id")
+//    private String  id;
     @Column(name = "templateId")
     private String  templateId;
     @Column(name = "templateContentId")
@@ -53,10 +53,10 @@ public class TemplateRuleRecordModel implements Serializable{
     private String level;
     @Column(name = "creater")
     private String creater;
-    @Column(name = "creatTime")
-    private Date creatTime;
+//    @Column(name = "creatTime")
+//    private Date creatTime;
     @Column(name = "modifier")
     private String modifier;
-    @Column(name = "modifyTime")
-    private Date modifyTime;
+//    @Column(name = "modifyTime")
+//    private Date modifyTime;
 }
