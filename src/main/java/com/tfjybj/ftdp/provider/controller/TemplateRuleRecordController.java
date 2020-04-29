@@ -1,6 +1,5 @@
 package com.tfjybj.ftdp.provider.controller;
 
-import com.tfjybj.ftdp.entity.TemplateEntity;
 import com.tfjybj.ftdp.entity.TemplaterulerecordEntity;
 import com.tfjybj.ftdp.model.TemplateRuleAndConponentNameModel;
 import com.tfjybj.ftdp.model.TemplateRuleRecordIdModel;
@@ -17,7 +16,6 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import java.util.List;
-import java.util.UUID;
 
 /**
  * @Classname TemplateRuleRecordController

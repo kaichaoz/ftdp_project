@@ -12,7 +12,7 @@ import javax.persistence.Table;
 
 /**
  * <p>
- * 模板内容表
+ * 模板分组表
  * </p>
  *
  * @author Zachary(ÕÅ¿­³¬)
@@ -22,56 +22,21 @@ import javax.persistence.Table;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
-@Table(name = "tin_templatecontent")
-public class TemplatecontentEntity implements Serializable {
+@Table(name = "tin_templategroup")
+public class TemplategroupEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
     /**
-     * 模板内容id
+     * id
      */
     private String id;
 
     /**
-     * 模板id
+     * 模板分组名称
      */
-    @TableField("templateId")
-    private String templateId;
-
-    /**
-     * 组件id
-     */
-    @TableField("componentId")
-    private String componentId;
-
-    /**
-     * 标题
-     */
-    private String title;
-
-    /**
-     * 标题长度
-     */
-    @TableField("titleLength")
-    private Double titleLength;
-
-    /**
-     * 输入字段长度
-     */
-    @TableField("inputField")
-    private String inputField;
-
-    /**
-     * 提示字段
-     */
-    @TableField("promptField")
-    private String promptField;
-
-    /**
-     * 提示字段长度
-     */
-    @TableField("promptFieldLength")
-    private Double promptFieldLength;
+    @TableField("templateGroupName")
+    private String templateGroupName;
 
     /**
      * 是否可用(0可用，1不可用)

@@ -1,7 +1,6 @@
 package com.tfjybj.ftdp.provider.dao;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.tfjybj.ftdp.entity.ComponentlibraryEntity;
 import com.tfjybj.ftdp.model.ComponentModel;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;

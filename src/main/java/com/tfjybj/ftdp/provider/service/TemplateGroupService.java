@@ -1,6 +1,6 @@
 package com.tfjybj.ftdp.provider.service;
 
-import com.tfjybj.ftdp.entity.TemplateEntity;
+
 import com.tfjybj.ftdp.model.TemplateGroupModel;
 import org.springframework.stereotype.Service;
 

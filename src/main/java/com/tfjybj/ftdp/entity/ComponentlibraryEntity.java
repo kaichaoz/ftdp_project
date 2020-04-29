@@ -1,55 +1,97 @@
 package com.tfjybj.ftdp.entity;
 
-import com.baomidou.mybatisplus.annotation.TableName;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
+import java.time.LocalDateTime;
+import com.baomidou.mybatisplus.annotation.TableField;
+import java.io.Serializable;
 import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.EqualsAndHashCode;
+import lombok.experimental.Accessors;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.websocket.OnClose;
+import javax.persistence.Table;
 
 /**
- * @Classname ComponentlibraryEntity
- * @Date 2020年4月2日08点16分
- * created by 曹轩
+ * <p>
+ * 组件库表
+ * </p>
+ *
+ * @author Zachary(ÕÅ¿­³¬)
+ * @since 2020-04-29
  */
-@ApiModel(value = "组件库表")
-@Data
-//为类提供一个无参的构造方法
-@NoArgsConstructor
 @Entity
-@TableName(value = "tin_componentlibrary")
-public class ComponentlibraryEntity {
+@Data
+@EqualsAndHashCode(callSuper = false)
+@Accessors(chain = true)
+@Table(name = "tin_componentlibrary")
+public class ComponentlibraryEntity implements Serializable {
 
-    @Id
-    @ApiModelProperty(value = "id",required = true)
-    @Column(name="id")
-    private char id;
+    private static final long serialVersionUID = 1L;
 
-    @ApiModelProperty(value="分组名称",required = true)
-    @Column(name="groupName")
+    /**
+     * id
+     */
+    private String id;
+
+    /**
+     * 分组名称
+     */
+    @TableField("groupName")
     private String groupName;
 
-    @ApiModelProperty(value = "分组id",required = true)
-    @Column(name="groupId")
-    private char groupId;
+    /**
+     * 分组id
+     */
+    @TableField("groupId")
+    private String groupId;
 
-    @ApiModelProperty(value = "组件id",required = true)
-    @Column(name="componentId")
-    private char componentId;
+    /**
+     * 组件id
+     */
+    @TableField("componentId")
+    private String componentId;
 
-    @ApiModelProperty(value="分组排序",required = true)
-    @Column(name="groupSequence")
-    private char groupSequence;
+    /**
+     * 分组排序
+     */
+    @TableField("groupSequence")
+    private String groupSequence;
 
-    @ApiModelProperty(value="是否可用",required = true)
-    @Column(name="isUsable")
-    private int isUsable;
+    /**
+     * 是否可用
+     */
+    @TableField("isUsable")
+    private Integer isUsable;
 
-    @ApiModelProperty(value="组件类型",required = true)
-    @Column(name="componentType")
-    private char componentType;
+    /**
+     * 组件类型
+     */
+    @TableField("componentType")
+    private String componentType;
+
+    /**
+     * 操作人
+     */
+    private String operator;
+
+    /**
+     * 是否删除（0未删除 1 已删除）
+     */
+    private Integer isDelete;
+
+    /**
+     * 备注
+     */
+    private String remark;
+
+    /**
+     * 创建日期
+     */
+    private LocalDateTime creatTime;
+
+    /**
+     * 更新日期
+     */
+    private LocalDateTime updateTime;
+
+
 }
