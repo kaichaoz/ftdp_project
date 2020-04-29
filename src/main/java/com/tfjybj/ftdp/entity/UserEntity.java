@@ -1,39 +1,45 @@
 package com.tfjybj.ftdp.entity;
 
-import com.baomidou.mybatisplus.annotation.TableName;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
+import java.io.Serializable;
 import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.Table;
 
 /**
- * @Classname UserIEntity
- * @Date 2020/1/18 16:26
- * @Created by 张凯超
+ * <p>
+ * 用户信息表
+ * </p>
+ *
+ * @author Zachary(ÕÅ¿­³¬)
+ * @since 2020-04-29
  */
-@ApiModel(value = "用户表")
-@Data
-@NoArgsConstructor
 @Entity
-@TableName(value = "tin_user")
-public class UserEntity {
-    @Id
-    @ApiModelProperty(value = "用户Id" ,required = true)
-    @Column(name = "uid")
-    private String userId;
+@Data
+@EqualsAndHashCode(callSuper = false)
+@Accessors(chain = true)
+@Table(name = "tin_user")
+public class UserEntity implements Serializable {
 
-    @ApiModelProperty(value = "用户姓名" ,required = true)
-    @Column(name = "name")
-    private String userName;
+    private static final long serialVersionUID = 1L;
 
-    @ApiModelProperty(value = "用户密码" ,required = true)
-    @Column(name = "password")
-    private String passWord;
+    /**
+     * 用户登录账户
+
+     */
+    private String uid;
+
+    /**
+     * 用户登录密码
+     */
+    private String password;
+
+    /**
+     * 用户姓名
+     */
+    private String name;
 
 
 }
