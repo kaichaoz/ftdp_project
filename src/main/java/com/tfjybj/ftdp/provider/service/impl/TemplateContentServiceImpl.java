@@ -141,7 +141,6 @@ public class TemplateContentServiceImpl implements TemplateContentService {
             }
 
         }
-        System.out.println(dataAll);
         return dataAll;
     }
 
