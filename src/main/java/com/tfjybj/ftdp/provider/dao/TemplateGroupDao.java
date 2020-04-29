@@ -1,8 +1,6 @@
 package com.tfjybj.ftdp.provider.dao;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.tfjybj.ftdp.entity.TemplateEntity;
-import com.tfjybj.ftdp.model.TemplateContentModel;
 import com.tfjybj.ftdp.model.TemplateGroupModel;
 import com.tfjybj.ftdp.model.TemplateModel;
 import org.apache.ibatis.annotations.Param;

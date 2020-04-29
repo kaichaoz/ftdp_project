@@ -1,12 +1,10 @@
 package com.tfjybj.ftdp.provider.service.impl;
 
 
-import com.tfjybj.ftdp.entity.ComponentlibraryEntity;
 import com.tfjybj.ftdp.model.ComponentModel;
 import com.tfjybj.ftdp.provider.dao.ComponentlibraryDao;
 import com.tfjybj.ftdp.provider.service.ComponentlibraryService;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestBody;
 
 import javax.annotation.Resource;
 import java.util.List;

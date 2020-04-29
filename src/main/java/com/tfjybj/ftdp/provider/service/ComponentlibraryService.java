@@ -1,6 +1,6 @@
 package com.tfjybj.ftdp.provider.service;
 
-import com.tfjybj.ftdp.entity.ComponentlibraryEntity;
+
 import com.tfjybj.ftdp.model.ComponentModel;
 
 import org.springframework.stereotype.Service;
