@@ -27,28 +27,46 @@ public class TemplateContentServiceImpl implements TemplateContentService {
      * @return
      */
     @Override
-    public boolean addTemplateContent(TemplateContentModel templateContentModel) {
-        //解析前端传入数据
-        List<TemplateContentModel2> templateContentModel2=templateContentModel.getTemplateContentData();
-        TemplateContentModel2 tem =templateContentModel2.get(0);
-        String templateId =templateContentModel.getTemplateId();
-        String componentId=templateContentModel .getComponentId();
-        String groupSequence=templateContentModel.getGroupSequence();
-        String id = PatterUtils.getNumberPattern();
-        String title=tem.getTitle();
-        String promptField=tem.getPromptField();
-        String fieldSequence=tem.getFieldSequence();
-        return templateContentDao.addTemplateContent(id,
-                                                    templateId,
-                                                    componentId,
-                                                    title,
-                                                    promptField,
-                                                    fieldSequence,
-                                                    groupSequence);
+    public boolean addTemplateContent(List<TemplateContentModel> templateContentModel) {
+        String id,newid = null;
+        for (TemplateContentModel teml :templateContentModel){
+            templateContentDao.templateContentDelete(teml.getTemplateId());
+        }//在更新前将模板Id下的模板内容置为不可用
+        for (TemplateContentModel temmodel :templateContentModel){
+            //外层解析数据
+            List<TemplateContentModel2> templateContentModel2=temmodel.getTemplateContentData();
+            for (TemplateContentModel2 tempModel2:templateContentModel2){
+                //内层解析数据
+                id= tempModel2.getId();
+                if("".equals(id)){
+                    //id判空并生成UUID，如果Id为空则插入一条数据
+                    newid = PatterUtils.getNumberPattern();//UUID生成调用
+                    templateContentDao.addTemplateContent(newid,
+                            temmodel.getTemplateId(),
+                            temmodel.getComponentId(),
+                            tempModel2.getTitle(),
+                            tempModel2.getPromptField(),
+                            tempModel2.getFieldSequence(),
+                            temmodel.getGroupSequence(),
+                            tempModel2.getIsUsable());
+                }else{//否则根据更新该条数据
+                 templateContentDao.addTemplateContent(id,
+                            temmodel.getTemplateId(),
+                            temmodel.getComponentId(),
+                            tempModel2.getTitle(),
+                            tempModel2.getPromptField(),
+                            tempModel2.getFieldSequence(),
+                            temmodel.getGroupSequence(),
+                            tempModel2.getIsUsable());
+                }
+            }
+        }
+        return true ;
     }
 
     /**
      * 编辑模板内容
+     * 目前添加和编辑合并为一个接口
      * @param templateContentRequest
      * @return
      */
@@ -66,11 +84,11 @@ public class TemplateContentServiceImpl implements TemplateContentService {
     /**
      * 添加模板
      * @param templateModel
-     * @return
+     * @return templateId
      */
     @Override
-    public boolean templateInsert(TemplateModel templateModel){
-        return templateContentDao.templateInsert(templateModel.getId(),
+    public String templateInsert(TemplateModel templateModel){
+        templateContentDao.templateInsert(templateModel.getId(),
                                                 templateModel.getTemplateGroupID(),
                                                 templateModel.getTemplateName(),
                                                 templateModel.getGroupSequence(),
@@ -78,11 +96,14 @@ public class TemplateContentServiceImpl implements TemplateContentService {
                                                 templateModel.getPostscript(),
                                                 templateModel.getIsUsable(),
                                                 templateModel.getStaffID());
+        return templateModel.getId();
+        //返回模板id
     }
 
     /**
      * 编辑模板
      * @param templateModel
+     * 目前添加和编辑合并为一个接口
      * @return
      */
     @Override
@@ -113,7 +134,21 @@ public class TemplateContentServiceImpl implements TemplateContentService {
      */
     @Override
     public List<TempByIsUsableModel> queryTempByIsUsable() {
-        List<TempByIsUsableModel> dataAll = templateContentDao.queryTempByIsUsable();//将要返回的参数查出
+        List<TempByIsUsableModel> dataAll = templateContentDao.queryTempByIsUsable();
+        //查询可用模板
+        for (TempByIsUsableModel tempByIsUsableModel : dataAll){
+            //将模板分组下模板isUsable为1的分组名称遍历出来
+            List<TempByIsUsableData> tempByIsUsableDataList = tempByIsUsableModel.getTempByIsUsableData();
+            Iterator<TempByIsUsableData> tempByIsUsableDataIterator = tempByIsUsableDataList.iterator();
+            while (tempByIsUsableDataIterator.hasNext()){
+                TempByIsUsableData tempByIsUsableData = tempByIsUsableDataIterator.next();
+                if ("1".equals(tempByIsUsableData.getIsUsable())){
+                    tempByIsUsableDataIterator.remove();
+                }
+            }
+
+        }
+        System.out.println(dataAll);
         return dataAll;
     }
 

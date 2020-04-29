@@ -10,7 +10,10 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.springframework.web.bind.annotation.*;
 import com.tfjybj.ftdp.model.ComponentlibraryModel;
+import springfox.documentation.annotations.ApiIgnore;
+
 import javax.annotation.Resource;
+import javax.naming.spi.DirStateFactory;
 import java.util.List;
 
 
@@ -63,7 +66,8 @@ public class TemplateDesignController {
      */
     @ApiOperation("添加模板内容")
     @PostMapping(value = "/insertTemplateContent")
-    public ResultUtils insertTemplateContent(@RequestBody TemplateContentModel templateContentModel ){
+    public ResultUtils insertTemplateContent(@RequestBody List<TemplateContentModel> templateContentModel ){
+
         boolean flag = templateContentService.addTemplateContent(templateContentModel);
         if (flag){
             return  ResultUtils.build(CodeEnumUtils.INSERT_SUCCESS.getCode(),CodeEnumUtils.INSERT_SUCCESS.getMessage(), flag);
@@ -76,6 +80,7 @@ public class TemplateDesignController {
      * @param templateContentRequest
      * @return
      */
+    @ApiIgnore
     @ApiOperation("编辑模板内容")
     @PostMapping(value = "/updateTemplateContent")
     public ResultUtils updateTemplateContent(@RequestBody TemplateContentRequest templateContentRequest ){
@@ -98,8 +103,8 @@ public class TemplateDesignController {
         if ("".equals(Id)){
             templateModel.setId(PatterUtils.getNumberPattern());
         }
-        boolean flag = templateContentService.templateInsert(templateModel);
-        if (flag){
+        String flag = templateContentService.templateInsert(templateModel);
+        if (!flag.isEmpty()){
             return  ResultUtils.build(CodeEnumUtils.INSERT_SUCCESS.getCode(),CodeEnumUtils.INSERT_SUCCESS.getMessage(),templateModel.getId() );
         }
         return new ResultUtils(CodeEnumUtils.INSERT_FALL.getCode(),CodeEnumUtils.INSERT_FALL.getMessage());
@@ -110,6 +115,7 @@ public class TemplateDesignController {
      * @param templateModel
      * @return
      */
+    @ApiIgnore
     @ApiOperation("编辑模板")
     @PostMapping(value = "/updateTemplate")
     public ResultUtils updateTemplate(@RequestBody TemplateModel templateModel){

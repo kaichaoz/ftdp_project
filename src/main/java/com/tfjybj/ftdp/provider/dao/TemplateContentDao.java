@@ -26,7 +26,7 @@ public interface TemplateContentDao extends BaseMapper<TemplateModel> {
      * @param groupSequence
      * @return
      */
-    boolean addTemplateContent(String id,String templateId,String componentId,String title,String promptField,String fieldSequence,String groupSequence);
+    boolean addTemplateContent(String id,String templateId,String componentId,String title,String promptField,String fieldSequence,String groupSequence,String isUsable);
 
     /**
      * 编辑模板内容
@@ -57,6 +57,12 @@ public interface TemplateContentDao extends BaseMapper<TemplateModel> {
      * @return
      */
     boolean templateDelete(String id);
+    /**
+     * 删除模板内容（通过修改isUsable字段实现假删除）
+     * @param id
+     * @return
+     */
+    boolean templateContentDelete(String id);
 
     /**
      * 添加模板（插入template表）

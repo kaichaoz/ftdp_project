@@ -19,7 +19,7 @@ public interface TemplateContentService {
      * @param templateContentModel
      * @return
      */
-    boolean addTemplateContent(TemplateContentModel templateContentModel);
+    boolean addTemplateContent(List<TemplateContentModel> templateContentModel);
 
     /**
      * 编辑模板内容
@@ -33,7 +33,8 @@ public interface TemplateContentService {
      * @param templateModel
      * @return
      */
-    boolean templateInsert(TemplateModel templateModel);
+    String templateInsert(TemplateModel templateModel);
+
 
     /**
      * 编辑模板
@@ -64,11 +65,8 @@ public interface TemplateContentService {
 
     /**
      * 初始化模板编辑页面（查询tin_complate表和tin_complateGroup）
-     * @param id
      * @return
      */
 //    QueryTemplateModel queryTemplate (String id);
-
-
     List<ComponentlibraryModel> queryComponentlibrary();
 }
