@@ -107,6 +107,7 @@
                 title,
                 fieldSequence,
                 isUsable,
+                promptField,
                 groupSequence
         from tin_templatecontent
         where templateId= #{templateId} AND isUsable =0
