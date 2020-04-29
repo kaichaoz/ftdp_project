@@ -29,7 +29,7 @@ public  class TemplateRuleRecordServiceImpl implements TemplateRuleRecordService
     private TemplateRuleRecordDao templaterulerecordDao;
 
     /**
-     * @Description: 初始化模板规则页面
+     * @Description: 根据templateId查模板规则页面的规则
      * @Author: 陈海明
      * @Data: 2020/4/2
      * @Time: 8:35
@@ -37,7 +37,6 @@ public  class TemplateRuleRecordServiceImpl implements TemplateRuleRecordService
      * @Modified by :
      * @Modification Time:
      **/
-
     @Override
     public List<TemplaterulerecordEntity> queryTemplateRuleRecord(String templateId) {
         List<TemplaterulerecordEntity> templaterulerecordEntityList=templaterulerecordDao.queryTemplateRuleRecord(templateId);
@@ -45,7 +44,7 @@ public  class TemplateRuleRecordServiceImpl implements TemplateRuleRecordService
     }
 
     /**
-     * @Description: 初始化模板页面一条规则
+     * @Description: 根据id查一条规则的具体内容
      * @Author: 陈海明
      * @Data: 2020/4/2
      * @Time: 8:35
@@ -59,7 +58,6 @@ public  class TemplateRuleRecordServiceImpl implements TemplateRuleRecordService
         return  TemplateRuleRecordIdModelList;
     }
 
-
     /**
      * @Description:  v添加模板规则
      * @Param:  groupName:模板分组名称   groupSequence:模板分组顺序
@@ -71,11 +69,6 @@ public  class TemplateRuleRecordServiceImpl implements TemplateRuleRecordService
      * @Modified by :
      * @Modification Time:
      **/
-  //  @Override
- //   public boolean addTemplateRuleRecord(String templateId, String componentId, String grade, int sex, String startRange, String endRange, String originalScore, String weight, String level, String creater) {
-  //      Boolean flag= templaterulerecordDao.addTemplateRuleRecord(templateId,componentId,grade,sex,startRange,endRange,originalScore,weight,level,creater);
-  //      return flag;
-  //  }
     public boolean addTemplateRuleRecord(TemplateRuleRecordModel templateRuleRecordModel, String Id) {
        templateRuleRecordModel.setId(PatterUtils.getNumberPattern());
        Id = templateRuleRecordModel.getId();
@@ -83,26 +76,8 @@ public  class TemplateRuleRecordServiceImpl implements TemplateRuleRecordService
         return flag;
     }
 
-
     /**
-     * @Description: 添加组件规则
-     * @Param:
-     * @Return:
-     * @Author: 陈海明
-     * @Data: 2020/4/2
-     * @Time: 10:03
-     * @Version: V1.0.0
-     * @Modified by :
-     * @Modification Time:
-     **/
-    @Override
-    public boolean addComponentIdRuleRecord(TemplateRuleRecordModel templateRuleRecordModel, String Id) {
-        boolean flag = templaterulerecordDao.addComponentIdRuleRecord(templateRuleRecordModel,Id);
-        return flag;
-    }
-
-    /**
-     * @Description: 更新组件规则
+     * @Description: 更新模板规则
      * @Param:
      * @Return:
      * @Author: 陈海明
@@ -118,7 +93,7 @@ public  class TemplateRuleRecordServiceImpl implements TemplateRuleRecordService
         return flag;
     }
     /**
-     * @Description: 初始化规则页面的组件名称
+     * @Description: 根据templateId查规则页面的组件名称
      * @Param:
      * @Return:
      * @Author: 陈海明
@@ -128,28 +103,11 @@ public  class TemplateRuleRecordServiceImpl implements TemplateRuleRecordService
      * @Modified by :
      * @Modification Time:
      **/
-
     @Override
     public List<TemplateRuleAndConponentNameModel> queryTemplateComponentNameRuleRecord(String templateId) {
         List<TemplateRuleAndConponentNameModel> TemplateRuleAndConponentNameModelList=templaterulerecordDao.queryTemplateComponentNameRuleRecord(templateId);
         return  TemplateRuleAndConponentNameModelList;
     }
 
-    /**
-     * @Description: 添加组件规则
-     * @Param:
-     * @Return:
-     * @Author: 陈海明
-     * @Data: 2020/4/2
-     * @Time: 10:03
-     * @Version: V1.0.0
-     * @Modified by :
-     * @Modification Time:
-     **/
-//    @Override
-//    public boolean addComponentIdRuleRecord(String templateId, String componentId, String grade, int sex, String startRange, String endRange, String originalScore, String weight, String level, String creater,String Id) {
-//        String str = PatterUtils.getNumberPattern(Id);
-//        Boolean flag= templaterulerecordDao.addComponentIdRuleRecord(templateId,componentId,grade,sex,startRange,endRange,originalScore,weight,level,creater,str);
-//        return flag;
-//    }
+
 }

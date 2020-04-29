@@ -43,7 +43,7 @@ public class TemplateRuleRecordController {
      * @Modified by :
      * @Modification Time:
      **/
-    @ApiOperation(value = "初始化模板规则页面")
+    @ApiOperation(value = "根据templateId查模板规则页面的规则")
     @GetMapping(value = "/queryTemplateRuleRecord/{templateId}")
     public ResultUtils queryTemplateRuleRecord(@ApiParam(value = "模板id",required=true)@RequestParam  String  templateId){
         List<TemplaterulerecordEntity> TemplateRuleRecordModels = templateRuleRecordService.queryTemplateRuleRecord(templateId);
@@ -54,16 +54,16 @@ public class TemplateRuleRecordController {
     }
 
     /**
-     * @Description:  初始化模板页面一条规则
+     * @Description:  根据id查一条规则的具体内容
      * @Return: com.tfjybj.ftdp.utils.ResultUtils
-     * @Author: 陈海明  List<TemplateRuleRecordIdModel> queryTemplateRuleRecordId(String Id);
+     * @Author: 陈海明
      * @Data: 2020/4/2
      * @Time: 8:23
      * @Version: V1.0.0
      * @Modified by :
      * @Modification Time:
      **/
-    @ApiOperation(value = "初始化模板页面一条规则")
+    @ApiOperation(value = "根据id查一条规则的具体内容")
     @GetMapping(value = "/queryTemplateRuleRecordId/{Id}")
     public ResultUtils queryTemplateRuleRecordId(@ApiParam(value = "规则id",required=true)@RequestParam  String   Id){
         List<TemplateRuleRecordIdModel> TemplateRuleRecordIdModels = templateRuleRecordService.queryTemplateRuleRecordId( Id);
@@ -74,7 +74,17 @@ public class TemplateRuleRecordController {
     }
 
 
-    @ApiOperation(value = "初始化规则页面的组件名称")
+    /**
+     * @Description:  根据templateId查规则页面的组件名称
+     * @Return: com.tfjybj.ftdp.utils.ResultUtils
+     * @Author: 陈海明
+     * @Data: 2020/4/2
+     * @Time: 8:23
+     * @Version: V1.0.0
+     * @Modified by :
+     * @Modification Time:
+     **/
+    @ApiOperation(value = "根据templateId查规则页面的组件名称")
     @GetMapping(value = "/queryTemplateComponentNameRuleRecord/{templateId}")
     public ResultUtils queryTemplateComponentNameRuleRecord(@ApiParam(value = "模板id",required=true)@RequestParam  String  templateId){
         List<TemplateRuleAndConponentNameModel> TemplateRuleAndConponentNameModels = templateRuleRecordService.queryTemplateComponentNameRuleRecord(templateId);
@@ -85,44 +95,10 @@ public class TemplateRuleRecordController {
     }
 
 
-
-    /**
-     * @Description: 添加组件规则
-     * @Param: @ApiParam(value = "组件规则") @PathVariable String templateId
-     @ApiParam(value = "组件规则") @PathVariable String groupSequence
-      * @Return: ResultUtils
-     * @Author: 陈海明
-     * @Data: 2020/4/2
-     * @Time: 8:29
-     * @Version: V1.0.0
-     * @Modified by :
-     * @Modification Time:
-     **/
-//    @ApiOperation(value = "添加组件规则")
-////    @PostMapping(value = "/addComponentIdRuleRecord/{templateId}/{componentId}/{grade}/{sex}")
-//    @PostMapping(value = "/addComponentIdRuleRecord/{templateRuleRecordModel}")
-/*    public ResultUtils addComponentIdRuleRecord(@ApiParam(value = "模板id",required=true) @PathVariable   String  templateId ,
-                                          @ApiParam(value = "组件id",required=true) @PathVariable String  componentId,
-                                          @ApiParam(value = "年级",required=true) @PathVariable String grade,
-                                          @ApiParam(value = "性别",required=true) @PathVariable int sex ,
-                                          @ApiParam(value = "开始范围",required=true) @PathVariable String startRange ,
-                                          @ApiParam(value = "结束范围",required=true) @PathVariable String endRange ,
-                                          @ApiParam(value = "原始得分",required=true) @PathVariable String originalScore,
-                                          @ApiParam(value = "权重",required=true) @PathVariable String weight,
-                                          @ApiParam(value = "评级",required=true) @PathVariable String level,
-                                          @ApiParam(value = "创建者",required=true) @PathVariable String creater){*/
-//public ResultUtils addComponentIdRuleRecord(@RequestBody TemplateRuleRecordModel templateRuleRecordModel){
-//        boolean flag = templateRuleRecordService.addComponentIdRuleRecord(templateRuleRecordModel,PatterUtils.getNumberPattern());
-//        if (flag){
-//            return  ResultUtils.build(CodeEnumUtils.INSERT_SUCCESS.getCode(),CodeEnumUtils.INSERT_SUCCESS.getMessage(), flag);
-//        }
-//        return ResultUtils.build(CodeEnumUtils.INSERT_FALL.getCode(),CodeEnumUtils.INSERT_FALL.getMessage());
-//    }
-
     /**
      * @Description: 添加模板规则
-     * @Param: @ApiParam(value = "模板规则") @PathVariable String templateId
-     @ApiParam(value = "模板规则") @PathVariable String groupSequence
+     * @Param: @ApiParam(value = "模板规则")
+     @ApiParam(value = "模板规则")
       * @Return: ResultUtils
      * @Author: 陈海明
      * @Data: 2020/4/2
@@ -142,8 +118,8 @@ public class TemplateRuleRecordController {
     }
     /**
      * @Description: 更新模板规则
-     * @Param: @ApiParam(value = "模板规则") @PathVariable String templateId
-     @ApiParam(value = "模板规则") @PathVariable String groupSequence
+     * @Param: @ApiParam(value = "模板规则")
+     @ApiParam(value = "模板规则")
       * @Return: ResultUtils
      * @Author: 陈海明
      * @Data: 2020/4/2

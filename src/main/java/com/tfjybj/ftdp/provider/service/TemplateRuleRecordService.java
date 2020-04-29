@@ -21,7 +21,7 @@ import java.util.List;
 public interface TemplateRuleRecordService {
 
     /**
-     * @Description: 初始化模板规则页面
+     * @Description: 根据templateId查模板规则页面的规则
      * @Author: 陈海明
      * @Data: 2020/4/2
      * @Time: 8:34
@@ -32,7 +32,7 @@ public interface TemplateRuleRecordService {
     List<TemplaterulerecordEntity> queryTemplateRuleRecord(String  templateId);
 
     /**
-     * @Description: 初始化模板页面一条规则
+     * @Description: 根据id查一条规则的具体内容
      * @Author: 陈海明
      * @Data: 2020/4/2
      * @Time: 8:34
@@ -44,22 +44,20 @@ public interface TemplateRuleRecordService {
 
     /**
      * @Description: 添加模板规则
-     * @Param 模板id: templateId, 组件id: componentId,年级：grade,性别：sex,开始范围： startRange,结束范围：endRange,原始得分：originalScore,权重： weight,评级：level,创建者： creater
-     * @Author: 陈海明
+     * @Param id
+     * * @Author: 陈海明
      * @Data: 2020/4/2
      * @Time: 8:34
      * @Version: V1.0.0
      * @Modified by :
      * @Modification Time:
      **/
-
-   // boolean addTemplateRuleRecord(String  templateId, String  componentId, String grade, int sex, String startRange, String endRange, String originalScore, String weight, String level, String creater);
     boolean addTemplateRuleRecord(TemplateRuleRecordModel templateRuleRecordModel ,String Id);
 
     /**
      * @Description: 更新模板规则
-     * @Param 模板id: templateId, 组件id: componentId,年级：grade,性别：sex,开始范围： startRange,结束范围：endRange,原始得分：originalScore,权重： weight,评级：level,创建者： creater
-     * @Author: 陈海明
+     * @Param
+     * * @Author: 陈海明
      * @Data: 2020/4/2
      * @Time: 8:34
      * @Version: V1.0.0
@@ -67,23 +65,9 @@ public interface TemplateRuleRecordService {
      * @Modification Time:
      **/
     boolean updateTemplateRuleRecord(TemplateRuleRecordUpdateModel templateRuleRecordUpdateModel );
-    /**
-     * @Description:  添加组件规则
-     * @Param:  模板id: templateId, 组件id: componentId,年级：grade,性别：sex,开始范围： startRange,结束范围：endRange,原始得分：originalScore,权重： weight,评级：level,创建者： creater
-     * @Return:  true  false
-     * @Author: 陈海明
-     * @Data: 2020/4/2
-     * @Time: 10:02
-     * @Version: V1.0.0
-     * @Modified by :
-     * @Modification Time:
-     **/
-    boolean addComponentIdRuleRecord(TemplateRuleRecordModel templateRuleRecordModel ,String Id);
-
-//    boolean addComponentIdRuleRecord(String  templateId, String  componentId, String grade, int sex, String startRange, String endRange, String originalScore, String weight, String level, String creater,String Id);
 
     /**
-     * @Description: 初始化模板规则的组件名称页面
+     * @Description: 根据templateId查规则页面的组件名称
      * @Author: 陈海明
      * @Data: 2020/4/2
      * @Time: 8:34
