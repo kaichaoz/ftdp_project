@@ -6,6 +6,7 @@ import com.tfjybj.ftdp.entity.TemplaterulerecordEntity;
 import com.tfjybj.ftdp.model.TemplateRuleAndConponentNameModel;
 import com.tfjybj.ftdp.model.TemplateRuleRecordIdModel;
 import com.tfjybj.ftdp.model.TemplateRuleRecordModel;
+import com.tfjybj.ftdp.model.TemplateRuleRecordUpdateModel;
 import com.tfjybj.ftdp.provider.dao.TemplateRuleRecordDao;
 import com.tfjybj.ftdp.provider.service.TemplateRuleRecordService;
 import com.tfjybj.ftdp.utils.PatterUtils;
@@ -100,6 +101,22 @@ public  class TemplateRuleRecordServiceImpl implements TemplateRuleRecordService
         return flag;
     }
 
+    /**
+     * @Description: 更新组件规则
+     * @Param:
+     * @Return:
+     * @Author: 陈海明
+     * @Data: 2020/4/2
+     * @Time: 10:03
+     * @Version: V1.0.0
+     * @Modified by :
+     * @Modification Time:
+     **/
+    @Override
+    public boolean updateTemplateRuleRecord(TemplateRuleRecordUpdateModel templateRuleRecordUpdateModel) {
+        boolean flag = templaterulerecordDao.updateTemplateRuleRecord(templateRuleRecordUpdateModel);
+        return flag;
+    }
     /**
      * @Description: 初始化规则页面的组件名称
      * @Param:

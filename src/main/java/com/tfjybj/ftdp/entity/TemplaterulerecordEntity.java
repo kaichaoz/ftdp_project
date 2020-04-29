@@ -48,4 +48,6 @@ public class TemplaterulerecordEntity implements Serializable{
 	private String modifier;
 	@Column(name = "modifyTime")
 	private Date modifyTime;
+	@Column(name = "isUsable")
+	private int isUsable;
 }
