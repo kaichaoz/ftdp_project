@@ -53,10 +53,10 @@ public class TemplateRuleRecordModel implements Serializable{
     private String level;
     @Column(name = "creater")
     private String creater;
-    @Column(name = "creatTime")
-    private Date creatTime;
+//    @Column(name = "creatTime")
+//    private Date creatTime;
     @Column(name = "modifier")
     private String modifier;
-    @Column(name = "modifyTime")
-    private Date modifyTime;
+//    @Column(name = "modifyTime")
+//    private Date modifyTime;
 }
