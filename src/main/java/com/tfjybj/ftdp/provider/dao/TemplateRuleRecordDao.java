@@ -1,7 +1,6 @@
 package com.tfjybj.ftdp.provider.dao;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.tfjybj.ftdp.entity.TemplateEntity;
 import com.tfjybj.ftdp.entity.TemplaterulerecordEntity;
 import com.tfjybj.ftdp.model.TemplateRuleAndConponentNameModel;
 import com.tfjybj.ftdp.model.TemplateRuleRecordIdModel;
