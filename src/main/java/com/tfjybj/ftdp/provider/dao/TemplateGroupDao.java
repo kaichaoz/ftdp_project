@@ -41,7 +41,7 @@ public interface TemplateGroupDao extends BaseMapper<TemplateGroupModel> {
     * @Modified by :
     * @Modification Time:
     **/
-    Boolean addTemplateGroup (@Param("Id") String Id , @Param("groupName") String groupName,@Param("groupSequence") String groupSequence,@Param("isUsable") Integer isUsable);
+    Boolean addTemplateGroup (@Param("templateGroupModel") TemplateGroupModel templateGroupModel);
 
     /**
     * @Description: 更新模板分组位置

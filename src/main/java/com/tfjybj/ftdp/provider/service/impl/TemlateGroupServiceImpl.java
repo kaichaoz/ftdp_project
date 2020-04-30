@@ -8,8 +8,10 @@ import com.tfjybj.ftdp.provider.dao.TemplateGroupDao;
 import com.tfjybj.ftdp.provider.service.TemplateGroupService;
 import com.tfjybj.ftdp.utils.PatterUtils;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 import javax.annotation.Resource;
+import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -27,8 +29,6 @@ public class TemlateGroupServiceImpl implements TemplateGroupService {
 
     @Resource
     private TemplateContentDao templateContentDao;
-    private String Id, groupName, groupSequence;
-    private Integer isUsable;
     /**
      * @Description: 初始化模板分组页面
      * @Author: 张凯超
@@ -40,12 +40,20 @@ public class TemlateGroupServiceImpl implements TemplateGroupService {
      **/
     @Override
     public List<TemplateGroupModel> queryTemplateGroup() {
-        List<TemplateGroupModel> templateEntityList = templateGroupDao.queryTemplateGroup();
+        List<TemplateGroupModel> templateEntityList ;
+        templateEntityList = templateGroupDao.queryTemplateGroup();
+        Iterator<TemplateGroupModel> templateGroupModelIterator = templateEntityList.iterator();
+        while (templateGroupModelIterator.hasNext()){
+            TemplateGroupModel templateGroupModel = templateGroupModelIterator.next();
+            if ("".equals(templateGroupModel.getTemplateGroupName()) || templateGroupModel.getTemplateGroupName().isEmpty()){
+                templateGroupModelIterator.remove();
+            }
+        }
 //        if (redisUtil.hasKey(ftdpRedisKey.getTemplateGroup())){
 //            redisUtil.del(ftdpRedisKey.getTemplateGroup());
 //        }
 //        //放入缓存中
-//        redisUtil.llSetAll("FTDP:templateGroup",templateEntityList);
+//        redisUtil.llSetAll("FTDP:templateGroup",templatteEntityList);
         return templateEntityList;
     }
 
@@ -63,12 +71,9 @@ public class TemlateGroupServiceImpl implements TemplateGroupService {
     @Override
     public boolean addTemplateGroup(TemplateGroupModel templateGroupModel) {
         templateGroupModel.setId(PatterUtils.getNumberPattern());
-        Id = templateGroupModel.getId();
-        groupName = templateGroupModel.getTemplateGroupName();
-        groupSequence = templateGroupModel.getGroupSequence();
         templateGroupModel.setIsUsable(0);
-        templateContentDao.templateInsert(PatterUtils.getNumberPattern(),Id,"","Don't Delete",0,"",1,"");
-        return templateGroupDao.addTemplateGroup(Id, groupName, groupSequence,templateGroupModel.getIsUsable());
+        templateContentDao.templateInsert(PatterUtils.getNumberPattern(),templateGroupModel.getId(),"","Don't Delete",0,"",1,"");
+        return templateGroupDao.addTemplateGroup(templateGroupModel);
     }
 
     /**
