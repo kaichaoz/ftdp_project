@@ -51,19 +51,8 @@ public interface TemplateRuleRecordService {
      * @Modified by :
      * @Modification Time:
      **/
-    boolean addTemplateRuleRecord(TemplateRuleRecordModel templateRuleRecordModel ,String Id);
+    String addTemplateRuleRecord(TemplateRuleRecordModel templateRuleRecordModel);
 
-    /**
-     * @Description: 更新模板规则
-     * @Param
-     * * @Author: 陈海明
-     * @Data: 2020/4/2
-     * @Time: 8:34
-     * @Version: V1.0.0
-     * @Modified by :
-     * @Modification Time:
-     **/
-    boolean updateTemplateRuleRecord(TemplateRuleRecordUpdateModel templateRuleRecordUpdateModel );
 
     /**
      * @Description: 根据templateId查规则页面的组件名称

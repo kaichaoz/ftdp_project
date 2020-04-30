@@ -108,33 +108,17 @@ public class TemplateRuleRecordController {
     @ApiOperation(value = "添加模板规则")
     @PostMapping(value = "/addTemplateRuleRecord")
         public ResultUtils addTemplateRuleRecord(@RequestBody TemplateRuleRecordModel templateRuleRecordModel){
-        boolean flag = templateRuleRecordService.addTemplateRuleRecord(templateRuleRecordModel, PatterUtils.getNumberPattern());
-        if (flag){
+        String  Id = templateRuleRecordModel.getId();
+        //“equals()”比较字符串中所包含的内容是否相同
+        if("".equals((Id))){
+            templateRuleRecordModel.setId(PatterUtils.getNumberPattern());
+        }
+        String flag = templateRuleRecordService.addTemplateRuleRecord(templateRuleRecordModel);
+        if (!flag.isEmpty()){
             return  ResultUtils.build(CodeEnumUtils.INSERT_SUCCESS.getCode(),CodeEnumUtils.INSERT_SUCCESS.getMessage(), flag);
         }
         return ResultUtils.build(CodeEnumUtils.INSERT_FALL.getCode(),CodeEnumUtils.INSERT_FALL.getMessage());
     }
-    /**
-     * @Description: 更新模板规则
-     * @Param: @ApiParam(value = "模板规则")
-     @ApiParam(value = "模板规则")
-      * @Return: ResultUtils
-     * @Author: 陈海明
-     * @Data: 2020/4/2
-     * @Time: 8:29
-     * @Version: V1.0.0
-     * @Modified by :
-     * @Modification Time:
-     **/
-    @ApiOperation(value = "更新模板规则")
-    @PostMapping(value = "/updateTemplateRuleRecord")
-    public ResultUtils updateTemplateRuleRecord(@RequestBody TemplateRuleRecordUpdateModel templateRuleRecordUpdateModel){
-    boolean flag = templateRuleRecordService.updateTemplateRuleRecord(templateRuleRecordUpdateModel);
-        if (flag){
-        return  ResultUtils.build(CodeEnumUtils.INSERT_SUCCESS.getCode(),CodeEnumUtils.INSERT_SUCCESS.getMessage(), flag);
-    }
-        return ResultUtils.build(CodeEnumUtils.INSERT_FALL.getCode(),CodeEnumUtils.INSERT_FALL.getMessage());
-}
 
 
 }

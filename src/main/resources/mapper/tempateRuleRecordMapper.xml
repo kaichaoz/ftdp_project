@@ -3,8 +3,9 @@
 <mapper namespace="com.tfjybj.ftdp.provider.dao.TemplateRuleRecordDao">
 
 <!--	添加模板规则-在tin_templaterulerecord表插入-->
-    <insert id="addTemplateRuleRecord">
-    INSERT INTO tin_templaterulerecord (tin_templaterulerecord.templateId,
+    <insert id="addTemplateRuleRecord" useGeneratedKeys="true" keyProperty="id">
+    INSERT INTO tin_templaterulerecord (tin_templaterulerecord.id,
+    tin_templaterulerecord.templateId,
 	tin_templaterulerecord.templateContentId,
 	tin_templaterulerecord.grade,
 	tin_templaterulerecord.sex,
@@ -13,12 +14,10 @@
 	tin_templaterulerecord.originalScore,
 	tin_templaterulerecord.weight,
 	tin_templaterulerecord.level,
-    tin_templaterulerecord.creater,
-    tin_templaterulerecord.creatTime,
-    tin_templaterulerecord.modifier,
-    tin_templaterulerecord.modifyTime,
-     tin_templaterulerecord.id)
-	 VALUES(#{templateRuleRecordModel.templateId},
+	tin_templaterulerecord.operator,
+	tin_templaterulerecord.is_delete)
+	 VALUES(#{templateRuleRecordModel.id},
+	 #{templateRuleRecordModel.templateId},
 	 #{templateRuleRecordModel.templateContentId},
 	 #{templateRuleRecordModel.grade},
 	 #{templateRuleRecordModel.sex},
@@ -27,11 +26,20 @@
 	 #{templateRuleRecordModel.originalScore},
 	 #{templateRuleRecordModel.weight},
 	 #{templateRuleRecordModel.level},
-	 #{templateRuleRecordModel.creater},
-	 #{templateRuleRecordModel.creatTime},
-	  #{templateRuleRecordModel.modifier},
-	  #{templateRuleRecordModel.modifyTime},
-	 #{templateRuleRecordModel.id})
+	 #{templateRuleRecordModel.operator},
+	 #{templateRuleRecordModel.isDelete})
+	 ON DUPLICATE KEY UPDATE tin_templaterulerecord.id=#{templateRuleRecordModel.id},
+	  tin_templaterulerecord.templateId=#{templateRuleRecordModel.templateId},
+	  tin_templaterulerecord.templateContentId=#{templateRuleRecordModel.templateContentId},
+	  tin_templaterulerecord.grade=#{templateRuleRecordModel.grade},
+	  tin_templaterulerecord.sex=#{templateRuleRecordModel.sex},
+	  tin_templaterulerecord.startRange=#{templateRuleRecordModel.startRange},
+	  tin_templaterulerecord.endRange=#{templateRuleRecordModel.endRange},
+	  tin_templaterulerecord.originalScore=#{templateRuleRecordModel.originalScore},
+	  tin_templaterulerecord.weight=#{templateRuleRecordModel.weight},
+	  tin_templaterulerecord.level=#{templateRuleRecordModel.level},
+	  tin_templaterulerecord.operator=#{templateRuleRecordModel.operator},
+	  tin_templaterulerecord.is_delete=#{templateRuleRecordModel.isDelete}
     </insert>
 
 <!--	根据templateId查规则页面的组件名称-->
@@ -41,27 +49,10 @@
     WHERE con.templateId=#{TemplateRuleAndConponentNameModel.templateId}and componentId="4833953"
 	</select>
 
-<!--	更新模板规则-->
-    <update id="updateTemplateRuleRecord">
-	UPDATE tin_templaterulerecord
-	SET tin_templaterulerecord.templateId=#{templateRuleRecordUpdateModel.templateId},
-	  tin_templaterulerecord.templateContentId=#{templateRuleRecordUpdateModel.templateContentId},
-	  tin_templaterulerecord.grade=#{templateRuleRecordUpdateModel.grade},
-	  tin_templaterulerecord.sex=#{templateRuleRecordUpdateModel.sex},
-	  tin_templaterulerecord.startRange=#{templateRuleRecordUpdateModel.startRange},
-	  tin_templaterulerecord.endRange=#{templateRuleRecordUpdateModel.endRange},
-	  tin_templaterulerecord.originalScore=#{templateRuleRecordUpdateModel.originalScore},
-	  tin_templaterulerecord.weight=#{templateRuleRecordUpdateModel.weight},
-	  tin_templaterulerecord.level=#{templateRuleRecordUpdateModel.level},
-	  tin_templaterulerecord.modifier=#{templateRuleRecordUpdateModel.modifier},
-	  tin_templaterulerecord.modifyTime=#{templateRuleRecordUpdateModel.modifyTime},
-	  tin_templaterulerecord.isUsable=#{templateRuleRecordUpdateModel.isUsable}
-	WHERE tin_templaterulerecord.id=#{templateRuleRecordUpdateModel.id}
-	</update>
 
-<!--	根据templateId从tin_templateRuleRecord查模板规则页面的规则-->
+<!--	根据templateId从tin_templateRuleRecord查模板规则页面的可用规则-->
     <select id="queryTemplateRuleRecord" resultType="com.tfjybj.ftdp.entity.TemplaterulerecordEntity">
-     SELECT * FROM tin_templateRuleRecord WHERE templateId=#{templateId}
+     SELECT * FROM tin_templateRuleRecord WHERE templateId=#{templateId} and tin_templateRuleRecord.is_delete=0
     </select>
 
 <!--	根据id从tin_templaterulerecord表和tin_templatecontent表查一条规则的具体内容-->
@@ -77,11 +68,8 @@
 	te.endRange,
 	te.originalScore,
 	te.weight,
-	te. level,
-	te.creater,
-	te.creatTime,
-	te.modifyTime,
-	te.modifier
+	te.level,
+	te.operator
 	FROM
 	tin_templaterulerecord te
     LEFT JOIN tin_templatecontent con ON con.id=te.templateContentId

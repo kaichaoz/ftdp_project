@@ -39,10 +39,10 @@ public class TemplaterulerecordEntity implements Serializable{
 	private String templateId;
 
 	/**
-	 * 组件id
+	 * 模板内容id
 	 */
-	@TableField("componentId")
-	private String componentId;
+	@TableField("templateContentId")
+	private String templateContentId;
 
 	/**
 	 * 年级
@@ -82,20 +82,6 @@ public class TemplaterulerecordEntity implements Serializable{
 	 */
 	private String level;
 
-	/**
-	 * 创建人
-	 */
-	private String creater;
-	/**
-	 * 修改人
-	 */
-	private String modifier;
-
-	/**
-	 * 修改时间
-	 */
-	@TableField("modifyTime")
-	private LocalDateTime modifyTime;
 
 	/**
 	 * 操作人

@@ -43,10 +43,7 @@ public class TemplateRuleRecordIdModel {
     private String creater;
     @Column(name = "creatTime")
     private Date creatTime;
-    @Column(name = "modifier")
-    private String modifier;
-    @Column(name = "modifyTime")
-    private Date modifyTime;
-    @Column(name = "isUsable")
-    private int isUsable;
+
+    @Column(name = "isDelete")
+    private int isDelete;
 }

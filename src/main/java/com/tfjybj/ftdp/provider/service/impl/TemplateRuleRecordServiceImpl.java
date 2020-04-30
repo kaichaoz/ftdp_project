@@ -68,29 +68,13 @@ public  class TemplateRuleRecordServiceImpl implements TemplateRuleRecordService
      * @Modified by :
      * @Modification Time:
      **/
-    public boolean addTemplateRuleRecord(TemplateRuleRecordModel templateRuleRecordModel, String Id) {
-       templateRuleRecordModel.setId(PatterUtils.getNumberPattern());
-       Id = templateRuleRecordModel.getId();
-        boolean flag = templaterulerecordDao.addTemplateRuleRecord(templateRuleRecordModel,Id);
-        return flag;
+    public String addTemplateRuleRecord(TemplateRuleRecordModel templateRuleRecordModel) {
+
+       templaterulerecordDao.addTemplateRuleRecord(templateRuleRecordModel);
+        return templateRuleRecordModel.getId();
     }
 
-    /**
-     * @Description: 更新模板规则
-     * @Param:
-     * @Return:
-     * @Author: 陈海明
-     * @Data: 2020/4/2
-     * @Time: 10:03
-     * @Version: V1.0.0
-     * @Modified by :
-     * @Modification Time:
-     **/
-    @Override
-    public boolean updateTemplateRuleRecord(TemplateRuleRecordUpdateModel templateRuleRecordUpdateModel) {
-        boolean flag = templaterulerecordDao.updateTemplateRuleRecord(templateRuleRecordUpdateModel);
-        return flag;
-    }
+
     /**
      * @Description: 根据templateId查规则页面的组件名称
      * @Param:

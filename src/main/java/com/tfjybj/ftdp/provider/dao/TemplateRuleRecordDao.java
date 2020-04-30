@@ -60,20 +60,8 @@ public interface TemplateRuleRecordDao extends BaseMapper<TemplaterulerecordEnti
      * @Modified by :
      * @Modification Time:
      **/
-    Boolean addTemplateRuleRecord(@Param("templateRuleRecordModel") TemplateRuleRecordModel templateRuleRecordModel, @Param("Id") String Id) ;
+    Boolean addTemplateRuleRecord(@Param("templateRuleRecordModel") TemplateRuleRecordModel templateRuleRecordModel) ;
 
-    /**
-     * @Description:  更新模板规则
-     * @Param:  groupName:模板分组名称   groupSequence:模板分组顺序
-     * @Return:  ResultUtils
-     * @Author: 陈海明
-     * @Data: 2020/4/2
-     * @Time: 8:36
-     * @Version: V1.0.0
-     * @Modified by :
-     * @Modification Time:
-     **/
-    Boolean updateTemplateRuleRecord(@Param("templateRuleRecordUpdateModel") TemplateRuleRecordUpdateModel templateRuleRecordUpdateModel) ;
 
 
 }
