@@ -4,7 +4,6 @@ import com.tfjybj.ftdp.entity.TemplaterulerecordEntity;
 import com.tfjybj.ftdp.model.TemplateRuleAndConponentNameModel;
 import com.tfjybj.ftdp.model.TemplateRuleRecordIdModel;
 import com.tfjybj.ftdp.model.TemplateRuleRecordModel;
-import com.tfjybj.ftdp.model.TemplateRuleRecordUpdateModel;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -42,7 +41,7 @@ public interface TemplateRuleRecordService {
     List<TemplateRuleRecordIdModel> queryTemplateRuleRecordId(String Id);
 
     /**
-     * @Description: 添加模板规则
+     * @Description: 添加模板规则设置
      * @Param id
      * * @Author: 陈海明
      * @Data: 2020/4/2
@@ -64,5 +63,18 @@ public interface TemplateRuleRecordService {
      * @Modification Time:
      **/
     List<TemplateRuleAndConponentNameModel> queryTemplateComponentNameRuleRecord(String  templateId);
+
+    /**
+     * @Description:  根据id删除一条规则
+     * @Param:  templateRuleRecordDeleteModel
+     * @Return:  ResultUtils
+     * @Author: 陈海明
+     * @Data: 2020/4/2
+     * @Time: 8:36
+     * @Version: V1.0.0
+     * @Modified by :
+     * @Modification Time:
+     **/
+    Boolean deleteTemplateRuleRecord(String id);
 
 }

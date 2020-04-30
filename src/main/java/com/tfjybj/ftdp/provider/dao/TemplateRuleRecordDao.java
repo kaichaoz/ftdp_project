@@ -3,9 +3,9 @@ package com.tfjybj.ftdp.provider.dao;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.tfjybj.ftdp.entity.TemplaterulerecordEntity;
 import com.tfjybj.ftdp.model.TemplateRuleAndConponentNameModel;
+import com.tfjybj.ftdp.model.TemplateRuleRecordDeleteModel;
 import com.tfjybj.ftdp.model.TemplateRuleRecordIdModel;
 import com.tfjybj.ftdp.model.TemplateRuleRecordModel;
-import com.tfjybj.ftdp.model.TemplateRuleRecordUpdateModel;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
@@ -50,7 +50,7 @@ public interface TemplateRuleRecordDao extends BaseMapper<TemplaterulerecordEnti
     List<TemplateRuleAndConponentNameModel> queryTemplateComponentNameRuleRecord(String templateId);
 
     /**
-     * @Description:  添加模板规则
+     * @Description:  添加模板规则设置
      * @Param:  templateRuleRecordModel, id
      * @Return:  ResultUtils
      * @Author: 陈海明
@@ -62,6 +62,18 @@ public interface TemplateRuleRecordDao extends BaseMapper<TemplaterulerecordEnti
      **/
     Boolean addTemplateRuleRecord(@Param("templateRuleRecordModel") TemplateRuleRecordModel templateRuleRecordModel) ;
 
+    /**
+     * @Description:  根据id删除一条规则
+     * @Param:  templateRuleRecordDeleteModel
+     * @Return:  ResultUtils
+     * @Author: 陈海明
+     * @Data: 2020/4/2
+     * @Time: 8:36
+     * @Version: V1.0.0
+     * @Modified by :
+     * @Modification Time:
+     **/
+    Boolean  deleteTemplateRuleRecord (String id);
 
 
 }

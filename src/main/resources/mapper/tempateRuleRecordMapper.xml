@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.tfjybj.ftdp.provider.dao.TemplateRuleRecordDao">
 
-<!--	添加模板规则-在tin_templaterulerecord表插入-->
+<!--	添加模板规则设置-在tin_templaterulerecord表插入-->
     <insert id="addTemplateRuleRecord" useGeneratedKeys="true" keyProperty="id">
     INSERT INTO tin_templaterulerecord (tin_templaterulerecord.id,
     tin_templaterulerecord.templateId,
@@ -76,4 +76,8 @@
     WHERE
 	te.id = #{Id}
     </select>
+<!--	根据id删除一条规则-->
+	<update id="deleteTemplateRuleRecord">
+		UPDATE tin_templaterulerecord set tin_templaterulerecord.is_delete =1 WHERE tin_templaterulerecord.id=#{id}
+	</update>
 </mapper>

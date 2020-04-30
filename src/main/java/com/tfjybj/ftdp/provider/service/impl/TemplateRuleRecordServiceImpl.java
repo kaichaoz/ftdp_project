@@ -5,10 +5,8 @@ import com.tfjybj.ftdp.entity.TemplaterulerecordEntity;
 import com.tfjybj.ftdp.model.TemplateRuleAndConponentNameModel;
 import com.tfjybj.ftdp.model.TemplateRuleRecordIdModel;
 import com.tfjybj.ftdp.model.TemplateRuleRecordModel;
-import com.tfjybj.ftdp.model.TemplateRuleRecordUpdateModel;
 import com.tfjybj.ftdp.provider.dao.TemplateRuleRecordDao;
 import com.tfjybj.ftdp.provider.service.TemplateRuleRecordService;
-import com.tfjybj.ftdp.utils.PatterUtils;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -58,8 +56,8 @@ public  class TemplateRuleRecordServiceImpl implements TemplateRuleRecordService
     }
 
     /**
-     * @Description:  v添加模板规则
-     * @Param:  groupName:模板分组名称   groupSequence:模板分组顺序
+     * @Description:  添加模板规则设置
+     * @Param:
      * @Return:  ResultUtils
      * @Author: 陈海明
      * @Data: 2020/4/2
@@ -92,5 +90,21 @@ public  class TemplateRuleRecordServiceImpl implements TemplateRuleRecordService
         return  TemplateRuleAndConponentNameModelList;
     }
 
+
+    /**
+     * @Description:  根据id删除一条规则
+     * @Param:  templateRuleRecordDeleteModel
+     * @Return:  ResultUtils
+     * @Author: 陈海明
+     * @Data: 2020/4/2
+     * @Time: 8:36
+     * @Version: V1.0.0
+     * @Modified by :
+     * @Modification Time:
+     **/
+    @Override
+    public  Boolean  deleteTemplateRuleRecord(String  id) {
+        return templaterulerecordDao.deleteTemplateRuleRecord(id);
+    }
 
 }

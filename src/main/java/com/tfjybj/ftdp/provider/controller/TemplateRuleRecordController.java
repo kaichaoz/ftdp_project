@@ -4,7 +4,6 @@ import com.tfjybj.ftdp.entity.TemplaterulerecordEntity;
 import com.tfjybj.ftdp.model.TemplateRuleAndConponentNameModel;
 import com.tfjybj.ftdp.model.TemplateRuleRecordIdModel;
 import com.tfjybj.ftdp.model.TemplateRuleRecordModel;
-import com.tfjybj.ftdp.model.TemplateRuleRecordUpdateModel;
 import com.tfjybj.ftdp.provider.service.TemplateRuleRecordService;
 import com.tfjybj.ftdp.utils.CodeEnumUtils;
 import com.tfjybj.ftdp.utils.PatterUtils;
@@ -94,7 +93,7 @@ public class TemplateRuleRecordController {
 
 
     /**
-     * @Description: 添加模板规则
+     * @Description: 添加模板规则设置
      * @Param: @ApiParam(value = "模板规则")
      @ApiParam(value = "模板规则")
       * @Return: ResultUtils
@@ -105,7 +104,7 @@ public class TemplateRuleRecordController {
      * @Modified by :
      * @Modification Time:
      **/
-    @ApiOperation(value = "添加模板规则")
+    @ApiOperation(value = "添加模板规则设置")
     @PostMapping(value = "/addTemplateRuleRecord")
         public ResultUtils addTemplateRuleRecord(@RequestBody TemplateRuleRecordModel templateRuleRecordModel){
         String  Id = templateRuleRecordModel.getId();
@@ -118,6 +117,29 @@ public class TemplateRuleRecordController {
             return  ResultUtils.build(CodeEnumUtils.INSERT_SUCCESS.getCode(),CodeEnumUtils.INSERT_SUCCESS.getMessage(), flag);
         }
         return ResultUtils.build(CodeEnumUtils.INSERT_FALL.getCode(),CodeEnumUtils.INSERT_FALL.getMessage());
+    }
+
+    /**
+     * @Description: 删除规则
+     * @Param: @ApiParam(value = "模板规则")
+     @ApiParam(value = "模板规则")
+      * @Return: ResultUtils
+     * @Author: 陈海明
+     * @Data: 2020/4/2
+     * @Time: 8:29
+     * @Version: V1.0.0
+     * @Modified by :
+     * @Modification Time:
+     **/
+    @ApiOperation(value = "删除规则")
+    @PostMapping(value = "/deleteTemplateRuleRecord/{id}")
+    public ResultUtils deleteTemplateRuleRecord(@ApiParam(value = "id",required = true)@PathVariable String id)
+    {
+        boolean flag = templateRuleRecordService.deleteTemplateRuleRecord(id);
+        if (flag){
+            return ResultUtils.build(CodeEnumUtils.DELETE_SUCCESS.getCode(),CodeEnumUtils.DELETE_SUCCESS.getMessage());
+        }
+        return ResultUtils.build(CodeEnumUtils.DELETE_FALL.getCode(),CodeEnumUtils.DELETE_FALL.getMessage());
     }
 
 
