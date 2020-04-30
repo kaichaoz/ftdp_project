@@ -64,9 +64,15 @@ public class TemplateGroupController {
     @ApiOperation(value = "添加模板分组")
     @PostMapping(value = "/addTemplateGroup")
     public ResultUtils addTemplateGroup(@RequestBody TemplateGroupModel templateGroupModel){
+        if (templateGroupModel.getTemplateGroupName().isEmpty() || "".equals(templateGroupModel.getTemplateGroupName()) ||"string".equals(templateGroupModel.getTemplateGroupName())){
+            return ResultUtils.build("222","请输入模板名称");
+        }
+        if (templateGroupModel.getGroupSequence().isEmpty() || "".equals(templateGroupModel.getGroupSequence()) || "string".equals(templateGroupModel.getGroupSequence())){
+            return ResultUtils.build("222","模板默认位置不能为空");
+        }
         boolean flag = templateGroupService.addTemplateGroup(templateGroupModel);
         if (flag){
-            return  ResultUtils.build(CodeEnumUtils.INSERT_SUCCESS.getCode(),CodeEnumUtils.INSERT_SUCCESS.getMessage(), flag);
+            return  ResultUtils.build(CodeEnumUtils.INSERT_SUCCESS.getCode(),CodeEnumUtils.INSERT_SUCCESS.getMessage());
         }
         return ResultUtils.build(CodeEnumUtils.INSERT_FALL.getCode(),CodeEnumUtils.INSERT_FALL.getMessage());
     }

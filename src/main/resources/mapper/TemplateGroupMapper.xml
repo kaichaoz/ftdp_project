@@ -1,10 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.tfjybj.ftdp.provider.dao.TemplateGroupDao">
+<!--   TODO 修改单个参数为Model.get -->
     <insert id="addTemplateGroup">
-       INSERT INTO tin_templategroup ( tin_templategroup.id, tin_templategroup.templateGroupName, tin_templategroup.groupSequence, tin_templategroup.isUsable )
+       INSERT INTO tin_templategroup (
+       tin_templategroup.id,
+       tin_templategroup.templateGroupName,
+       tin_templategroup.groupSequence,
+       tin_templategroup.isUsable)
 VALUES
-	(#{Id},#{groupName},#{groupSequence},#{isUsable})
+	(#{templateGroupModel.id},
+	#{templateGroupModel.templateGroupName},
+	#{templateGroupModel.groupSequence},
+	#{templateGroupModel.isUsable})
     </insert>
     <update id="updateTemplateGroup">
 UPDATE tin_templategroup,

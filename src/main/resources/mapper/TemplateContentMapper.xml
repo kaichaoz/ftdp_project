@@ -132,6 +132,7 @@
     <!--    查询tin_componentlibrary表-->
     <select id="queryComponentlibrary" resultType="com.tfjybj.ftdp.model.ComponentlibraryModel">
         select
+               componentId,
                groupId,
                groupSequence
         from tin_componentlibrary
