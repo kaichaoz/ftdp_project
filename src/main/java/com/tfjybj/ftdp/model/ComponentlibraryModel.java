@@ -16,8 +16,11 @@ import javax.persistence.Column;
 @Accessors(chain = true)
 @ToString(callSuper = true)
 public class ComponentlibraryModel {
+
     @Column(name = "groupId")
     private String groupId;
+    @Column(name = "componentId")
+    private String componentId;
     @Column(name = "groupSequence ")
     private String groupSequence ;
 
