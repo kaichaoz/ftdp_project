@@ -67,7 +67,6 @@ public  class TemplateRuleRecordServiceImpl implements TemplateRuleRecordService
      * @Modification Time:
      **/
     public String addTemplateRuleRecord(TemplateRuleRecordModel templateRuleRecordModel) {
-
        templaterulerecordDao.addTemplateRuleRecord(templateRuleRecordModel);
         return templateRuleRecordModel.getId();
     }
