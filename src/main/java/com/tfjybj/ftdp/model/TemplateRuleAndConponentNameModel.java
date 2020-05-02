@@ -6,8 +6,8 @@ import javax.persistence.Column;
 import javax.persistence.Id;
 import java.io.Serializable;
 
-
-public class TemplateRuleAndConponentNameModel implements Serializable{
+@Data
+public class TemplateRuleAndConponentNameModel implements Serializable {
 
 
     private String Id;//模板内容表的ID
