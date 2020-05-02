@@ -96,6 +96,7 @@
             <result property="templateId" column="templateId"/>
             <result property="postscript" column="postscript"/>
             <result property="templateName" column="templateName"/>
+            <result property="isUsable" column="isUsable"/>
         </collection>
     </resultMap>
 
