@@ -107,9 +107,10 @@ public class TemplateRuleRecordController {
     @ApiOperation(value = "添加模板规则设置")
     @PostMapping(value = "/addTemplateRuleRecord")
         public ResultUtils addTemplateRuleRecord(@RequestBody TemplateRuleRecordModel templateRuleRecordModel){
-      // String  Id = templateRuleRecordModel.getId();
-        //“equals()”比较字符串中所包含的内容是否相同
+        String  Id = templateRuleRecordModel.getId();
+        if("".equals(Id)) {//比较字符串中所包含的内容是否相同
             templateRuleRecordModel.setId(PatterUtils.getNumberPattern());
+        }
         String flag = templateRuleRecordService.addTemplateRuleRecord(templateRuleRecordModel);
         if (!flag.isEmpty()){
             return  ResultUtils.build(CodeEnumUtils.INSERT_SUCCESS.getCode(),CodeEnumUtils.INSERT_SUCCESS.getMessage(), templateRuleRecordModel.getId());
