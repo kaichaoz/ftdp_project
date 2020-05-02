@@ -142,7 +142,7 @@ public class TemplateContentServiceImpl implements TemplateContentService {
             Iterator<TempByIsUsableData> tempByIsUsableDataIterator = tempByIsUsableDataList.iterator();
             while (tempByIsUsableDataIterator.hasNext()){
                 TempByIsUsableData tempByIsUsableData = tempByIsUsableDataIterator.next();
-                if ("1".equals(tempByIsUsableData.getIsUsable())){
+                if ("1".equals(tempByIsUsableData.getIsUsable()) || "".equals(tempByIsUsableData.getTemplateName()) ){
                     tempByIsUsableDataIterator.remove();
                 }
             }
