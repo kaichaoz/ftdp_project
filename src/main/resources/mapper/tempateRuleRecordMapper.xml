@@ -46,7 +46,7 @@
     <select id="queryTemplateComponentNameRuleRecord" resultType="com.tfjybj.ftdp.model.TemplateRuleAndConponentNameModel">
     select con.id, con.templateId, con.title,con.componentId
     from tin_templatecontent con
-    WHERE con.templateId=#{TemplateRuleAndConponentNameModel.templateId}and componentId="4833953"
+    WHERE con.templateId=#{TemplateRuleAndConponentNameModel.templateId}and componentId="4833953" and con.isUsable=0
 	</select>
 
 

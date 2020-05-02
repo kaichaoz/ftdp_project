@@ -20,4 +20,6 @@ public class TemplateRuleAndConponentNameModel implements Serializable {
 
     private String componentType;//组件类型
 
+    private Integer isUsable;//是否可用(0可用，1不可用)
+
 }
