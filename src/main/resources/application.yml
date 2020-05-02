@@ -32,17 +32,17 @@ spring:
         login-username: druid
         login-password: druid
   #redis  TODO 修改地址 端口
-  redis:
-    host: d-redis.tfjybj.cn
-    port: 6379
-    password:  123
-    database: 0
-    timeout: 300000ms
-    jedis:
-      pool:
-        max-active: 8
-        max-wait: -1ms
-        max-idle: 500
+#  redis:
+#    host: d-redis.tfjybj.cn
+#    port: 6379
+#    password:  123
+#    database: 0
+#    timeout: 300000ms
+#    jedis:
+#      pool:
+#        max-active: 8
+#        max-wait: -1ms
+#        max-idle: 500
 mybatis-plus:
   mapper-locations: classpath:mapper/*.xml
   global-config:
