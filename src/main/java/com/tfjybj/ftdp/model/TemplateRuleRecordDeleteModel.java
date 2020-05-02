@@ -20,6 +20,6 @@ import javax.persistence.Column;
 @ToString(callSuper = true)
 
 public class TemplateRuleRecordDeleteModel {
-    private String  id;
-    private int isDelete;
+    private String  id;//tin_templaterulerecord表的id
+    private int isDelete;//是否删除（0未删除 1 已删除）
 }
