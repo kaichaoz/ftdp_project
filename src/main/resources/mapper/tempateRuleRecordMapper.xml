@@ -44,7 +44,7 @@
 
 <!--	根据templateId查规则页面的组件名称-->
     <select id="queryTemplateComponentNameRuleRecord" resultType="com.tfjybj.ftdp.model.TemplateRuleAndConponentNameModel">
-    select con.id, con.templateId, con.title,con.componentId
+    select con.id, con.templateId, con.title,con.componentId,con.isUsable
     from tin_templatecontent con
     WHERE con.templateId=#{TemplateRuleAndConponentNameModel.templateId}and componentId="4833953" and con.isUsable=0
 	</select>
