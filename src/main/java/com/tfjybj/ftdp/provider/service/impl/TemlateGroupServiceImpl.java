@@ -91,7 +91,7 @@ public class TemlateGroupServiceImpl implements TemplateGroupService {
     public boolean updateTemplateGroup(TemplateGroupModel templateGroupModel) {
         List<TemplateModel> templateModels = templateGroupDao.queryTemplate(templateGroupModel.getId());
         if (templateModels.size() == 0 || templateGroupModel.getIsUsable() == 0 ){
-          int num =   templateGroupDao.update(templateGroupModel);
+          int num =   templateGroupDao.updateByModel(templateGroupModel);
           if (num > 0 ){
               return true ;
           }else{

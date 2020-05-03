@@ -26,7 +26,7 @@ WHERE
 	AND
 	tin_template.templateGroupID = #{templateGroupModel.id}
     </update>
-    <update id="update">
+    <update id="updateByModel">
         UPDATE
         tin_templategroup
         SET
