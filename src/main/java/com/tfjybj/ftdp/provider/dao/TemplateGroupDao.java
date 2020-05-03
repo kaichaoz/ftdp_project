@@ -60,5 +60,5 @@ public interface TemplateGroupDao extends BaseMapper<TemplateGroupModel> {
 
     List<TemplateModel> queryTemplate(String id);
 
-    int update(@Param("templateGroupModel") TemplateGroupModel templateGroupModel);
+    int updateByModel(@Param("templateGroupModel") TemplateGroupModel templateGroupModel);
 }

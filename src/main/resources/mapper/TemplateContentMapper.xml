@@ -119,7 +119,7 @@
     <resultMap type="com.tfjybj.ftdp.model.TemplateContentModel" id="TemplateContent" autoMapping="true">
         <id property="templateId" column="templateId" />
         <id property="componentId" column="componentId"/>
-        <result property="groupSequence" column="groupSequence"/>
+        <id property="groupSequence" column="groupSequence"/>
             <collection property="templateContentData" ofType="com.tfjybj.ftdp.model.TemplateContentModel2">
                 <result property="id" column="id"/>
                 <result property="title" column="title"/>
