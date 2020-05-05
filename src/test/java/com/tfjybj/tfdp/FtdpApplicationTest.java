@@ -2,7 +2,7 @@ package com.tfjybj.tfdp;
 
 import org.junit.jupiter.api.Test;
 
-class DemoApplicationTest {
+class FtdpApplicationTest {
 
     @Test
     void main() {

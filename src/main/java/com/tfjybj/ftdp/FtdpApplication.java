@@ -15,10 +15,10 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 //@ImportResource({"classpath*:spring-shiro.xml"})
 @EnableScheduling
 @EnableCaching
-public class DemoApplication {
+public class FtdpApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(DemoApplication.class, args);
+        SpringApplication.run(FtdpApplication.class, args);
     }
 
 }
