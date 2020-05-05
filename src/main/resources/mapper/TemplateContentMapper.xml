@@ -71,7 +71,7 @@
     <update id="templateContentDelete">
         UPDATE tin_templatecontent
         SET  isUsable = "1"
-        WHERE tin_templatecontent.templateId = #{id}
+        WHERE tin_templatecontent.templateId = #{templateId}
     </update>
     <!--   根据isUsable字段查询tin_templateGroup表可用的模板-->
     <select id="queryTempByIsUsable" resultMap="TempByIsUsableModel" >

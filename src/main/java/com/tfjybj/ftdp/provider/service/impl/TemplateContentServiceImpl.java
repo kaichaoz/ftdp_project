@@ -152,7 +152,7 @@ public class TemplateContentServiceImpl implements TemplateContentService {
     }
 
     /**
-     * 删除模板（修改tin_complateContent表isUsable字段为1）
+     * 删除模板（修改tin_complate表isUsable字段为1）
      * @param id
      * @return
      */
@@ -160,7 +160,16 @@ public class TemplateContentServiceImpl implements TemplateContentService {
     public boolean templateDelete(String id) {
         return templateContentDao.templateDelete(id);
     }
+    /**
+     * 删除模板内容（修改tin_complateContent表isUsable字段为1）
+     * @param templateId
+     * @return
+     */
 
+    @Override
+    public boolean templateContentDelete(String templateId) {
+       return templateContentDao.templateContentDelete(templateId);
+    }
     /**
      *侧边栏加载
      *

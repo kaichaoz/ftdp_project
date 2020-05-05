@@ -140,6 +140,20 @@ public class TemplateDesignController {
         }
         return ResultUtils.build(CodeEnumUtils.DELETE_FALL.getCode(),CodeEnumUtils.DELETE_FALL.getMessage());
     }
+    /**
+     * 删除模板内容（修改tin_complateContent表isUsable字段为1）
+     * @param id
+     * @return
+     */
+    @ApiOperation("删除模板内容")
+    @PostMapping(value = "/deleteTemplateContent/{templateId}")
+    public ResultUtils deleteTemplateContent(@ApiParam(value = "templateId",required = true)@PathVariable String templateId){
+        boolean flag = templateContentService.templateContentDelete(templateId);
+        if (flag){
+            return ResultUtils.build(CodeEnumUtils.DELETE_SUCCESS.getCode(),CodeEnumUtils.DELETE_SUCCESS.getMessage());
+        }
+        return ResultUtils.build(CodeEnumUtils.DELETE_FALL.getCode(),CodeEnumUtils.DELETE_FALL.getMessage());
+    }
 
     /**
      *侧边栏加载
