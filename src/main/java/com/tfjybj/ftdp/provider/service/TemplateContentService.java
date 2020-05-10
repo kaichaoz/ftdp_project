@@ -62,7 +62,12 @@ public interface TemplateContentService {
      * @return
      */
     boolean templateDelete(String id);
-
+    /**
+     * 删除模板（修改tin_complateContent表isUsable字段为1）
+     * @param id
+     * @return
+     */
+    boolean templateContentDelete(String templateId);
     /**
      * 初始化模板编辑页面（查询tin_complate表和tin_complateGroup）
      * @return
