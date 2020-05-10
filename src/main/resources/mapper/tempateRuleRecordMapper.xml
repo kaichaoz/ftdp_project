@@ -76,8 +76,30 @@
     WHERE
 	te.id = #{Id}
     </select>
-<!--	根据id删除一条规则-->
+
+	<!--根据templateId查询所有title-->
+	<select id="queryTemplateTitles" resultType="com.tfjybj.ftdp.model.TemplateTitlesModel">
+        select
+        title
+        from tin_templatecontent
+        where
+        tin_templatecontent.templateId = #{templateId}
+    </select>
+
+	<!--根据templateId查询一条具体规则-->
+	<select id="queryTemplateRecordUnder" resultType="com.tfjybj.ftdp.model.TemplateRuleRecordUnderContentModel">
+        select
+        tin_templaterulerecordcontent.id,
+        tin_templaterulerecordcontent.title,
+        tin_templaterulerecordcontent.titlevalue,
+        tin_templaterulerecordcontent.isTrue,
+        tin_templaterulerecordcontent.position
+        from
+        tin_templaterulerecordcontent
+        left join tin_templaterulerecord  on tin_templaterulerecordcontent.templateRuleRecordId=#{templaterecordId}
+    </select>
+	<!--	根据id删除一条规则-->
 	<update id="deleteTemplateRuleRecord">
-		UPDATE tin_templaterulerecord set tin_templaterulerecord.is_delete =1 WHERE tin_templaterulerecord.id=#{id}
+		UPDATE tin_templaterulerecord set tin_templaterulerecord.isDelete =1 WHERE tin_templaterulerecord.id=#{id}
 	</update>
 </mapper>

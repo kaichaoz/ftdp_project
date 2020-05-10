@@ -2,10 +2,7 @@ package com.tfjybj.ftdp.provider.dao;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.tfjybj.ftdp.entity.TemplaterulerecordEntity;
-import com.tfjybj.ftdp.model.TemplateRuleAndConponentNameModel;
-import com.tfjybj.ftdp.model.TemplateRuleRecordDeleteModel;
-import com.tfjybj.ftdp.model.TemplateRuleRecordIdModel;
-import com.tfjybj.ftdp.model.TemplateRuleRecordModel;
+import com.tfjybj.ftdp.model.*;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
@@ -75,5 +72,22 @@ public interface TemplateRuleRecordDao extends BaseMapper<TemplaterulerecordEnti
      **/
     Boolean  deleteTemplateRuleRecord (String id);
 
+    /**
+     * @Description:  根据templateId查询当前页面的titles
+     * @Author: 商俊帅
+     * @Date : 2020/5/9 17:02
+     * @Param ：templateId
+     *
+     **/
+    List<TemplateTitlesModel> queryTemplateTitles(String templateId);
+
+    /**
+     * @Description:  根据templaterecordId查询一条具体规则
+     * @Author: 商俊帅
+     * @Date : 2020/5/9 17:03
+     * @Param ：templaterecordId
+     *
+     **/
+    List<TemplateRuleRecordUnderContentModel> queryTemplateRecordUnder(String templaterecordId);
 
 }

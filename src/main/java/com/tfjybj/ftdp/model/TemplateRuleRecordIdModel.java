@@ -50,8 +50,11 @@ public class TemplateRuleRecordIdModel {
     private String level;
     @Column(name = "操作人")
     private String operator;
+
     @Column(name = " 创建日期")
     private Date creatTime;
+
+
 
     @Column(name = "是否删除")
     private int isDelete;

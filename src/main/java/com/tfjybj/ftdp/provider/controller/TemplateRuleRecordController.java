@@ -2,6 +2,7 @@ package com.tfjybj.ftdp.provider.controller;
 
 import com.tfjybj.ftdp.entity.TemplaterulerecordEntity;
 import com.tfjybj.ftdp.model.TemplateRuleAndConponentNameModel;
+import com.tfjybj.ftdp.model.TemplateRuleRecordContentModel;
 import com.tfjybj.ftdp.model.TemplateRuleRecordIdModel;
 import com.tfjybj.ftdp.model.TemplateRuleRecordModel;
 import com.tfjybj.ftdp.provider.service.TemplateRuleRecordService;
@@ -51,44 +52,16 @@ public class TemplateRuleRecordController {
     }
 
     /**
-     * @Description:  根据id查一条规则的具体内容
-     * @Return: com.tfjybj.ftdp.utils.ResultUtils
-     * @Author: 陈海明
-     * @Data: 2020/4/2
-     * @Time: 8:23
-     * @Version: V1.0.0
-     * @Modified by :
-     * @Modification Time:
+     * @Author: 商俊帅
+     * @Date : 2020/5/9 11:08
+     * @Param templaterecordId, templateId
+     * @Return : ResultUtils
      **/
-    @ApiOperation(value = "根据id查一条规则的具体内容")
-    @GetMapping(value = "/queryTemplateRuleRecordId/{Id}")
-    public ResultUtils queryTemplateRuleRecordId(@ApiParam(value = "规则id",required=true)@RequestParam  String   Id){
-        List<TemplateRuleRecordIdModel> TemplateRuleRecordIdModels = templateRuleRecordService.queryTemplateRuleRecordId( Id);
-        if (TemplateRuleRecordIdModels .size() == 0 ){
-            return ResultUtils.build(CodeEnumUtils.SELECT_FINISH.getCode(),CodeEnumUtils.SELECT_FINISH.getMessage());
-        }
-        return ResultUtils.build(CodeEnumUtils.SELECT_SUCCESS.getCode(),CodeEnumUtils.SELECT_SUCCESS.getMessage(),TemplateRuleRecordIdModels );
-    }
-
-
-    /**
-     * @Description:  根据templateId查规则页面的组件名称
-     * @Return: com.tfjybj.ftdp.utils.ResultUtils
-     * @Author: 陈海明
-     * @Data: 2020/4/2
-     * @Time: 8:23
-     * @Version: V1.0.0
-     * @Modified by :
-     * @Modification Time:
-     **/
-    @ApiOperation(value = "根据templateId查规则页面的组件名称")
-    @GetMapping(value = "/queryTemplateComponentNameRuleRecord/{templateId}")
-    public ResultUtils queryTemplateComponentNameRuleRecord(@ApiParam(value = "模板id",required=true)@RequestParam  String  templateId){
-        List<TemplateRuleAndConponentNameModel> TemplateRuleAndConponentNameModels = templateRuleRecordService.queryTemplateComponentNameRuleRecord(templateId);
-        if (TemplateRuleAndConponentNameModels .size() == 0 ){
-            return ResultUtils.build(CodeEnumUtils.SELECT_FINISH.getCode(),CodeEnumUtils.SELECT_FINISH.getMessage());
-        }
-        return ResultUtils.build(CodeEnumUtils.SELECT_SUCCESS.getCode(),CodeEnumUtils.SELECT_SUCCESS.getMessage(),TemplateRuleAndConponentNameModels );
+    @ApiOperation(value="根据templaterulerecordId拿到上面两者")
+    @GetMapping(value = "queryTemplateRecordContent/{templaterulerecordId}/{templateId}")
+    public ResultUtils queryTemplateRecordContent(@PathVariable("templaterulerecordId") String templaterulerecordId, @PathVariable String templateId){
+        TemplateRuleRecordContentModel templateRuleRecordContentModelList = templateRuleRecordService.queryTemplateRecordContent(templaterulerecordId,templateId);
+        return ResultUtils.build("","",templateRuleRecordContentModelList);
     }
 
 
@@ -106,7 +79,7 @@ public class TemplateRuleRecordController {
      **/
     @ApiOperation(value = "添加模板规则设置")
     @PostMapping(value = "/addTemplateRuleRecord")
-        public ResultUtils addTemplateRuleRecord(@RequestBody TemplateRuleRecordModel templateRuleRecordModel){
+    public ResultUtils addTemplateRuleRecord(@RequestBody TemplateRuleRecordModel templateRuleRecordModel){
         String  Id = templateRuleRecordModel.getId();
         if("".equals(Id)) {//比较字符串中所包含的内容是否相同
             templateRuleRecordModel.setId(PatterUtils.getNumberPattern());
@@ -140,6 +113,48 @@ public class TemplateRuleRecordController {
         }
         return ResultUtils.build(CodeEnumUtils.DELETE_FALL.getCode(),CodeEnumUtils.DELETE_FALL.getMessage());
     }
+
+    /**
+     * @Description:  根据id查一条规则的具体内容
+     * @Return: com.tfjybj.ftdp.utils.ResultUtils
+     * @Author: 陈海明
+     * @Data: 2020/4/2
+     * @Time: 8:23
+     * @Version: V1.0.0
+     * @Modified by :
+     * @Modification Time:
+     **/
+//    @ApiOperation(value = "根据id查一条规则的具体内容")
+//    @GetMapping(value = "/queryTemplateRuleRecordId/{Id}")
+//    public ResultUtils queryTemplateRuleRecordId(@ApiParam(value = "规则id",required=true)@RequestParam  String   Id){
+//        List<TemplateRuleRecordIdModel> TemplateRuleRecordIdModels = templateRuleRecordService.queryTemplateRuleRecordId( Id);
+//        if (TemplateRuleRecordIdModels .size() == 0 ){
+//            return ResultUtils.build(CodeEnumUtils.SELECT_FINISH.getCode(),CodeEnumUtils.SELECT_FINISH.getMessage());
+//        }
+//        return ResultUtils.build(CodeEnumUtils.SELECT_SUCCESS.getCode(),CodeEnumUtils.SELECT_SUCCESS.getMessage(),TemplateRuleRecordIdModels );
+//    }
+
+
+    /**
+     * @Description:  根据templateId查规则页面的组件名称
+     * @Return: com.tfjybj.ftdp.utils.ResultUtils
+     * @Author: 陈海明
+     * @Data: 2020/4/2
+     * @Time: 8:23
+     * @Version: V1.0.0
+     * @Modified by :
+     * @Modification Time:
+     **/
+//    @ApiOperation(value = "根据templateId查规则页面的组件名称")
+//    @GetMapping(value = "/queryTemplateComponentNameRuleRecord/{templateId}")
+//    public ResultUtils queryTemplateComponentNameRuleRecord(@ApiParam(value = "模板id",required=true)@RequestParam  String  templateId){
+//        List<TemplateRuleAndConponentNameModel> TemplateRuleAndConponentNameModels = templateRuleRecordService.queryTemplateComponentNameRuleRecord(templateId);
+//        if (TemplateRuleAndConponentNameModels .size() == 0 ){
+//            return ResultUtils.build(CodeEnumUtils.SELECT_FINISH.getCode(),CodeEnumUtils.SELECT_FINISH.getMessage());
+//        }
+//        return ResultUtils.build(CodeEnumUtils.SELECT_SUCCESS.getCode(),CodeEnumUtils.SELECT_SUCCESS.getMessage(),TemplateRuleAndConponentNameModels );
+//    }
+
 
 
 }

@@ -7,6 +7,7 @@ import lombok.experimental.Accessors;
 
 import javax.persistence.Column;
 
+
 /**
  * @author 陈海明
  * @Classname TemplateRuleRecordDeleteModel
@@ -22,4 +23,6 @@ import javax.persistence.Column;
 public class TemplateRuleRecordDeleteModel {
     private String  id;//tin_templaterulerecord表的id
     private int isDelete;//是否删除（0未删除 1 已删除）
-}
+
+
+ }
