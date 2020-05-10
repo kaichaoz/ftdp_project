@@ -42,21 +42,54 @@
 	  tin_templaterulerecord.is_delete=#{templateRuleRecordModel.isDelete}
     </insert>
 
-<!--	根据templateId查规则页面的组件名称-->
-    <select id="queryTemplateComponentNameRuleRecord" resultType="com.tfjybj.ftdp.model.TemplateRuleAndConponentNameModel">
-    select con.id, con.templateId, con.title,con.componentId,con.isUsable
-    from tin_templatecontent con
-    WHERE con.templateId=#{TemplateRuleAndConponentNameModel.templateId}and componentId="4833953" and con.isUsable=0
-	</select>
+
 
 
 <!--	根据templateId从tin_templateRuleRecord查模板规则页面的可用规则-->
     <select id="queryTemplateRuleRecord" resultType="com.tfjybj.ftdp.entity.TemplaterulerecordEntity">
-     SELECT * FROM tin_templateRuleRecord WHERE templateId=#{templateId} and tin_templateRuleRecord.is_delete=0
+     SELECT * FROM tin_templateRuleRecord WHERE templateId=#{templateId} and tin_templateRuleRecord.isDelete=0
     </select>
 
-<!--	根据id从tin_templaterulerecord表和tin_templatecontent表查一条规则的具体内容-->
-    <select id="queryTemplateRuleRecordId" resultType="com.tfjybj.ftdp.model.TemplateRuleRecordIdModel">
+	<!--新加的-->
+	<select id="queryTemplateRuleRecord1" resultType="com.tfjybj.ftdp.model.TemplateRuleRecordNameModel">
+		select tin_templaterulerecordcontent.templateRuleRecordId, tin_templaterulerecordcontent.titlevalue
+		from tin_templaterulerecordcontent where tin_templaterulerecordcontent.templateRuleRecordId
+		in (SELECT tin_templaterulerecord.id from tin_templaterulerecord where tin_templaterulerecord.templateId = #{templateId} AND tin_templaterulerecord.isDelete=0)
+		AND tin_templaterulerecordcontent.title='规则名称'
+	</select>
+
+
+
+	<!--根据templateId查询所有title-->
+	<select id="queryTemplateTitles" resultType="com.tfjybj.ftdp.model.TemplateTitlesModel">
+        select
+        title
+        from tin_templatecontent
+        where
+        tin_templatecontent.templateId = #{templateId}
+    </select>
+
+	<!--根据templateId查询一条具体规则-->
+	<select id="queryTemplateRecordUnder" resultType="com.tfjybj.ftdp.model.TemplateRuleRecordUnderContentModel">
+        select *
+
+--         tin_templaterulerecordcontent.id,
+--         tin_templaterulerecordcontent.title,
+--         tin_templaterulerecordcontent.titlevalue,
+--         tin_templaterulerecordcontent.isTrue,
+--         tin_templaterulerecordcontent.position
+        from
+        tin_templaterulerecordcontent
+        left join tin_templaterulerecord  on tin_templaterulerecordcontent.templateRuleRecordId=#{templaterecordId}
+    </select>
+	<!--根据id删除一条规则-->
+	<update id="deleteTemplateRuleRecord">
+		UPDATE tin_templaterulerecord set tin_templaterulerecord.isDelete =1 WHERE tin_templaterulerecord.id=#{id}
+	</update>
+
+
+	<!--海明根据id从tin_templaterulerecord表和tin_templatecontent表查一条规则的具体内容-->
+	<select id="queryTemplateRuleRecordId" resultType="com.tfjybj.ftdp.model.TemplateRuleRecordIdModel">
      SELECT
 	te.id,
 	te.templateId,
@@ -77,29 +110,10 @@
 	te.id = #{Id}
     </select>
 
-	<!--根据templateId查询所有title-->
-	<select id="queryTemplateTitles" resultType="com.tfjybj.ftdp.model.TemplateTitlesModel">
-        select
-        title
-        from tin_templatecontent
-        where
-        tin_templatecontent.templateId = #{templateId}
-    </select>
-
-	<!--根据templateId查询一条具体规则-->
-	<select id="queryTemplateRecordUnder" resultType="com.tfjybj.ftdp.model.TemplateRuleRecordUnderContentModel">
-        select
-        tin_templaterulerecordcontent.id,
-        tin_templaterulerecordcontent.title,
-        tin_templaterulerecordcontent.titlevalue,
-        tin_templaterulerecordcontent.isTrue,
-        tin_templaterulerecordcontent.position
-        from
-        tin_templaterulerecordcontent
-        left join tin_templaterulerecord  on tin_templaterulerecordcontent.templateRuleRecordId=#{templaterecordId}
-    </select>
-	<!--	根据id删除一条规则-->
-	<update id="deleteTemplateRuleRecord">
-		UPDATE tin_templaterulerecord set tin_templaterulerecord.isDelete =1 WHERE tin_templaterulerecord.id=#{id}
-	</update>
+	<!--海明	根据templateId查规则页面的组件名称-->
+	<select id="queryTemplateComponentNameRuleRecord" resultType="com.tfjybj.ftdp.model.TemplateRuleAndConponentNameModel">
+    select con.id, con.templateId, con.title,con.componentId,con.isUsable
+    from tin_templatecontent con
+    WHERE con.templateId=#{TemplateRuleAndConponentNameModel.templateId}and componentId="4833953" and con.isUsable=0
+	</select>
 </mapper>

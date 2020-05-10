@@ -1,10 +1,7 @@
 package com.tfjybj.ftdp.provider.service;
 
 import com.tfjybj.ftdp.entity.TemplaterulerecordEntity;
-import com.tfjybj.ftdp.model.TemplateRuleAndConponentNameModel;
-import com.tfjybj.ftdp.model.TemplateRuleRecordContentModel;
-import com.tfjybj.ftdp.model.TemplateRuleRecordIdModel;
-import com.tfjybj.ftdp.model.TemplateRuleRecordModel;
+import com.tfjybj.ftdp.model.*;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -29,6 +26,9 @@ public interface TemplateRuleRecordService {
      * @Modification Time:
      **/
     List<TemplaterulerecordEntity> queryTemplateRuleRecord(String  templateId);
+
+    //新加的
+    List<TemplateRuleRecordNameModel> queryTemplateRuleRecord1(String  templateId);
 
     /**
      * @Description: 根据id查一条规则的具体内容
@@ -79,7 +79,7 @@ public interface TemplateRuleRecordService {
     Boolean deleteTemplateRuleRecord(String id);
 
     /**
-     * @Description:查询当前页面内容
+     * @Description:查询当前页面内容加titles
      * @Author: 商俊帅
      * @Date : 2020/5/9 17:13
      * @Param ：templaterecordId,templateId

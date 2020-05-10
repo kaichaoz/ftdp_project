@@ -19,6 +19,9 @@ import java.util.List;
 @ToString(callSuper = true)
 public class TemplateRuleRecordUnderContentModel {
 
+    //新增字段
+    private String templateRuleRecordId;
+//    private String templateId;
     private String Id;
     private String title;
     private String titleValue;

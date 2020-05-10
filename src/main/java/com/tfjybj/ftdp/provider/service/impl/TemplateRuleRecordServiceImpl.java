@@ -38,6 +38,11 @@ public  class TemplateRuleRecordServiceImpl implements TemplateRuleRecordService
         return  templaterulerecordEntityList;
     }
 
+    public List<TemplateRuleRecordNameModel> queryTemplateRuleRecord1(String templateId) {
+        List<TemplateRuleRecordNameModel> templaterulerecordEntityList=templaterulerecordDao.queryTemplateRuleRecord1(templateId);
+        return  templaterulerecordEntityList;
+    }
+
 
     /**
      * @Description:  添加模板规则设置
@@ -55,6 +60,7 @@ public  class TemplateRuleRecordServiceImpl implements TemplateRuleRecordService
        templaterulerecordDao.addTemplateRuleRecord(templateRuleRecordModel);
         return templateRuleRecordModel.getId();
     }
+
 
 
     /**
